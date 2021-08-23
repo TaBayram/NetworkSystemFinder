@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkSystemFinder", "NetworkSystemFinder\NetworkSystemFinder.csproj", "{30FD805F-2713-4C0E-BEAA-2A662330ECD8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30FD805F-2713-4C0E-BEAA-2A662330ECD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30FD805F-2713-4C0E-BEAA-2A662330ECD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30FD805F-2713-4C0E-BEAA-2A662330ECD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30FD805F-2713-4C0E-BEAA-2A662330ECD8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DDD5307D-FB4E-4590-B56A-9E2752A16A3E}
+	EndGlobalSection
+EndGlobal

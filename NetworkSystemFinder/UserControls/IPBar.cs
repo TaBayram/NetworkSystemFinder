@@ -316,6 +316,7 @@ namespace NetworkSystemFinder.UserControls
         Stack<UserControl> filterStack = new Stack<UserControl>();
         private void SetFilters()
         {
+            if (filterStack.Count != 0) return;
             foreach(DataGridViewTextBoxColumn column in main.DataGridMain.Columns)
             {
                 if(column.Name != "RAM")
@@ -331,7 +332,14 @@ namespace NetworkSystemFinder.UserControls
                 else
                 {
                     FilterNumber filterNumber = new FilterNumber();
+                    filterNumber.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
+                    filterNumber.Property = column.Name;
+                    filterNumber.Index = column.Index;
+                    filterNumber.GroupBox.Text = column.Name;
+                    flowLayoutPanel1.Controls.Add(filterNumber);
+                    filterStack.Push(filterNumber);
                 }
+            
             }
         }
 
@@ -359,8 +367,10 @@ namespace NetworkSystemFinder.UserControls
             var filteredMachines = new SortableBindingList<Machine>(main.SortableMachines);
             foreach (Machine machine in main.SortableMachines)
             {
+                bool hasDeleted = false;
                 foreach (FilterString filterString in filterStack.OfType<FilterString>())
                 {
+                    if (hasDeleted) break;
                     if (filterString.Input == "") continue;
                     string[] names = filterString.Input.ToLower().Split(' ');
                     foreach(string str in names)
@@ -368,8 +378,25 @@ namespace NetworkSystemFinder.UserControls
                         if(!machine.GetType().GetProperty(filterString.Property).GetValue(machine, null).ToString().ToLower().Contains(str))
                         {
                             filteredMachines.Remove(machine);
+                            hasDeleted = true;
                             break;
                         }
+                    }
+                }
+                if (hasDeleted) continue;
+                foreach (FilterNumber filterNumber in filterStack.OfType<FilterNumber>())
+                {
+                    if (hasDeleted) break;
+                    if (filterNumber.InputMax == int.MaxValue && filterNumber.InputMin == 0) continue;
+                    int value = 0;
+                    bool hasParsed = int.TryParse(machine.GetType().GetProperty(filterNumber.Property).GetValue(machine, null).ToString().Trim(), out value);
+                    if (!hasParsed) continue;
+
+                    if(value < filterNumber.InputMin || value > filterNumber.InputMax)
+                    {
+                        filteredMachines.Remove(machine);
+                        hasDeleted = true;
+                        break;
                     }
                 }
             }

@@ -225,6 +225,45 @@
   <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <metadata name="buttonFilter.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="buttonFilter.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="buttonFilter.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="buttonFilter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonFilter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 713</value>
+  </data>
+  <data name="buttonFilter.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="buttonFilter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 24</value>
+  </data>
+  <data name="buttonFilter.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="buttonFilter.Text" xml:space="preserve">
+    <value>keyFilter</value>
+  </data>
+  <data name="&gt;&gt;buttonFilter.Name" xml:space="preserve">
+    <value>buttonFilter</value>
+  </data>
+  <data name="&gt;&gt;buttonFilter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonFilter.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;buttonFilter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="textBoxIPStart.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 93</value>
   </data>
@@ -596,42 +635,6 @@
   </data>
   <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <metadata name="buttonFilter.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="buttonFilter.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="buttonFilter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonFilter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 713</value>
-  </data>
-  <data name="buttonFilter.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="buttonFilter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 24</value>
-  </data>
-  <data name="buttonFilter.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="buttonFilter.Text" xml:space="preserve">
-    <value>keyFilter</value>
-  </data>
-  <data name="&gt;&gt;buttonFilter.Name" xml:space="preserve">
-    <value>buttonFilter</value>
-  </data>
-  <data name="&gt;&gt;buttonFilter.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonFilter.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;buttonFilter.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

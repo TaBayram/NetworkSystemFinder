@@ -74,6 +74,13 @@ namespace NetworkSystemFinder.UserControls
             buttonCancel.UseVisualStyleBackColor = true;
             buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
+            // buttonFilter
+            // 
+            resources.ApplyResources(buttonFilter, "buttonFilter");
+            buttonFilter.Name = "buttonFilter";
+            buttonFilter.UseVisualStyleBackColor = true;
+            buttonFilter.Click += new System.EventHandler(this.buttonFilter_Click);
+            // 
             // textBoxIPStart
             // 
             resources.ApplyResources(this.textBoxIPStart, "textBoxIPStart");
@@ -145,13 +152,6 @@ namespace NetworkSystemFinder.UserControls
             // 
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            // 
-            // buttonFilter
-            // 
-            resources.ApplyResources(buttonFilter, "buttonFilter");
-            buttonFilter.Name = "buttonFilter";
-            buttonFilter.UseVisualStyleBackColor = true;
-            buttonFilter.Click += new System.EventHandler(this.buttonFilter_Click);
             // 
             // IPBar
             // 

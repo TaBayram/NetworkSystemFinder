@@ -30,10 +30,10 @@ namespace NetworkSystemFinder.UserControls
         private void InitializeComponent()
         {
             this.groupBox = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.labelMin = new System.Windows.Forms.Label();
             this.labelMax = new System.Windows.Forms.Label();
             this.textBoxMax = new System.Windows.Forms.TextBox();
+            this.labelMin = new System.Windows.Forms.Label();
+            this.textBoxMin = new System.Windows.Forms.TextBox();
             this.groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,23 +42,33 @@ namespace NetworkSystemFinder.UserControls
             this.groupBox.Controls.Add(this.labelMax);
             this.groupBox.Controls.Add(this.textBoxMax);
             this.groupBox.Controls.Add(this.labelMin);
-            this.groupBox.Controls.Add(this.textBox1);
+            this.groupBox.Controls.Add(this.textBoxMin);
             this.groupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox.Location = new System.Drawing.Point(0, 0);
             this.groupBox.Margin = new System.Windows.Forms.Padding(1);
             this.groupBox.Name = "groupBox";
             this.groupBox.Padding = new System.Windows.Forms.Padding(1);
-            this.groupBox.Size = new System.Drawing.Size(220, 75);
+            this.groupBox.Size = new System.Drawing.Size(205, 75);
             this.groupBox.TabIndex = 0;
             this.groupBox.TabStop = false;
             this.groupBox.Text = "groupBox1";
             // 
-            // textBox1
+            // labelMax
             // 
-            this.textBox1.Location = new System.Drawing.Point(4, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
+            this.labelMax.AutoSize = true;
+            this.labelMax.Location = new System.Drawing.Point(92, 18);
+            this.labelMax.Name = "labelMax";
+            this.labelMax.Size = new System.Drawing.Size(44, 13);
+            this.labelMax.TabIndex = 3;
+            this.labelMax.Text = "keyMax";
+            // 
+            // textBoxMax
+            // 
+            this.textBoxMax.Location = new System.Drawing.Point(95, 34);
+            this.textBoxMax.MaxLength = 12;
+            this.textBoxMax.Name = "textBoxMax";
+            this.textBoxMax.Size = new System.Drawing.Size(85, 20);
+            this.textBoxMax.TabIndex = 2;
             // 
             // labelMin
             // 
@@ -69,21 +79,13 @@ namespace NetworkSystemFinder.UserControls
             this.labelMin.TabIndex = 1;
             this.labelMin.Text = "keyMin";
             // 
-            // labelMax
+            // textBoxMin
             // 
-            this.labelMax.AutoSize = true;
-            this.labelMax.Location = new System.Drawing.Point(116, 18);
-            this.labelMax.Name = "labelMax";
-            this.labelMax.Size = new System.Drawing.Size(44, 13);
-            this.labelMax.TabIndex = 3;
-            this.labelMax.Text = "keyMax";
-            // 
-            // textBoxMax
-            // 
-            this.textBoxMax.Location = new System.Drawing.Point(116, 34);
-            this.textBoxMax.Name = "textBoxMax";
-            this.textBoxMax.Size = new System.Drawing.Size(100, 20);
-            this.textBoxMax.TabIndex = 2;
+            this.textBoxMin.Location = new System.Drawing.Point(4, 34);
+            this.textBoxMin.MaxLength = 12;
+            this.textBoxMin.Name = "textBoxMin";
+            this.textBoxMin.Size = new System.Drawing.Size(85, 20);
+            this.textBoxMin.TabIndex = 0;
             // 
             // FilterNumber
             // 
@@ -91,7 +93,7 @@ namespace NetworkSystemFinder.UserControls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox);
             this.Name = "FilterNumber";
-            this.Size = new System.Drawing.Size(220, 75);
+            this.Size = new System.Drawing.Size(205, 75);
             this.groupBox.ResumeLayout(false);
             this.groupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -104,6 +106,6 @@ namespace NetworkSystemFinder.UserControls
         private System.Windows.Forms.Label labelMax;
         private System.Windows.Forms.TextBox textBoxMax;
         private System.Windows.Forms.Label labelMin;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxMin;
     }
 }

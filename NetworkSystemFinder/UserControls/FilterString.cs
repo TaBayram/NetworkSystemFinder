@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetworkSystemFinder.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace NetworkSystemFinder.UserControls
 {
-    public partial class FilterString : UserControl
+    public partial class FilterString : UserControl, ColorSetter
     {
         int index;
         string property;
@@ -23,14 +24,20 @@ namespace NetworkSystemFinder.UserControls
         public FilterString()
         {
             InitializeComponent();
+            SetColor();
+            Session.Instance.ChangeControlLanguage(this);
         }
 
-        public void SetCheckList()
+        public void SetColor()
         {
-            if(property == "CPU")
-            {
+            Theme theme = Session.Instance.theme;
+            this.BackColor = theme.minorBackground;
+            this.ForeColor = theme.textLine;
 
-            }
+            this.textBox.BackColor = theme.textBoxBackground;
+            this.checkedListBox.BackColor = theme.textBoxBackground;
+
         }
+
     }
 }

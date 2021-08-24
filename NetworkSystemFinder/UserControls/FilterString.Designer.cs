@@ -46,7 +46,7 @@ namespace NetworkSystemFinder.UserControls
             this.checkedListBox.MaximumSize = new System.Drawing.Size(300, 0);
             this.checkedListBox.MinimumSize = new System.Drawing.Size(180, 10);
             this.checkedListBox.Name = "checkedListBox";
-            this.checkedListBox.Size = new System.Drawing.Size(180, 105);
+            this.checkedListBox.Size = new System.Drawing.Size(180, 0);
             this.checkedListBox.TabIndex = 0;
             // 
             // textBox
@@ -55,9 +55,9 @@ namespace NetworkSystemFinder.UserControls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox.Location = new System.Drawing.Point(3, 17);
             this.textBox.Margin = new System.Windows.Forms.Padding(1);
-            this.textBox.MaximumSize = new System.Drawing.Size(300, 0);
+            this.textBox.MaximumSize = new System.Drawing.Size(300, 4);
             this.textBox.MaxLength = 64;
-            this.textBox.MinimumSize = new System.Drawing.Size(180, 0);
+            this.textBox.MinimumSize = new System.Drawing.Size(180, 20);
             this.textBox.Name = "textBox";
             this.textBox.Size = new System.Drawing.Size(180, 20);
             this.textBox.TabIndex = 1;
@@ -73,7 +73,7 @@ namespace NetworkSystemFinder.UserControls
             this.groupBox.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox.Name = "groupBox";
             this.groupBox.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBox.Size = new System.Drawing.Size(205, 162);
+            this.groupBox.Size = new System.Drawing.Size(205, 57);
             this.groupBox.TabIndex = 3;
             this.groupBox.TabStop = false;
             this.groupBox.Text = "groupBox1";
@@ -88,7 +88,7 @@ namespace NetworkSystemFinder.UserControls
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "FilterString";
             this.Padding = new System.Windows.Forms.Padding(1);
-            this.Size = new System.Drawing.Size(207, 164);
+            this.Size = new System.Drawing.Size(207, 59);
             this.groupBox.ResumeLayout(false);
             this.groupBox.PerformLayout();
             this.ResumeLayout(false);

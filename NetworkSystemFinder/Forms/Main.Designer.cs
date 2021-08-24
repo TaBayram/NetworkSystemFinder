@@ -38,11 +38,11 @@ namespace NetworkSystemFinder
             this.splitContainerHome = new System.Windows.Forms.SplitContainer();
             this.panelLeftBar = new System.Windows.Forms.Panel();
             this.panelMainButtons = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
             this.buttonLANDevices = new System.Windows.Forms.Button();
             this.panelHome = new System.Windows.Forms.Panel();
             this.dataViewMain = new System.Windows.Forms.DataGridView();
             this.backgroundWorkerExcel = new System.ComponentModel.BackgroundWorker();
+            this.buttonPrinters = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -86,9 +86,11 @@ namespace NetworkSystemFinder
             // 
             // buttonExcel
             // 
+            this.buttonExcel.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.buttonExcel, "buttonExcel");
+            this.buttonExcel.FlatAppearance.BorderSize = 0;
             this.buttonExcel.Name = "buttonExcel";
-            this.buttonExcel.UseVisualStyleBackColor = true;
+            this.buttonExcel.UseVisualStyleBackColor = false;
             this.buttonExcel.Click += new System.EventHandler(this.buttonExcel_Click);
             // 
             // splitContainerHome
@@ -113,16 +115,10 @@ namespace NetworkSystemFinder
             // 
             // panelMainButtons
             // 
-            this.panelMainButtons.Controls.Add(this.button2);
+            this.panelMainButtons.Controls.Add(this.buttonPrinters);
             this.panelMainButtons.Controls.Add(this.buttonLANDevices);
             resources.ApplyResources(this.panelMainButtons, "panelMainButtons");
             this.panelMainButtons.Name = "panelMainButtons";
-            // 
-            // button2
-            // 
-            resources.ApplyResources(this.button2, "button2");
-            this.button2.Name = "button2";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // buttonLANDevices
             // 
@@ -167,6 +163,12 @@ namespace NetworkSystemFinder
             this.backgroundWorkerExcel.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerExcel_ProgressChanged);
             this.backgroundWorkerExcel.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerExcel_RunWorkerCompleted);
             // 
+            // buttonPrinters
+            // 
+            resources.ApplyResources(this.buttonPrinters, "buttonPrinters");
+            this.buttonPrinters.Name = "buttonPrinters";
+            this.buttonPrinters.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             resources.ApplyResources(this, "$this");
@@ -197,13 +199,13 @@ namespace NetworkSystemFinder
         private System.Windows.Forms.SplitContainer splitContainerHome;
         private System.Windows.Forms.Panel panelLeftBar;
         private System.Windows.Forms.Button buttonLANDevices;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panelHome;
         private System.Windows.Forms.DataGridView dataViewMain;
         private System.Windows.Forms.Panel panelMainButtons;
         private System.Windows.Forms.Button buttonExcel;
         private System.ComponentModel.BackgroundWorker backgroundWorkerExcel;
         private System.Windows.Forms.ProgressBar progressBarExcel;
+        private System.Windows.Forms.Button buttonPrinters;
     }
 }
 

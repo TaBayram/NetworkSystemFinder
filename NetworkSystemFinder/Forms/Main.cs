@@ -204,11 +204,12 @@ namespace NetworkSystemFinder
 
         private void backgroundWorkerExcel_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+            Session session = Session.Instance;
             if(e.Error != null)
             {
-                MessageBox.Show("Error: "+progressBarExcel.Value+" - "+e.Error.Message, "Failed", MessageBoxButtons.OK);
+                MessageBox.Show(session.TryTranslate("keyError")+": "+progressBarExcel.Value+" - "+e.Error.Message, session.TryTranslate("keyFailed"), MessageBoxButtons.OK);
             }
-            else if (MessageBox.Show("Excel file has been created! Do you want to open it?", "Completed", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            else if (MessageBox.Show(session.TryTranslate("keyExcelPositive"), session.TryTranslate("keyCompleted"), MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 excelApp.Visible = true;
             }

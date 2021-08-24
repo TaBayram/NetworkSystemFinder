@@ -39,6 +39,14 @@ namespace NetworkSystemFinder.Helpers
             }
         }
 
+        public string TryTranslate(string text)
+        {
+            string translated = resourceManager.GetString(text);
+            if (translated != "" && translated != null)
+                text = translated;
+            return text;
+        }
+
         public ResourceManager resourceManager;
         public Theme theme;
     }

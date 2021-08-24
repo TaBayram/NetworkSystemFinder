@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetworkSystemFinder.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace NetworkSystemFinder.UserControls
 {
-    public partial class FilterNumber : UserControl
+    public partial class FilterNumber : UserControl, ColorSetter
     {
         int index;
         string property;
@@ -41,6 +42,19 @@ namespace NetworkSystemFinder.UserControls
         public FilterNumber()
         {
             InitializeComponent();
+            SetColor();
+            Session.Instance.ChangeControlLanguage(this);
+        }
+
+        public void SetColor()
+        {
+            Theme theme = Session.Instance.theme;
+            this.BackColor = theme.minorBackground;
+            this.ForeColor = theme.textLine;
+
+            this.textBoxMax.BackColor = theme.textBoxBackground;
+            this.textBoxMin.BackColor = theme.textBoxBackground;
+
         }
     }
 }

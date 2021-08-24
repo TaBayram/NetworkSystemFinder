@@ -120,6 +120,18 @@
   <data name="keyCancel" xml:space="preserve">
     <value>İptal</value>
   </data>
+  <data name="keyCompleted" xml:space="preserve">
+    <value>Bitti</value>
+  </data>
+  <data name="keyError" xml:space="preserve">
+    <value>Hata</value>
+  </data>
+  <data name="keyExcelPositive" xml:space="preserve">
+    <value>Excel dosyası oluşturuldu! Açmak ister misin?</value>
+  </data>
+  <data name="keyFailed" xml:space="preserve">
+    <value>Başarısız</value>
+  </data>
   <data name="keyFilter" xml:space="preserve">
     <value>Filtre</value>
   </data>
@@ -129,11 +141,23 @@
   <data name="keyIPStart" xml:space="preserve">
     <value>IP Başlangıc</value>
   </data>
-  <data name="keyLANDevices" xml:space="preserve">
-    <value>Yerel Cihazlar</value>
+  <data name="keyLANComputers" xml:space="preserve">
+    <value>Yerel Bilgisayarlar</value>
+  </data>
+  <data name="keyLANPrinters" xml:space="preserve">
+    <value>Yerel Yazıcılar</value>
   </data>
   <data name="keyLog" xml:space="preserve">
     <value>Sistem Kayıt</value>
+  </data>
+  <data name="keyMax" xml:space="preserve">
+    <value>Maksimum</value>
+  </data>
+  <data name="keyMin" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
+  <data name="keyNo" xml:space="preserve">
+    <value>Hayır</value>
   </data>
   <data name="keyPassword" xml:space="preserve">
     <value>Şifre</value>
@@ -149,5 +173,8 @@
   </data>
   <data name="keyUser" xml:space="preserve">
     <value>Kullanıcı</value>
+  </data>
+  <data name="keyYes" xml:space="preserve">
+    <value>Evet</value>
   </data>
 </root>

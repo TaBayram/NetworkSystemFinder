@@ -125,8 +125,22 @@
     <value>Flat</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="buttonSearch.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAVBJREFUOE+V
+        078rRWEcx/HrZ/k1iM1GkZLFKGKwuFIWg0EpPxb/gcEmyiJSMgibgcmPpJQig2RisN1CCpmEDN7vc086
+        J/c6+dSr5zzPPefpPt/vOalImrCOezzhLhwfsIlm5E0LznCLWaTRjl7MwPVztOJXKrGLG/SjFmUoDUfn
+        fbjGAaoQyyBeMYIKF3KkHMPwviEXotnCFWqCWf5U4wI7wSySDFayl4lZgkWO5Q3T2cvETOEDBcEszCMW
+        speJmYetjcXKnsJu/BULfIKjYBbJBJ4xgBIXcqQYttguTLoQTR3c+RjdsNo+UBiOzrvg75/ogb/F4u62
+        aB/j6EQbOjCKPXj2LyzD1z62SRE8ghtc4hDb4ejcOq3BTd6xikb43E9sTT3GsAg/LPvuP2qAL5rdeoFH
+        2YD354zF9PX1e4jG78BWWkyP4yb/jhvPgaOkMt86NkTpPxXQbwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="buttonSearch.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
   <data name="buttonSearch.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 5</value>
+    <value>35, 183</value>
   </data>
   <data name="buttonSearch.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -151,7 +165,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonSearch.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <metadata name="buttonLog.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -163,13 +177,13 @@
     <value>NoControl</value>
   </data>
   <data name="buttonLog.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 222</value>
+    <value>5, 149</value>
   </data>
   <data name="buttonLog.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
   <data name="buttonLog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 32</value>
+    <value>113, 24</value>
   </data>
   <data name="buttonLog.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -187,7 +201,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonLog.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <metadata name="buttonCancel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -195,17 +209,32 @@
   <data name="buttonCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
+  <data name="buttonCancel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAYRJREFUOE91
+        080rBVEcxvHx/tr1EvK28L7hLiyEJFGKjZ2dyEbZUSKKIuQiFKIkC7IkGyLlT7BgY2VrhZ2dfJ+ZOacz
+        6j716c7Mbc7vnN854/1LHEd4xDWu8IRzdCBpsjCBU/SjDLFQMbpwglnkIpJ0jGIFdchGCtyoQAUWMIMM
+        2LRiD41I1QOSFv4q7rUGOUS3fxcmgWFk+nfBjNpQgkJ0wq3YBw1iZ/mAJpgH+TjGFCZxgSKY6P875Ph3
+        RF3W1ExUbRHPeMUm1AM3NygNLoMByoNLP1rCHPTyG9ZglmcSGeAe7hLysI8lzOMMBTDR1t7CLsE00UxT
+        SxhEDaowBG2toiI6Jypgm9iOVTRD01fMC4r7ci0uMa4HJqo8Ah2QFmiK5jwoelHLasAGPrEDbbONtmkM
+        yxiADlU1tARV7YX+e8EvPqBtdnvjV9ZyprGFdWgHtqFm9kDb+w0N8g59ApGoBxpI21oPTbsSOpFqriru
+        4gdf0CeQNFq77bQTnUQ18sDzvNgfjxc4NI1yjDAAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="buttonCancel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
   <data name="buttonCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 42</value>
+    <value>128, 149</value>
   </data>
   <data name="buttonCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
   <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 24</value>
+    <value>87, 24</value>
   </data>
   <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -223,7 +252,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <metadata name="buttonFilter.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -262,10 +291,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonFilter.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="textBoxIPStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 93</value>
+    <value>5, 24</value>
   </data>
   <data name="textBoxIPStart.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -292,10 +321,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;textBoxIPStart.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="textBoxIPEnd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>115, 93</value>
+    <value>115, 24</value>
   </data>
   <data name="textBoxIPEnd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -322,13 +351,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;textBoxIPEnd.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="labelIPStart.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="labelIPStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 74</value>
+    <value>5, 5</value>
   </data>
   <data name="labelIPStart.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 1</value>
@@ -352,7 +381,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelIPStart.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="labelIPEnd.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -361,7 +390,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelIPEnd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 74</value>
+    <value>112, 5</value>
   </data>
   <data name="labelIPEnd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 1</value>
@@ -385,7 +414,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelIPEnd.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="labelPassword.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -394,7 +423,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelPassword.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 169</value>
+    <value>8, 100</value>
   </data>
   <data name="labelPassword.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 2, 5, 1</value>
@@ -418,7 +447,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelPassword.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="labelUser.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -427,7 +456,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelUser.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 123</value>
+    <value>8, 54</value>
   </data>
   <data name="labelUser.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 1</value>
@@ -451,10 +480,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelUser.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="textBoxPassword.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 188</value>
+    <value>8, 119</value>
   </data>
   <data name="textBoxPassword.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -481,10 +510,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;textBoxPassword.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="textBoxUser.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 142</value>
+    <value>8, 73</value>
   </data>
   <data name="textBoxUser.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -508,13 +537,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;textBoxUser.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="checkBoxResolveNames.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="checkBoxResolveNames.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 47</value>
+    <value>107, 50</value>
   </data>
   <data name="checkBoxResolveNames.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -538,13 +567,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;checkBoxResolveNames.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>1</value>
   </data>
   <metadata name="backgroundWorkerPinger.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <data name="progressBarSearch.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 275</value>
+    <value>3, 223</value>
   </data>
   <data name="progressBarSearch.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 10</value>
@@ -562,7 +591,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;progressBarSearch.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="labelCount.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -598,7 +627,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelCount.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="flowLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -613,10 +642,10 @@
     <value>TopDown</value>
   </data>
   <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 291</value>
+    <value>3, 317</value>
   </data>
   <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 414</value>
+    <value>214, 375</value>
   </data>
   <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -634,7 +663,31 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
+  </data>
+  <data name="checkedListBoxColumns.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 239</value>
+  </data>
+  <data name="checkedListBoxColumns.ScrollAlwaysVisible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkedListBoxColumns.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 64</value>
+  </data>
+  <data name="checkedListBoxColumns.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;checkedListBoxColumns.Name" xml:space="preserve">
+    <value>checkedListBoxColumns</value>
+  </data>
+  <data name="&gt;&gt;checkedListBoxColumns.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkedListBoxColumns.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;checkedListBoxColumns.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

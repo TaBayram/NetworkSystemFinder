@@ -70,6 +70,42 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bitti.
+        /// </summary>
+        internal static string keyCompleted {
+            get {
+                return ResourceManager.GetString("keyCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hata.
+        /// </summary>
+        internal static string keyError {
+            get {
+                return ResourceManager.GetString("keyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excel dosyası oluşturuldu! Açmak ister misin?.
+        /// </summary>
+        internal static string keyExcelPositive {
+            get {
+                return ResourceManager.GetString("keyExcelPositive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Başarısız.
+        /// </summary>
+        internal static string keyFailed {
+            get {
+                return ResourceManager.GetString("keyFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filtre.
         /// </summary>
         internal static string keyFilter {
@@ -97,11 +133,20 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Yerel Cihazlar.
+        ///   Looks up a localized string similar to Yerel Bilgisayarlar.
         /// </summary>
-        internal static string keyLANDevices {
+        internal static string keyLANComputers {
             get {
-                return ResourceManager.GetString("keyLANDevices", resourceCulture);
+                return ResourceManager.GetString("keyLANComputers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yerel Yazıcılar.
+        /// </summary>
+        internal static string keyLANPrinters {
+            get {
+                return ResourceManager.GetString("keyLANPrinters", resourceCulture);
             }
         }
         
@@ -111,6 +156,33 @@ namespace NetworkSystemFinder.Languages {
         internal static string keyLog {
             get {
                 return ResourceManager.GetString("keyLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maksimum.
+        /// </summary>
+        internal static string keyMax {
+            get {
+                return ResourceManager.GetString("keyMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum.
+        /// </summary>
+        internal static string keyMin {
+            get {
+                return ResourceManager.GetString("keyMin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hayır.
+        /// </summary>
+        internal static string keyNo {
+            get {
+                return ResourceManager.GetString("keyNo", resourceCulture);
             }
         }
         
@@ -156,6 +228,15 @@ namespace NetworkSystemFinder.Languages {
         internal static string keyUser {
             get {
                 return ResourceManager.GetString("keyUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Evet.
+        /// </summary>
+        internal static string keyYes {
+            get {
+                return ResourceManager.GetString("keyYes", resourceCulture);
             }
         }
     }

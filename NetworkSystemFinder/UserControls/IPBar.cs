@@ -341,6 +341,12 @@ namespace NetworkSystemFinder.UserControls
                 }
             
             }
+
+            foreach (DataGridViewTextBoxColumn column in main.DataGridMain.Columns)
+            {
+                checkedListBoxColumns.Items.Add(column.Name);
+                checkedListBoxColumns.SetItemChecked(checkedListBoxColumns.Items.Count - 1, true);
+            }
         }
 
         private void SetFilterContents()
@@ -403,6 +409,35 @@ namespace NetworkSystemFinder.UserControls
 
             main.Filter(filteredMachines);
 
+        }
+
+        private void checkedListBoxColumns_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            bool exists = false;
+            string property = checkedListBoxColumns.Items[e.Index].ToString();
+            DataGridViewTextBoxColumn column = null;
+            foreach (DataGridViewTextBoxColumn col in main.DataGridMain.Columns)
+            {
+                if(col.Name == property)
+                {
+                    exists = true;
+                    column = col;
+                }
+            }
+            
+            if (e.NewValue == CheckState.Unchecked && exists)
+            {
+                main.DataGridMain.Columns.Remove(column);
+            }
+            else if(e.NewValue == CheckState.Checked && !exists)
+            {
+                column = new DataGridViewTextBoxColumn();
+                column.DataPropertyName = property;
+                column.Name = property;
+                main.DataGridMain.Columns.Add(column);
+                main.DataGridMain.Columns[property].DisplayIndex = Math.Min(e.Index, main.DataGridMain.Columns.Count-1);
+            }
+                
         }
     }
 }

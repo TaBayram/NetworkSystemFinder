@@ -47,6 +47,7 @@ namespace NetworkSystemFinder.UserControls
             this.progressBarSearch = new System.Windows.Forms.ProgressBar();
             this.labelCount = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.checkedListBoxColumns = new System.Windows.Forms.CheckedListBox();
             buttonSearch = new System.Windows.Forms.Button();
             buttonLog = new System.Windows.Forms.Button();
             buttonCancel = new System.Windows.Forms.Button();
@@ -153,17 +154,26 @@ namespace NetworkSystemFinder.UserControls
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
+            // checkedListBoxColumns
+            // 
+            this.checkedListBoxColumns.CheckOnClick = true;
+            this.checkedListBoxColumns.FormattingEnabled = true;
+            resources.ApplyResources(this.checkedListBoxColumns, "checkedListBoxColumns");
+            this.checkedListBoxColumns.Name = "checkedListBoxColumns";
+            this.checkedListBoxColumns.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxColumns_ItemCheck);
+            // 
             // IPBar
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.checkedListBoxColumns);
+            this.Controls.Add(this.checkBoxResolveNames);
             this.Controls.Add(buttonFilter);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(buttonCancel);
             this.Controls.Add(buttonLog);
             this.Controls.Add(this.labelCount);
             this.Controls.Add(this.progressBarSearch);
-            this.Controls.Add(this.checkBoxResolveNames);
             this.Controls.Add(this.labelPassword);
             this.Controls.Add(this.labelUser);
             this.Controls.Add(this.textBoxPassword);
@@ -194,5 +204,6 @@ namespace NetworkSystemFinder.UserControls
         private System.Windows.Forms.ProgressBar progressBarSearch;
         private System.Windows.Forms.Label labelCount;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.CheckedListBox checkedListBoxColumns;
     }
 }

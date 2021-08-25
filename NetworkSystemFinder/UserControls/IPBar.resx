@@ -139,6 +139,9 @@
   <data name="buttonSearch.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
+  <data name="buttonSearch.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="buttonSearch.Location" type="System.Drawing.Point, System.Drawing">
     <value>35, 183</value>
   </data>

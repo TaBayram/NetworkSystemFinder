@@ -60,10 +60,13 @@
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ColorSetter.cs" />
+    <Compile Include="Helpers\MacPairer.cs" />
     <Compile Include="Helpers\Session.cs" />
     <Compile Include="Helpers\SortableBindingList.cs" />
     <Compile Include="Helpers\Theme.cs" />
+    <Compile Include="Models\Computer.cs" />
     <Compile Include="Models\Machine.cs" />
+    <Compile Include="Models\Printer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Languages\tr.Designer.cs">

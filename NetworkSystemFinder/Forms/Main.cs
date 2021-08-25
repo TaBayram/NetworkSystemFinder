@@ -8,32 +8,49 @@ using NetworkSystemFinder.Forms;
 using System.Data;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
 
 namespace NetworkSystemFinder
 {
     public partial class Main : Form, ColorSetter
     {
-        SortableBindingList<Machine> sortableMachines = new SortableBindingList<Machine>();
-        SortableBindingList<Machine> filteredMachines = new SortableBindingList<Machine>();
+        SortableBindingList<Computer> sortableComputers = new SortableBindingList<Computer>();
+        SortableBindingList<Computer> filteredComputers = new SortableBindingList<Computer>();
 
         //Forms
         Logger logger;
         // User Controls
+        Stack<Control> leftBarStack = new Stack<Control>();
         Control currentBarControl;
         IPBar ipBar;
 
         public Main()
         {
             InitializeComponent();
-            HideCurrentShowThis(panelMainButtons);
+            PushLeftBar(panelMainButtons);
             Session.Instance.ChangeControlLanguage(this);
             SetColor();
            
         }
 
-        internal SortableBindingList<Machine> SortableMachines { get => sortableMachines; set => sortableMachines = value; }
+        internal SortableBindingList<Computer> SortableComputers { get => sortableComputers; set => sortableComputers = value; }
         public Logger Logger { get => logger; }
         public DataGridView DataGridMain { get => dataViewMain; }
+
+        private void PushLeftBar(Control control)
+        {
+            leftBarStack.Push(control);
+            HideCurrentShowThis(control);
+            buttonBack.Visible = leftBarStack.Count > 1;
+        }
+
+        private Control PopLeftBar()
+        {
+            Control control = leftBarStack.Pop();
+            buttonBack.Visible = leftBarStack.Count > 1;
+            HideCurrentShowThis(leftBarStack.Peek());
+            return control;
+        }
 
         public void SetColor()
         {
@@ -54,7 +71,7 @@ namespace NetworkSystemFinder
                 ipBar.Parent = panelLeftBar;
                 ipBar.Dock = DockStyle.Fill;
             }
-            HideCurrentShowThis(ipBar);
+            PushLeftBar(ipBar);
         }
 
         private void HideCurrentShowThis(Control control)
@@ -68,7 +85,7 @@ namespace NetworkSystemFinder
         }
         public void SetDataGrid()
         {
-            var source = new BindingSource(SortableMachines, null);
+            var source = new BindingSource(SortableComputers, null);
             dataViewMain.DataSource = source;
             ipBar.RowCount = dataViewMain.RowCount;
             foreach (DataGridViewRow row in dataViewMain.Rows)
@@ -86,8 +103,8 @@ namespace NetworkSystemFinder
         }
         public void Filter(object filter)
         {
-            filteredMachines = (SortableBindingList<Machine>)filter;
-            var source = new BindingSource(filteredMachines, null);
+            filteredComputers = (SortableBindingList<Computer>)filter;
+            var source = new BindingSource(filteredComputers, null);
             dataViewMain.DataSource = source;
             ipBar.RowCount = dataViewMain.RowCount;
         }
@@ -224,6 +241,11 @@ namespace NetworkSystemFinder
             }
 
             progressBarExcel.Value = 0;
+        }
+
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            PopLeftBar();
         }
     }
 

@@ -29,25 +29,28 @@ namespace NetworkSystemFinder.UserControls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.checkedListBox = new System.Windows.Forms.CheckedListBox();
             this.textBox = new System.Windows.Forms.TextBox();
             this.groupBox = new System.Windows.Forms.GroupBox();
+            this.timerMouseControl = new System.Windows.Forms.Timer(this.components);
             this.groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkedListBox
             // 
-            this.checkedListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.checkedListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.checkedListBox.CheckOnClick = true;
             this.checkedListBox.FormattingEnabled = true;
             this.checkedListBox.Location = new System.Drawing.Point(3, 43);
             this.checkedListBox.Margin = new System.Windows.Forms.Padding(1);
-            this.checkedListBox.MaximumSize = new System.Drawing.Size(300, 0);
-            this.checkedListBox.MinimumSize = new System.Drawing.Size(180, 10);
+            this.checkedListBox.MinimumSize = new System.Drawing.Size(180, 0);
             this.checkedListBox.Name = "checkedListBox";
             this.checkedListBox.Size = new System.Drawing.Size(180, 0);
+            this.checkedListBox.Sorted = true;
             this.checkedListBox.TabIndex = 0;
+            this.checkedListBox.MouseEnter += new System.EventHandler(this.checkedListBox_MouseEnter);
+            this.checkedListBox.MouseLeave += new System.EventHandler(this.checkedListBox_MouseLeave);
             // 
             // textBox
             // 
@@ -78,6 +81,10 @@ namespace NetworkSystemFinder.UserControls
             this.groupBox.TabStop = false;
             this.groupBox.Text = "groupBox1";
             // 
+            // timerMouseControl
+            // 
+            this.timerMouseControl.Tick += new System.EventHandler(this.timerMouseControl_Tick);
+            // 
             // FilterString
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -101,5 +108,6 @@ namespace NetworkSystemFinder.UserControls
         private System.Windows.Forms.CheckedListBox checkedListBox;
         private System.Windows.Forms.TextBox textBox;
         private System.Windows.Forms.GroupBox groupBox;
+        private System.Windows.Forms.Timer timerMouseControl;
     }
 }

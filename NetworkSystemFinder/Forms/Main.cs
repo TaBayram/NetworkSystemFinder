@@ -183,6 +183,7 @@ namespace NetworkSystemFinder
             Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
             // see the excel sheet behind the program  
             excelApp.Visible = false;
+            excelApp.ScreenUpdating = false;
             excelApp.DisplayAlerts = false;
 
             // get the reference of first sheet. By default its name is Sheet1.  
@@ -205,6 +206,7 @@ namespace NetworkSystemFinder
                 backgroundWorkerExcel.ReportProgress((int)(split*100)+ (int)((float)i / (dataTable.Rows.Count-1) * 100 * (1-split)));
             }
             // save the application  
+            excelApp.ScreenUpdating = true;
             workbook.SaveAs(fileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
             // Exit from the application  
             Marshal.ReleaseComObject(workbooks);

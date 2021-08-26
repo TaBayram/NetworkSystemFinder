@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="Helpers\ColorSetter.cs" />
     <Compile Include="Helpers\MacPairer.cs" />
+    <Compile Include="Helpers\ModelNamer.cs" />
     <Compile Include="Helpers\Session.cs" />
     <Compile Include="Helpers\SortableBindingList.cs" />
     <Compile Include="Helpers\Theme.cs" />
@@ -73,6 +74,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>tr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FilterComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\FilterComboBox.Designer.cs">
+      <DependentUpon>FilterComboBox.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\FilterNumber.cs">
       <SubType>UserControl</SubType>
@@ -112,6 +119,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\FilterComboBox.resx">
+      <DependentUpon>FilterComboBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\FilterNumber.resx">
       <DependentUpon>FilterNumber.cs</DependentUpon>
     </EmbeddedResource>

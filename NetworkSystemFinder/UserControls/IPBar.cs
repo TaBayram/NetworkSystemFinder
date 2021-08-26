@@ -51,6 +51,7 @@ namespace NetworkSystemFinder.UserControls
                 label.ForeColor = theme.textLine;
             }
 
+            //this.flowLayoutPanelFilter.BackColor = theme.majorBackground;
 
         }
 
@@ -91,9 +92,10 @@ namespace NetworkSystemFinder.UserControls
             main.SortableComputers.Clear();
             main.SetDataGrid();
             machines.Clear();
-            //comboBoxFilterColumn.Items.Clear();
+            this.tabControlLeft.SelectedIndex = 1;
             progressBarSearch.Style = ProgressBarStyle.Marquee;
             backgroundWorkerPinger.RunWorkerAsync();
+           
         }
 
 
@@ -205,8 +207,6 @@ namespace NetworkSystemFinder.UserControls
                 ManagementScope scope2 = new ManagementScope("\\\\" + machine.IP + "\\root\\Microsoft\\Windows\\Storage", connectionOptions);
 
                 scope.Connect();
-                
-
 
                 ObjectQuery queryUser = new ObjectQuery("SELECT * FROM Win32_Account");
                 ObjectQuery queryCPU = new ObjectQuery("SELECT * FROM Win32_Processor");
@@ -225,9 +225,6 @@ namespace NetworkSystemFinder.UserControls
                 ManagementObjectSearcher searchBIOS = new ManagementObjectSearcher(scope, queryBIOS);
                 ManagementObjectSearcher searchMAC = new ManagementObjectSearcher(scope, queryMAC);
                 ManagementObjectSearcher searchMotherboard = new ManagementObjectSearcher(scope, queryMotherboard);
-
-
-
 
                 ManagementObjectCollection querys = null;
 
@@ -389,8 +386,8 @@ namespace NetworkSystemFinder.UserControls
                     querys = searchMotherboard.Get();
                     foreach (ManagementObject m in querys)
                     {
-                        if (m["Product"] != null)
-                            machine.Motherboard = m["Manufacturer"].ToString().Substring(0,12) +" : " +m["Product"].ToString();
+                        if (m["Manufacturer"] != null)
+                            machine.Motherboard = m["Manufacturer"].ToString().Substring(0,Math.Min(m["Manufacturer"].ToString().Length,12)) +" : " +m["Product"].ToString();
                         if (m["SerialNumber"] != null && m["SerialNumber"].ToString().Trim() != "" && (machine.SerialNumber == "?" || machine.SerialNumber == "NONE" || machine.SerialNumber.ToLower().StartsWith("default") || machine.SerialNumber.ToLower().StartsWith("to be filled") || machine.SerialNumber.ToLower().StartsWith("system serial") || machine.SerialNumber.ToLower().StartsWith("not")))
                             machine.SerialNumber = "MB>"+m["SerialNumber"].ToString();
                     }
@@ -402,7 +399,7 @@ namespace NetworkSystemFinder.UserControls
 
 
 
-                backgroundWorkerPinger.ReportProgress(3);
+                backgroundWorkerPinger.ReportProgress(3,machine);
 
 
             }
@@ -426,7 +423,15 @@ namespace NetworkSystemFinder.UserControls
             }
             else if (e.ProgressPercentage == 3 && e.UserState != null && e.UserState.GetType() == typeof(Computer))
             {
-               // main.Filter(textBoxFilter.Text.Trim(), comboBoxFilterColumn.SelectedIndex);
+                foreach (FilterString filterString in filterStack.OfType<FilterString>())
+                {
+                    if(filterString.Property == "CPU")
+                    {
+                        filterString.AddItem(((Computer)e.UserState).SplitName()[0]);
+                    }
+
+                }
+                // main.Filter(textBoxFilter.Text.Trim(), comboBoxFilterColumn.SelectedIndex);
             }
 
         }
@@ -478,14 +483,24 @@ namespace NetworkSystemFinder.UserControls
             if (filterStack.Count != 0) return;
             foreach(DataGridViewTextBoxColumn column in main.DataGridMain.Columns)
             {
-                if(column.Name != "RAM" && column.Name != "HDD" && column.Name != "SSD")
+                if(column.Name == "Status")
+                {
+                    FilterCombobox filterCombobox = new FilterCombobox();
+                    filterCombobox.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
+                    filterCombobox.Property = column.Name;
+                    filterCombobox.Index = column.Index;
+                    filterCombobox.GroupBox.Text = column.Name;
+                    flowLayoutPanelFilter.Controls.Add(filterCombobox);
+                    filterStack.Push(filterCombobox);
+                }
+                else if(column.Name != "RAM" && column.Name != "HDD" && column.Name != "SSD")
                 {
                     FilterString filterString = new FilterString();
                     filterString.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
                     filterString.Property = column.Name;
                     filterString.Index = column.Index;
                     filterString.GroupBox.Text = column.Name;
-                    flowLayoutPanel1.Controls.Add(filterString);
+                    flowLayoutPanelFilter.Controls.Add(filterString);
                     filterStack.Push(filterString);
                 }
                 else
@@ -495,7 +510,7 @@ namespace NetworkSystemFinder.UserControls
                     filterNumber.Property = column.Name;
                     filterNumber.Index = column.Index;
                     filterNumber.GroupBox.Text = column.Name;
-                    flowLayoutPanel1.Controls.Add(filterNumber);
+                    flowLayoutPanelFilter.Controls.Add(filterNumber);
                     filterStack.Push(filterNumber);
                 }
             
@@ -533,19 +548,53 @@ namespace NetworkSystemFinder.UserControls
             foreach (Computer machine in main.SortableComputers)
             {
                 bool hasDeleted = false;
+                foreach (FilterCombobox filterCombobox in filterStack.OfType<FilterCombobox>())
+                {
+                    if (hasDeleted) break;
+                    if (filterCombobox.SelectedItem == "" || filterCombobox.SelectedItem == "ALL") continue;
+                    if (machine.GetType().GetProperty(filterCombobox.Property).GetValue(machine, null).ToString() != filterCombobox.SelectedItem)
+                    {
+                        filteredMachines.Remove(machine);
+                        hasDeleted = true;
+                        break;
+                    }
+                    
+                }
+                if (hasDeleted) continue;
                 foreach (FilterString filterString in filterStack.OfType<FilterString>())
                 {
                     if (hasDeleted) break;
-                    if (filterString.Input == "") continue;
+                    List<string> checkedList = filterString.CheckedList;
+                    if (filterString.Input == "" && checkedList.Count == filterString.ListCount) continue;
+                    string value = machine.GetType().GetProperty(filterString.Property).GetValue(machine, null).ToString().ToLower();
+
                     string[] names = filterString.Input.ToLower().Split(' ');
-                    foreach(string str in names)
+                    bool inputDelete = false;
+                    foreach (string str in names)
                     {
-                        if(!machine.GetType().GetProperty(filterString.Property).GetValue(machine, null).ToString().ToLower().Contains(str))
+                        if (!value.Contains(str))
                         {
-                            filteredMachines.Remove(machine);
-                            hasDeleted = true;
+                            inputDelete = true;
                             break;
                         }
+                    }
+
+                    bool itemDelete = true;
+                    if (checkedList.Count != filterString.ListCount)
+                    {
+                        foreach (string item in checkedList)
+                        {
+                            if (value.StartsWith(item.ToLower()))
+                            {
+                                itemDelete = false;
+                                break;
+                            }
+                        }
+                    }
+                    if ((filterString.Input != "" && inputDelete) || (checkedList.Count != filterString.ListCount && itemDelete))
+                    {
+                        filteredMachines.Remove(machine);
+                        hasDeleted = true;
                     }
                 }
                 if (hasDeleted) continue;

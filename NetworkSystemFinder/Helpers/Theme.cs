@@ -12,6 +12,7 @@ namespace NetworkSystemFinder.Helpers
     class Theme{
         public Color mainBackground;
         public Color minorBackground;
+        public Color majorBackground;
         public Color textBoxBackground;
         public Color buttonBackground;
         public Color buttonHover;
@@ -33,6 +34,7 @@ namespace NetworkSystemFinder.Helpers
         void SetLightMode(){
             mainBackground = Color.FromArgb(255, 245, 245, 245);
             minorBackground = Color.FromArgb(255, 227, 227, 227);
+            majorBackground = Color.FromArgb(255, 235, 235, 235);
             textBoxBackground = Color.FromArgb(255, 240, 246, 255);
             buttonBackground = Color.FromArgb(255, 0, 37, 79);
             buttonHover = Color.FromArgb(255, 0, 17, 34);

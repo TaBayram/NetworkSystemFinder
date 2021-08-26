@@ -143,7 +143,7 @@
     <value>NoControl</value>
   </data>
   <data name="buttonSearch.Location" type="System.Drawing.Point, System.Drawing">
-    <value>35, 183</value>
+    <value>31, 171</value>
   </data>
   <data name="buttonSearch.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -165,10 +165,10 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonSearch.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageSearch</value>
   </data>
   <data name="&gt;&gt;buttonSearch.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>1</value>
   </data>
   <metadata name="buttonLog.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -180,10 +180,10 @@
     <value>NoControl</value>
   </data>
   <data name="buttonLog.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 149</value>
+    <value>2, 140</value>
   </data>
   <data name="buttonLog.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="buttonLog.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 24</value>
@@ -201,10 +201,10 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonLog.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageSearch</value>
   </data>
   <data name="&gt;&gt;buttonLog.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <metadata name="buttonCancel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -231,10 +231,10 @@
     <value>NoControl</value>
   </data>
   <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>128, 149</value>
+    <value>123, 140</value>
   </data>
   <data name="buttonCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 24</value>
@@ -252,16 +252,16 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageSearch</value>
   </data>
   <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <metadata name="buttonFilter.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
   <data name="buttonFilter.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="buttonFilter.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -270,7 +270,7 @@
     <value>NoControl</value>
   </data>
   <data name="buttonFilter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 713</value>
+    <value>137, 652</value>
   </data>
   <data name="buttonFilter.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -291,16 +291,16 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonFilter.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageFilter</value>
   </data>
   <data name="&gt;&gt;buttonFilter.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="textBoxIPStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 24</value>
+    <value>2, 30</value>
   </data>
   <data name="textBoxIPStart.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="textBoxIPStart.MaxLength" type="System.Int32, mscorlib">
     <value>15</value>
@@ -312,7 +312,7 @@
     <value>1</value>
   </data>
   <data name="textBoxIPStart.Text" xml:space="preserve">
-    <value>10.61.1</value>
+    <value>10.61.4</value>
   </data>
   <data name="&gt;&gt;textBoxIPStart.Name" xml:space="preserve">
     <value>textBoxIPStart</value>
@@ -321,16 +321,16 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;textBoxIPStart.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageSearch</value>
   </data>
   <data name="&gt;&gt;textBoxIPStart.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>3</value>
   </data>
   <data name="textBoxIPEnd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>115, 24</value>
+    <value>110, 29</value>
   </data>
   <data name="textBoxIPEnd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="textBoxIPEnd.MaxLength" type="System.Int32, mscorlib">
     <value>15</value>
@@ -342,7 +342,7 @@
     <value>2</value>
   </data>
   <data name="textBoxIPEnd.Text" xml:space="preserve">
-    <value>10.61.4</value>
+    <value>10.61.6</value>
   </data>
   <data name="&gt;&gt;textBoxIPEnd.Name" xml:space="preserve">
     <value>textBoxIPEnd</value>
@@ -351,19 +351,19 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;textBoxIPEnd.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageSearch</value>
   </data>
   <data name="&gt;&gt;textBoxIPEnd.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>0</value>
   </data>
   <data name="labelIPStart.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="labelIPStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 5</value>
+    <value>1, 11</value>
   </data>
   <data name="labelIPStart.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 1</value>
+    <value>2, 2, 2, 1</value>
   </data>
   <data name="labelIPStart.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 13</value>
@@ -381,10 +381,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelIPStart.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageSearch</value>
   </data>
   <data name="&gt;&gt;labelIPStart.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>4</value>
   </data>
   <data name="labelIPEnd.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -393,10 +393,10 @@
     <value>NoControl</value>
   </data>
   <data name="labelIPEnd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 5</value>
+    <value>107, 11</value>
   </data>
   <data name="labelIPEnd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 1</value>
+    <value>2, 2, 2, 1</value>
   </data>
   <data name="labelIPEnd.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>
@@ -414,10 +414,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelIPEnd.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageSearch</value>
   </data>
   <data name="&gt;&gt;labelIPEnd.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>5</value>
   </data>
   <data name="labelPassword.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -426,7 +426,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelPassword.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 100</value>
+    <value>1, 100</value>
   </data>
   <data name="labelPassword.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 2, 5, 1</value>
@@ -447,10 +447,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelPassword.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageSearch</value>
   </data>
   <data name="&gt;&gt;labelPassword.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="labelUser.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -459,10 +459,10 @@
     <value>NoControl</value>
   </data>
   <data name="labelUser.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 54</value>
+    <value>2, 60</value>
   </data>
   <data name="labelUser.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 1</value>
+    <value>2, 2, 2, 1</value>
   </data>
   <data name="labelUser.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 13</value>
@@ -480,16 +480,16 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelUser.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageSearch</value>
   </data>
   <data name="&gt;&gt;labelUser.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="textBoxPassword.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 119</value>
+    <value>2, 116</value>
   </data>
   <data name="textBoxPassword.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="textBoxPassword.MaxLength" type="System.Int32, mscorlib">
     <value>64</value>
@@ -498,7 +498,7 @@
     <value>*</value>
   </data>
   <data name="textBoxPassword.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 20</value>
+    <value>200, 20</value>
   </data>
   <data name="textBoxPassword.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -510,22 +510,22 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;textBoxPassword.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageSearch</value>
   </data>
   <data name="&gt;&gt;textBoxPassword.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>9</value>
   </data>
   <data name="textBoxUser.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 73</value>
+    <value>2, 76</value>
   </data>
   <data name="textBoxUser.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="textBoxUser.MaxLength" type="System.Int32, mscorlib">
     <value>64</value>
   </data>
   <data name="textBoxUser.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 20</value>
+    <value>200, 20</value>
   </data>
   <data name="textBoxUser.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -537,19 +537,19 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;textBoxUser.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageSearch</value>
   </data>
   <data name="&gt;&gt;textBoxUser.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>7</value>
   </data>
   <data name="checkBoxResolveNames.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="checkBoxResolveNames.Location" type="System.Drawing.Point, System.Drawing">
-    <value>107, 50</value>
+    <value>100, 55</value>
   </data>
   <data name="checkBoxResolveNames.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="checkBoxResolveNames.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 17</value>
@@ -567,19 +567,25 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkBoxResolveNames.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageSearch</value>
   </data>
   <data name="&gt;&gt;checkBoxResolveNames.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <metadata name="backgroundWorkerPinger.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="progressBarSearch.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
   <data name="progressBarSearch.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 223</value>
+    <value>4, 702</value>
+  </data>
+  <data name="progressBarSearch.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="progressBarSearch.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 10</value>
+    <value>212, 10</value>
   </data>
   <data name="progressBarSearch.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -594,7 +600,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;progressBarSearch.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>2</value>
   </data>
   <data name="labelCount.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -630,52 +636,49 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelCount.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>1</value>
   </data>
-  <data name="flowLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="flowLayoutPanelFilter.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="flowLayoutPanel1.AutoScroll" type="System.Boolean, mscorlib">
+  <data name="flowLayoutPanelFilter.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="flowLayoutPanel1.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+  <data name="flowLayoutPanelFilter.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
-  <data name="flowLayoutPanel1.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
-    <value>TopDown</value>
+  <data name="flowLayoutPanelFilter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 73</value>
   </data>
-  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 317</value>
+  <data name="flowLayoutPanelFilter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 560</value>
   </data>
-  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 375</value>
-  </data>
-  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+  <data name="flowLayoutPanelFilter.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
   </data>
-  <data name="flowLayoutPanel1.WrapContents" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="&gt;&gt;flowLayoutPanelFilter.Name" xml:space="preserve">
+    <value>flowLayoutPanelFilter</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
+  <data name="&gt;&gt;flowLayoutPanelFilter.Type" xml:space="preserve">
     <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;flowLayoutPanelFilter.Parent" xml:space="preserve">
+    <value>tabPageFilter</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;flowLayoutPanelFilter.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="checkedListBoxColumns.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
   <data name="checkedListBoxColumns.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 239</value>
+    <value>2, 3</value>
   </data>
   <data name="checkedListBoxColumns.ScrollAlwaysVisible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="checkedListBoxColumns.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 64</value>
+    <value>207, 64</value>
   </data>
   <data name="checkedListBoxColumns.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -687,13 +690,103 @@
     <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkedListBoxColumns.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageFilter</value>
   </data>
   <data name="&gt;&gt;checkedListBoxColumns.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="tabControlLeft.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="tabPageSearch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 20</value>
+  </data>
+  <data name="tabPageSearch.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="tabPageSearch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 676</value>
+  </data>
+  <data name="tabPageSearch.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabPageSearch.Text" xml:space="preserve">
+    <value>keySearch</value>
+  </data>
+  <data name="&gt;&gt;tabPageSearch.Name" xml:space="preserve">
+    <value>tabPageSearch</value>
+  </data>
+  <data name="&gt;&gt;tabPageSearch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageSearch.Parent" xml:space="preserve">
+    <value>tabControlLeft</value>
+  </data>
+  <data name="&gt;&gt;tabPageSearch.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPageFilter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 20</value>
+  </data>
+  <data name="tabPageFilter.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="tabPageFilter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 676</value>
+  </data>
+  <data name="tabPageFilter.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tabPageFilter.Text" xml:space="preserve">
+    <value>keyFilter</value>
+  </data>
+  <data name="&gt;&gt;tabPageFilter.Name" xml:space="preserve">
+    <value>tabPageFilter</value>
+  </data>
+  <data name="&gt;&gt;tabPageFilter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageFilter.Parent" xml:space="preserve">
+    <value>tabControlLeft</value>
+  </data>
+  <data name="&gt;&gt;tabPageFilter.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tabControlLeft.ItemSize" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="tabControlLeft.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="tabControlLeft.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="tabControlLeft.Padding" type="System.Drawing.Point, System.Drawing">
+    <value>16, 2</value>
+  </data>
+  <data name="tabControlLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>220, 700</value>
+  </data>
+  <data name="tabControlLeft.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;tabControlLeft.Name" xml:space="preserve">
+    <value>tabControlLeft</value>
+  </data>
+  <data name="&gt;&gt;tabControlLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControlLeft.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tabControlLeft.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>25</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>

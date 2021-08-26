@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetworkSystemFinder.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,7 @@ namespace NetworkSystemFinder.Models
             this.pcName = "?";
             this.cPU = "?";
             this.oS = "?";
-            this.rAM = "?";
+            this.rAM = "0";
             this.gPU = "?";
             this.hDD = "0";
             this.ssD = "0";
@@ -89,8 +90,47 @@ namespace NetworkSystemFinder.Models
                     return "";
 
             }
-                
-
         }
+
+        public string[] SplitName()
+        {
+            string[] name = new string[2];
+            string wholeName = this.cPU;
+
+            int numberCounter = 0;
+            int index = 0;
+            bool hasFound = false;
+            for(int i = 0; i < wholeName.Length; i++)
+            {
+                char c = wholeName[i];
+                int outInt = 0;
+                bool isInt = int.TryParse(""+c,out outInt);
+                if (isInt) 
+                {
+                    if(numberCounter == 0)
+                    {
+                        index = i;
+                    }
+                    numberCounter++;
+                }
+                else numberCounter = 0;
+                if(numberCounter >= 3)
+                {
+                    hasFound = true;
+                    index--;
+                    break;
+                }
+            }
+
+            if (hasFound)
+            {
+                while (wholeName[index] != ' ' && wholeName[index] != '-') index--;
+                name[0] = wholeName.Substring(0, index);
+                name[1] = wholeName.Substring(index+1);
+            }
+
+            return name;
+        }
+
     }
 }

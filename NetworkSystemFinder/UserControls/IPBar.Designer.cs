@@ -46,12 +46,18 @@ namespace NetworkSystemFinder.UserControls
             this.backgroundWorkerPinger = new System.ComponentModel.BackgroundWorker();
             this.progressBarSearch = new System.Windows.Forms.ProgressBar();
             this.labelCount = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanelFilter = new System.Windows.Forms.FlowLayoutPanel();
             this.checkedListBoxColumns = new System.Windows.Forms.CheckedListBox();
+            this.tabControlLeft = new System.Windows.Forms.TabControl();
+            this.tabPageSearch = new System.Windows.Forms.TabPage();
+            this.tabPageFilter = new System.Windows.Forms.TabPage();
             buttonSearch = new System.Windows.Forms.Button();
             buttonLog = new System.Windows.Forms.Button();
             buttonCancel = new System.Windows.Forms.Button();
             buttonFilter = new System.Windows.Forms.Button();
+            this.tabControlLeft.SuspendLayout();
+            this.tabPageSearch.SuspendLayout();
+            this.tabPageFilter.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonSearch
@@ -149,41 +155,66 @@ namespace NetworkSystemFinder.UserControls
             resources.ApplyResources(this.labelCount, "labelCount");
             this.labelCount.Name = "labelCount";
             // 
-            // flowLayoutPanel1
+            // flowLayoutPanelFilter
             // 
-            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            resources.ApplyResources(this.flowLayoutPanelFilter, "flowLayoutPanelFilter");
+            this.flowLayoutPanelFilter.Name = "flowLayoutPanelFilter";
             // 
             // checkedListBoxColumns
             // 
+            resources.ApplyResources(this.checkedListBoxColumns, "checkedListBoxColumns");
             this.checkedListBoxColumns.CheckOnClick = true;
             this.checkedListBoxColumns.FormattingEnabled = true;
-            resources.ApplyResources(this.checkedListBoxColumns, "checkedListBoxColumns");
             this.checkedListBoxColumns.Name = "checkedListBoxColumns";
             this.checkedListBoxColumns.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxColumns_ItemCheck);
+            // 
+            // tabControlLeft
+            // 
+            resources.ApplyResources(this.tabControlLeft, "tabControlLeft");
+            this.tabControlLeft.Controls.Add(this.tabPageSearch);
+            this.tabControlLeft.Controls.Add(this.tabPageFilter);
+            this.tabControlLeft.Name = "tabControlLeft";
+            this.tabControlLeft.SelectedIndex = 0;
+            // 
+            // tabPageSearch
+            // 
+            this.tabPageSearch.Controls.Add(this.textBoxIPEnd);
+            this.tabPageSearch.Controls.Add(buttonSearch);
+            this.tabPageSearch.Controls.Add(this.checkBoxResolveNames);
+            this.tabPageSearch.Controls.Add(this.textBoxIPStart);
+            this.tabPageSearch.Controls.Add(this.labelIPStart);
+            this.tabPageSearch.Controls.Add(this.labelIPEnd);
+            this.tabPageSearch.Controls.Add(buttonCancel);
+            this.tabPageSearch.Controls.Add(this.textBoxUser);
+            this.tabPageSearch.Controls.Add(buttonLog);
+            this.tabPageSearch.Controls.Add(this.textBoxPassword);
+            this.tabPageSearch.Controls.Add(this.labelUser);
+            this.tabPageSearch.Controls.Add(this.labelPassword);
+            resources.ApplyResources(this.tabPageSearch, "tabPageSearch");
+            this.tabPageSearch.Name = "tabPageSearch";
+            this.tabPageSearch.UseVisualStyleBackColor = true;
+            // 
+            // tabPageFilter
+            // 
+            this.tabPageFilter.Controls.Add(this.checkedListBoxColumns);
+            this.tabPageFilter.Controls.Add(buttonFilter);
+            this.tabPageFilter.Controls.Add(this.flowLayoutPanelFilter);
+            resources.ApplyResources(this.tabPageFilter, "tabPageFilter");
+            this.tabPageFilter.Name = "tabPageFilter";
+            this.tabPageFilter.UseVisualStyleBackColor = true;
             // 
             // IPBar
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.checkedListBoxColumns);
-            this.Controls.Add(this.checkBoxResolveNames);
-            this.Controls.Add(buttonFilter);
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(buttonCancel);
-            this.Controls.Add(buttonLog);
+            this.Controls.Add(this.tabControlLeft);
             this.Controls.Add(this.labelCount);
             this.Controls.Add(this.progressBarSearch);
-            this.Controls.Add(this.labelPassword);
-            this.Controls.Add(this.labelUser);
-            this.Controls.Add(this.textBoxPassword);
-            this.Controls.Add(this.textBoxUser);
-            this.Controls.Add(this.labelIPEnd);
-            this.Controls.Add(this.labelIPStart);
-            this.Controls.Add(this.textBoxIPEnd);
-            this.Controls.Add(this.textBoxIPStart);
-            this.Controls.Add(buttonSearch);
             this.Name = "IPBar";
+            this.tabControlLeft.ResumeLayout(false);
+            this.tabPageSearch.ResumeLayout(false);
+            this.tabPageSearch.PerformLayout();
+            this.tabPageFilter.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,7 +234,10 @@ namespace NetworkSystemFinder.UserControls
         private System.ComponentModel.BackgroundWorker backgroundWorkerPinger;
         private System.Windows.Forms.ProgressBar progressBarSearch;
         private System.Windows.Forms.Label labelCount;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelFilter;
         private System.Windows.Forms.CheckedListBox checkedListBoxColumns;
+        private System.Windows.Forms.TabControl tabControlLeft;
+        private System.Windows.Forms.TabPage tabPageFilter;
+        private System.Windows.Forms.TabPage tabPageSearch;
     }
 }

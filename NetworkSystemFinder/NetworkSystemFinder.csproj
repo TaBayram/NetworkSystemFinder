@@ -59,12 +59,22 @@
     <Compile Include="Forms\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ColorSetter.cs" />
+    <Compile Include="Forms\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\MacPairer.cs" />
     <Compile Include="Helpers\ModelNamer.cs" />
     <Compile Include="Helpers\Session.cs" />
     <Compile Include="Helpers\SortableBindingList.cs" />
     <Compile Include="Helpers\Theme.cs" />
+    <Compile Include="Languages\en.Designer.cs">
+      <DependentUpon>en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Models\Computer.cs" />
     <Compile Include="Models\Machine.cs" />
     <Compile Include="Models\Printer.cs" />
@@ -104,6 +114,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Languages\en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Languages\tr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -176,9 +193,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\CPU.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />

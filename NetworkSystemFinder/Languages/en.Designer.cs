@@ -22,14 +22,14 @@ namespace NetworkSystemFinder.Languages {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class tr {
+    internal class en {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal tr() {
+        internal en() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace NetworkSystemFinder.Languages {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NetworkSystemFinder.Languages.tr", typeof(tr).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NetworkSystemFinder.Languages.en", typeof(en).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to İptal.
+        ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string keyCancel {
             get {
@@ -70,7 +70,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitti.
+        ///   Looks up a localized string similar to Done.
         /// </summary>
         internal static string keyCompleted {
             get {
@@ -79,7 +79,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Karanlık.
+        ///   Looks up a localized string similar to Dark.
         /// </summary>
         internal static string keyDark {
             get {
@@ -88,7 +88,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tamam.
+        ///   Looks up a localized string similar to Done.
         /// </summary>
         internal static string keyDone {
             get {
@@ -97,7 +97,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hata.
+        ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string keyError {
             get {
@@ -106,7 +106,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Excel dosyası oluşturuldu! Açmak ister misin?.
+        ///   Looks up a localized string similar to Excel file has been created! Do you want to open?.
         /// </summary>
         internal static string keyExcelPositive {
             get {
@@ -115,7 +115,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Başarısız.
+        ///   Looks up a localized string similar to Failed.
         /// </summary>
         internal static string keyFailed {
             get {
@@ -124,7 +124,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Filtre.
+        ///   Looks up a localized string similar to Filter.
         /// </summary>
         internal static string keyFilter {
             get {
@@ -133,7 +133,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IP Son.
+        ///   Looks up a localized string similar to IP End.
         /// </summary>
         internal static string keyIPEnd {
             get {
@@ -142,7 +142,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IP Başlangıc.
+        ///   Looks up a localized string similar to IP Start.
         /// </summary>
         internal static string keyIPStart {
             get {
@@ -151,7 +151,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Yerel Bilgisayarlar.
+        ///   Looks up a localized string similar to Local Computers.
         /// </summary>
         internal static string keyLANComputers {
             get {
@@ -160,7 +160,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dil.
+        ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string keyLanguage {
             get {
@@ -169,7 +169,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Yerel Yazıcılar.
+        ///   Looks up a localized string similar to Local Printers.
         /// </summary>
         internal static string keyLANPrinters {
             get {
@@ -178,7 +178,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Açık.
+        ///   Looks up a localized string similar to Light.
         /// </summary>
         internal static string keyLight {
             get {
@@ -187,7 +187,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sistem Kayıt.
+        ///   Looks up a localized string similar to Log.
         /// </summary>
         internal static string keyLog {
             get {
@@ -196,7 +196,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maksimum.
+        ///   Looks up a localized string similar to Maximum.
         /// </summary>
         internal static string keyMax {
             get {
@@ -214,7 +214,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Yeniden Başlatılması Gerek!.
+        ///   Looks up a localized string similar to Needs Restart!.
         /// </summary>
         internal static string keyNeedRestart {
             get {
@@ -223,7 +223,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hayır.
+        ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string keyNo {
             get {
@@ -232,7 +232,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Şifre.
+        ///   Looks up a localized string similar to Password.
         /// </summary>
         internal static string keyPassword {
             get {
@@ -241,7 +241,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bilgisayar.
+        ///   Looks up a localized string similar to Computer.
         /// </summary>
         internal static string keyPC {
             get {
@@ -250,7 +250,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hatırlanan IP Sonu.
+        ///   Looks up a localized string similar to Remembered IP End.
         /// </summary>
         internal static string keyRemIPEnd {
             get {
@@ -259,7 +259,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hatırlanan IP Başlangıçı.
+        ///   Looks up a localized string similar to Remembered IP Start.
         /// </summary>
         internal static string keyRemIPStart {
             get {
@@ -268,7 +268,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hatırlanan Şifre.
+        ///   Looks up a localized string similar to Remembered Password.
         /// </summary>
         internal static string keyRemPassword {
             get {
@@ -277,7 +277,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hatırlanan Kullanıcı.
+        ///   Looks up a localized string similar to Remembered User.
         /// </summary>
         internal static string keyRemUser {
             get {
@@ -286,7 +286,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ad İste.
+        ///   Looks up a localized string similar to Resolve Names.
         /// </summary>
         internal static string keyResolveName {
             get {
@@ -295,7 +295,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Satır.
+        ///   Looks up a localized string similar to Rows.
         /// </summary>
         internal static string keyRows {
             get {
@@ -304,7 +304,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ara.
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         internal static string keySearch {
             get {
@@ -313,7 +313,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ayarlar.
+        ///   Looks up a localized string similar to Settings.
         /// </summary>
         internal static string keySettings {
             get {
@@ -322,7 +322,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tema.
+        ///   Looks up a localized string similar to Theme.
         /// </summary>
         internal static string keyTheme {
             get {
@@ -331,7 +331,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kullanıcı.
+        ///   Looks up a localized string similar to User.
         /// </summary>
         internal static string keyUser {
             get {
@@ -340,7 +340,7 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Evet.
+        ///   Looks up a localized string similar to Yes.
         /// </summary>
         internal static string keyYes {
             get {

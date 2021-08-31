@@ -18,132 +18,171 @@ using System.Windows.Forms;
 
 namespace NetworkSystemFinder.UserControls
 {
-    public partial class IPBar : UserControl,ColorSetter
+    public partial class IPBar : UserControl
     {
         readonly Main main;
         Stopwatch stopWatch;
         CountdownEvent countdown;
-        List<Computer> machines = new List<Computer>();
+        List<Computer> computers = new List<Computer>();
+        Stack<UserControl> filterStack = new Stack<UserControl>();
+        int searchType = 0;
+        int pingTotal = 0;
+        int pingCurrent = 0;
         public IPBar(Main main)
         {
             InitializeComponent();
-            SetColor();
-            Session.Instance.ChangeControlLanguage(this);
             this.main = main;
-        }
-  
-        public void SetColor()
-        {
-            Theme theme = Session.Instance.theme;
-            this.BackColor = theme.mainBackground;
-
-            foreach (Button button in Controls.OfType<Button>())
-            {
-                theme.ColorButton(button);
-            }
-            foreach (TextBox textBox in Controls.OfType<TextBox>())
-            {
-                textBox.BackColor = theme.textBoxBackground;
-                textBox.ForeColor = theme.textLine;
-            }
-            foreach (Label label in Controls.OfType<Label>())
-            {
-                label.ForeColor = theme.textLine;
-            }
-
-            //this.flowLayoutPanelFilter.BackColor = theme.majorBackground;
-
+            Session session = Session.Instance;
+            session.ChangeControlLanguage(this);
+            session.theme.ColorControl(this);
+            FillBoxes();
+            
         }
 
         public string IPStart
         {
             get { return textBoxIPStart.Text.Trim(); }
         }
-
         public string IPEnd
         {
             get { return textBoxIPEnd.Text.Trim(); }
         }
-        
         public string UserName
         {
             get { return textBoxUser.Text.Trim(); }
         }
-
         public string UserPassword
         {
             get { return textBoxPassword.Text.Trim(); }
         }
-
         public bool ResolveNames
         {
             get { return checkBoxResolveNames.Checked; }
         }
-
         public int RowCount
         {
             set { labelCount.Text = value + " "+Session.Instance.resourceManager.GetString("keyRows"); }
         }
 
+        public void FillBoxes()
+        {
+            Session session = Session.Instance;
+            textBoxIPStart.Text = session.remIPStart;
+            textBoxIPEnd.Text = session.remIPEnd;
+            textBoxUser.Text = session.remUser;
+            textBoxPassword.Text = session.remPassword;
+        }
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             if (backgroundWorkerPinger.IsBusy) return;
+            searchType = 0;
             WriteLog("Starting...");
             main.SortableComputers.Clear();
             main.SetDataGrid();
-            machines.Clear();
+            computers.Clear();
             this.tabControlLeft.SelectedIndex = 1;
-            progressBarSearch.Style = ProgressBarStyle.Marquee;
+           // progressBarSearch.Style = ProgressBarStyle.Marquee;
             backgroundWorkerPinger.RunWorkerAsync();
            
         }
-
-
-        private void backgroundWorkerPinger_DoWork(object sender, DoWorkEventArgs e)
+        private void buttonPingDead_Click(object sender, EventArgs e)
         {
-
+            if (backgroundWorkerPinger.IsBusy) return;
+            searchType = 1;
+            WriteLog("Starting Revival...");
+            backgroundWorkerPinger.RunWorkerAsync();
+        }
+        private void backgroundWorkerPinger_DoWork(object sender, DoWorkEventArgs e)    
+        {
             countdown = new CountdownEvent(1);
             stopWatch = new Stopwatch();
             stopWatch.Start();
-
-            string[] ipStart = IPStart.Split('.');
-            string[] ipEnd = IPEnd.Split('.');
-            int[] ipStartInt = new int[4];
-            int[] ipEndInt = new int[4];
-            for (int i = 0; i < ipStart.Length; i++) int.TryParse(ipStart[i], out ipStartInt[i]);
-            for (int i = 0; i < ipEnd.Length; i++) int.TryParse(ipEnd[i], out ipEndInt[i]);
-
-            int fourthIPEnd = ipEndInt[3] == 0 ? 255 : ipEndInt[3];
-            int fourthIPStart = ipStartInt[3] == 0 ? 1 : ipStartInt[3];
-
-            string ipMain = ipStartInt[0] + "." + ipStartInt[1] + ".";
-            for (int j = ipStartInt[2]; j <= ipEndInt[2]; j++)
+            pingTotal = 0;
+            pingCurrent = 0;
+            if(searchType == 0)
             {
-                string ipBase = ipMain + j.ToString() + ".";
-                for (int i = fourthIPStart; i <= fourthIPEnd; i++)
+                if (textBoxMachineName.Text.Trim() == "")
                 {
-                    string ip = ipBase + i.ToString();
-                    try
-                    {
-                        Ping ping = new Ping();
-                        ping.PingCompleted += new PingCompletedEventHandler(PingCompletion);
+                    string[] ipStart = IPStart.Split('.');
+                    string[] ipEnd = IPEnd.Split('.');
+                    int[] ipStartInt = new int[4];
+                    int[] ipEndInt = new int[4];
+                    for (int i = 0; i < ipStart.Length; i++) int.TryParse(ipStart[i], out ipStartInt[i]);
+                    for (int i = 0; i < ipEnd.Length; i++) int.TryParse(ipEnd[i], out ipEndInt[i]);
 
-                        Computer machine = new Computer(ip);
-                        machines.Add(machine);
+                    int fourthIPEnd = ipEndInt[3] == 0 ? 255 : ipEndInt[3];
+                    int fourthIPStart = ipStartInt[3] == 0 ? 1 : ipStartInt[3];
 
-                        countdown.AddCount();
-                        ping.SendAsync(ip, 100, machine);
-                    }
-                    catch(Exception exception)
+                    string ipMain = ipStartInt[0] + "." + ipStartInt[1] + ".";
+                    for (int j = ipStartInt[2]; j <= ipEndInt[2]; j++)
                     {
-                        backgroundWorkerPinger.ReportProgress(2,(ip + " " + exception.Message));
+                        string ipBase = ipMain + j.ToString() + ".";
+                        for (int i = fourthIPStart; i <= fourthIPEnd; i++)
+                        {
+                            pingTotal++;
+                            string ip = ipBase + i.ToString();
+                            try
+                            {
+                                PingMachine(ip);
+                            }
+                            catch (Exception exception)
+                            {
+                                backgroundWorkerPinger.ReportProgress(2, (ip + " " + exception.Message));
+                            }
+                        }
                     }
                 }
+                else
+                {
+                    PingMachine(textBoxMachineName.Text.Trim());
+                }
+                backgroundWorkerPinger.ReportProgress(1);
             }
-            backgroundWorkerPinger.ReportProgress(1);
+            else if(searchType == 1)
+            {
+                try
+                {
+                    foreach (Computer computer in computers)
+                    {
+                        if (computer.Status == Machine.StatusType.Dead)
+                        {
+                            try
+                            {
+                                pingTotal++;
+                                Ping ping = new Ping();
+                                ping.PingCompleted += new PingCompletedEventHandler(PingCompletion);
+                                countdown.AddCount();
+                                ping.SendAsync(computer.IP, 100, computer);
+                            }
+                            catch (Exception exception)
+                            {
+                                backgroundWorkerPinger.ReportProgress(2, (computer.IP + " " + exception.Message));
+                            }
+                        }
+                        
+                    }
+                }
+                catch (Exception exception)
+                {
+                    backgroundWorkerPinger.ReportProgress(2, ("Search 1 " + exception.Message));
+                }
+            }
+            
+            
             if (!countdown.IsSet)
                 countdown.Signal();
             countdown.Wait();
+        }
+        private void PingMachine(string id)
+        {
+            Ping ping = new Ping();
+            ping.PingCompleted += new PingCompletedEventHandler(PingCompletion);
+
+            Computer machine = new Computer(id);
+            computers.Add(machine);
+
+            countdown.AddCount();
+            ping.SendAsync(id, 100, machine);
         }
         private void PingCompletion(object sender, PingCompletedEventArgs eventArgs)
         {
@@ -151,27 +190,27 @@ namespace NetworkSystemFinder.UserControls
             {
                 Computer machine = (Computer)eventArgs.UserState;
                 string ip = (string)machine.IP.Trim();
-                MacPairer macPairer = new MacPairer();
-                machine.MAC = macPairer.getMacByIp(machine.IP);
-
                 if (eventArgs.Reply != null && eventArgs.Reply.Status == IPStatus.Success)
                 {
+                    IPHostEntry hostEntry = Dns.GetHostEntry(ip);
                     machine.Status = Computer.StatusType.Alive;
                     if (ResolveNames)
                     {
                         try
                         {
-                            IPHostEntry hostEntry = Dns.GetHostEntry(ip);
-                            machine.PcName = hostEntry.HostName;
+                            machine.Name = hostEntry.HostName;
                         }
                         catch (SocketException socketException) { }
 
-                        backgroundWorkerPinger.ReportProgress(2, String.Format(ip + " (" + machine.PcName + ") is up: (" + eventArgs.Reply.RoundtripTime + " ms)"));
+                        backgroundWorkerPinger.ReportProgress(2, String.Format(ip + " (" + machine.Name + ") is up: (" + eventArgs.Reply.RoundtripTime + " ms)"));
                     }
                     else
                     {
                         backgroundWorkerPinger.ReportProgress(2, String.Format(ip + " is up: (" + eventArgs.Reply.RoundtripTime + " ms)"));
                     }
+                    machine.SetIP();
+                    MacPairer macPairer = new MacPairer();
+                    machine.MAC = macPairer.getMacByIp(machine.IP);
                     GetInformation(machine);
                 }
                 else if (eventArgs.Reply == null)
@@ -185,12 +224,14 @@ namespace NetworkSystemFinder.UserControls
             }
             catch (Exception exception)
             {
-                Console.WriteLine("ERROR-PCE:" + exception.Message);
+                backgroundWorkerPinger.ReportProgress(2,String.Format("ERROR-PCE:" + exception.Message));
             }
             finally
             {
                 if(!countdown.IsSet)
                     countdown.Signal();
+                backgroundWorkerPinger.ReportProgress(4);
+
             }
         }
         private void GetInformation(Computer machine)
@@ -228,7 +269,7 @@ namespace NetworkSystemFinder.UserControls
 
                 ManagementObjectCollection querys = null;
 
-                if (machine.PcName == "?")
+                if (machine.Name == "?")
                 {
                     errorQuery = "User";
                     try
@@ -237,12 +278,12 @@ namespace NetworkSystemFinder.UserControls
                         foreach (ManagementObject m in querys)
                         {
                             if(m["Domain"] != null)
-                                machine.PcName = Convert.ToString(m["Domain"]);
+                                machine.Name = Convert.ToString(m["Domain"]);
                         }
                     }
                     catch (Exception e)
                     {
-                        backgroundWorkerPinger.ReportProgress(2, String.Format(machine.PcName + " I" + errorQuery + " " + e.Message));
+                        backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
                     }
                 }
 
@@ -258,7 +299,7 @@ namespace NetworkSystemFinder.UserControls
                 }
                 catch(Exception e)
                 {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.PcName + " I" + errorQuery + " " + e.Message));
+                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
                 }
 
                 errorQuery = "OS";
@@ -275,7 +316,7 @@ namespace NetworkSystemFinder.UserControls
                 }
                 catch (Exception e)
                 {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.PcName + " I" + errorQuery + " " + e.Message));
+                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
                 }
 
                 errorQuery = "GPU";
@@ -290,7 +331,7 @@ namespace NetworkSystemFinder.UserControls
                 }
                 catch (Exception e)
                 {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.PcName + " I" + errorQuery + " " + e.Message));
+                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
                 }
                 errorQuery = "BIOS";
                 try
@@ -304,7 +345,7 @@ namespace NetworkSystemFinder.UserControls
                 }
                 catch (Exception e)
                 {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.PcName + " I" + errorQuery + " " + e.Message));
+                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
                 }
                 
                 errorQuery = "MAC";
@@ -319,7 +360,7 @@ namespace NetworkSystemFinder.UserControls
                 }
                 catch (Exception e)
                 {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.PcName + " I" + errorQuery + " " + e.Message));
+                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
                 }
                 
                 errorQuery = "Storage";
@@ -350,7 +391,7 @@ namespace NetworkSystemFinder.UserControls
                     }
                     catch (Exception e)
                     {
-                        backgroundWorkerPinger.ReportProgress(2, String.Format(machine.PcName + " IO" + errorQuery + " " + e.Message));
+                        backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " IO" + errorQuery + " " + e.Message));
                     }
             
                 }
@@ -376,7 +417,7 @@ namespace NetworkSystemFinder.UserControls
                     }
                     catch (Exception e)
                     {
-                        backgroundWorkerPinger.ReportProgress(2, String.Format(machine.PcName + " IN" + errorQuery + " " + e.Message));
+                        backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " IN" + errorQuery + " " + e.Message));
                     }
                 }
 
@@ -394,7 +435,7 @@ namespace NetworkSystemFinder.UserControls
                 }
                 catch (Exception e)
                 {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.PcName + " I" + errorQuery + " " + e.Message));
+                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
                 }
 
 
@@ -405,7 +446,7 @@ namespace NetworkSystemFinder.UserControls
             }
             catch (Exception e)
             {
-                backgroundWorkerPinger.ReportProgress(2, String.Format(machine.PcName + " "+errorQuery +" "+ e.Message));
+                backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " "+errorQuery +" "+ e.Message));
             }
 
         }
@@ -413,7 +454,7 @@ namespace NetworkSystemFinder.UserControls
         {
             if (e.ProgressPercentage == 1)
             {
-                main.SortableComputers = new SortableBindingList<Computer>(machines);
+                main.SortableComputers = new SortableBindingList<Computer>(computers);
                 main.SetDataGrid();
                 SetFilters();
             }
@@ -429,9 +470,13 @@ namespace NetworkSystemFinder.UserControls
                     {
                         filterString.AddItem(((Computer)e.UserState).SplitName()[0]);
                     }
-
                 }
                 // main.Filter(textBoxFilter.Text.Trim(), comboBoxFilterColumn.SelectedIndex);
+            }
+            else if(e.ProgressPercentage == 4)
+            {
+                pingCurrent++;
+                progressBarSearch.Value = (int)(pingCurrent * 100 / pingTotal);
             }
 
         }
@@ -439,24 +484,10 @@ namespace NetworkSystemFinder.UserControls
         {
             progressBarSearch.Style = ProgressBarStyle.Blocks;
             progressBarSearch.Value = 100;
+            main.DataGridMain.Refresh();
             stopWatch.Stop();
-            WriteLog("Ended " + stopWatch.ElapsedMilliseconds + "ms");
-            for (int i = 0; i < machines.Count; i++)
-            {
-                if (machines[i].Status == Computer.StatusType.Dead)
-                {
-                    machines.RemoveAt(i);
-                    i--;
-                }
-            }
-            /*if(textBoxFilter.Text == "")
-            {
-                main.SortableMachines = new SortableBindingList<Machine>(machines);
-                main.SetDataGrid();
-            }*/
-            
+            WriteLog("Ended " + stopWatch.ElapsedMilliseconds + "ms");            
         }
-
         private void WriteLog(string text)
         {
             if(main.Logger != null)
@@ -464,20 +495,16 @@ namespace NetworkSystemFinder.UserControls
                 main.Logger.Log = text;
             }
         }
-
         private void buttonLog_Click(object sender, EventArgs e)
         {
             main.ToggleLog();
         }
-
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             backgroundWorkerPinger.CancelAsync();
 
             while (countdown != null && !countdown.IsSet &&!countdown.Signal());
         }
-
-        Stack<UserControl> filterStack = new Stack<UserControl>();
         private void SetFilters()
         {
             if (filterStack.Count != 0) return;
@@ -522,26 +549,6 @@ namespace NetworkSystemFinder.UserControls
                 checkedListBoxColumns.SetItemChecked(checkedListBoxColumns.Items.Count - 1, true);
             }
         }
-
-        private void SetFilterContents()
-        {
-            foreach(FilterString filterString in filterStack.OfType<FilterString>())
-            {
-                if(filterString.Property == "CPU")
-                {
-                    List<string> keys = new List<string>();
-                    for(int i = 0; i < this.machines.Count; i++)
-                    {
-                        string[] split = this.machines[i].CPU.Split('-');
-                        if (split[0].ToLower().StartsWith("intel") && !keys.Contains(split[0]))
-                        {
-                            keys.Add(split[0]);
-                        }
-                    }
-                }
-            }
-        }
-
         private void buttonFilter_Click(object sender, EventArgs e)
         {
             var filteredMachines = new SortableBindingList<Computer>(main.SortableComputers);
@@ -618,7 +625,6 @@ namespace NetworkSystemFinder.UserControls
             main.Filter(filteredMachines);
 
         }
-
         private void checkedListBoxColumns_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             bool exists = false;
@@ -646,6 +652,26 @@ namespace NetworkSystemFinder.UserControls
                 main.DataGridMain.Columns[property].DisplayIndex = Math.Min(e.Index, main.DataGridMain.Columns.Count-1);
             }
                 
+        }
+
+        private void checkedListBoxColumns_MouseEnter(object sender, EventArgs e)
+        {
+            checkedListBoxColumns.Size = new Size(0, 90) + checkedListBoxColumns.Size;
+        }
+
+        private void checkedListBoxColumns_MouseLeave(object sender, EventArgs e)
+        {
+            timerMouseControl.Enabled = true;
+        }
+
+        private void timerMouseControl_Tick(object sender, EventArgs e)
+        {
+            Point pos = checkedListBoxColumns.PointToClient(Cursor.Position);
+            if (!checkedListBoxColumns.DisplayRectangle.Contains(pos))
+            {
+                timerMouseControl.Enabled = false;
+                checkedListBoxColumns.Size = new Size(0, -90) + checkedListBoxColumns.Size;
+            }
         }
     }
 }

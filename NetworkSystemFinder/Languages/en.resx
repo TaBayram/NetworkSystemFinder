@@ -118,99 +118,99 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="keyCancel" xml:space="preserve">
-    <value>İptal</value>
+    <value>Cancel</value>
   </data>
   <data name="keyCompleted" xml:space="preserve">
-    <value>Bitti</value>
+    <value>Done</value>
   </data>
   <data name="keyDark" xml:space="preserve">
-    <value>Karanlık</value>
+    <value>Dark</value>
   </data>
   <data name="keyDone" xml:space="preserve">
-    <value>Tamam</value>
+    <value>Done</value>
   </data>
   <data name="keyError" xml:space="preserve">
-    <value>Hata</value>
+    <value>Error</value>
   </data>
   <data name="keyExcelPositive" xml:space="preserve">
-    <value>Excel dosyası oluşturuldu! Açmak ister misin?</value>
+    <value>Excel file has been created! Do you want to open?</value>
   </data>
   <data name="keyFailed" xml:space="preserve">
-    <value>Başarısız</value>
+    <value>Failed</value>
   </data>
   <data name="keyFilter" xml:space="preserve">
-    <value>Filtre</value>
+    <value>Filter</value>
   </data>
   <data name="keyIPEnd" xml:space="preserve">
-    <value>IP Son</value>
+    <value>IP End</value>
   </data>
   <data name="keyIPStart" xml:space="preserve">
-    <value>IP Başlangıc</value>
+    <value>IP Start</value>
   </data>
   <data name="keyLANComputers" xml:space="preserve">
-    <value>Yerel Bilgisayarlar</value>
+    <value>Local Computers</value>
   </data>
   <data name="keyLanguage" xml:space="preserve">
-    <value>Dil</value>
+    <value>Language</value>
   </data>
   <data name="keyLANPrinters" xml:space="preserve">
-    <value>Yerel Yazıcılar</value>
+    <value>Local Printers</value>
   </data>
   <data name="keyLight" xml:space="preserve">
-    <value>Açık</value>
+    <value>Light</value>
   </data>
   <data name="keyLog" xml:space="preserve">
-    <value>Sistem Kayıt</value>
+    <value>Log</value>
   </data>
   <data name="keyMax" xml:space="preserve">
-    <value>Maksimum</value>
+    <value>Maximum</value>
   </data>
   <data name="keyMin" xml:space="preserve">
     <value>Minimum</value>
   </data>
   <data name="keyNeedRestart" xml:space="preserve">
-    <value>Yeniden Başlatılması Gerek!</value>
+    <value>Needs Restart!</value>
   </data>
   <data name="keyNo" xml:space="preserve">
-    <value>Hayır</value>
+    <value>No</value>
   </data>
   <data name="keyPassword" xml:space="preserve">
-    <value>Şifre</value>
+    <value>Password</value>
   </data>
   <data name="keyPC" xml:space="preserve">
-    <value>Bilgisayar</value>
+    <value>Computer</value>
   </data>
   <data name="keyRemIPEnd" xml:space="preserve">
-    <value>Hatırlanan IP Sonu</value>
+    <value>Remembered IP End</value>
   </data>
   <data name="keyRemIPStart" xml:space="preserve">
-    <value>Hatırlanan IP Başlangıçı</value>
+    <value>Remembered IP Start</value>
   </data>
   <data name="keyRemPassword" xml:space="preserve">
-    <value>Hatırlanan Şifre</value>
+    <value>Remembered Password</value>
   </data>
   <data name="keyRemUser" xml:space="preserve">
-    <value>Hatırlanan Kullanıcı</value>
+    <value>Remembered User</value>
   </data>
   <data name="keyResolveName" xml:space="preserve">
-    <value>Ad İste</value>
+    <value>Resolve Names</value>
   </data>
   <data name="keyRows" xml:space="preserve">
-    <value>Satır</value>
+    <value>Rows</value>
   </data>
   <data name="keySearch" xml:space="preserve">
-    <value>Ara</value>
+    <value>Search</value>
   </data>
   <data name="keySettings" xml:space="preserve">
-    <value>Ayarlar</value>
+    <value>Settings</value>
   </data>
   <data name="keyTheme" xml:space="preserve">
-    <value>Tema</value>
+    <value>Theme</value>
   </data>
   <data name="keyUser" xml:space="preserve">
-    <value>Kullanıcı</value>
+    <value>User</value>
   </data>
   <data name="keyYes" xml:space="preserve">
-    <value>Evet</value>
+    <value>Yes</value>
   </data>
 </root>

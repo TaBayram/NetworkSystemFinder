@@ -12,13 +12,14 @@ using System.Collections.Generic;
 
 namespace NetworkSystemFinder
 {
-    public partial class Main : Form, ColorSetter
+    public partial class Main : Form
     {
         SortableBindingList<Computer> sortableComputers = new SortableBindingList<Computer>();
         SortableBindingList<Computer> filteredComputers = new SortableBindingList<Computer>();
 
         //Forms
         Logger logger;
+        Settings settings;
         // User Controls
         Stack<Control> leftBarStack = new Stack<Control>();
         Control currentBarControl;
@@ -29,8 +30,7 @@ namespace NetworkSystemFinder
             InitializeComponent();
             PushLeftBar(panelMainButtons);
             Session.Instance.ChangeControlLanguage(this);
-            SetColor();
-           
+            Session.Instance.theme.ColorControl(this);
         }
 
         internal SortableBindingList<Computer> SortableComputers { get => sortableComputers; set => sortableComputers = value; }
@@ -50,17 +50,6 @@ namespace NetworkSystemFinder
             buttonBack.Visible = leftBarStack.Count > 1;
             HideCurrentShowThis(leftBarStack.Peek());
             return control;
-        }
-
-        public void SetColor()
-        {
-            Theme theme = Session.Instance.theme;
-            this.BackColor = theme.mainBackground;
-
-            foreach(Button button in panelMainButtons.Controls.OfType<Button>())
-            {
-                theme.ColorButton(button);
-            }
         }
 
         private void buttonLANDevices_Click(object sender, EventArgs e)
@@ -248,6 +237,25 @@ namespace NetworkSystemFinder
         private void buttonBack_Click(object sender, EventArgs e)
         {
             PopLeftBar();
+        }
+
+        private void buttonSettings_Click(object sender, EventArgs e)
+        {
+            if (settings == null || settings.IsDisposed)
+            {
+                settings = new Settings();
+                settings.TopMost = true;
+                settings.FormClosed += Settings_FormClosed;
+                settings.ShowDialog();
+ 
+            }
+        }
+
+        private void Settings_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            settings = null;
+            //Session.Instance.ChangeControlLanguage(this);
+            Session.Instance.theme.ColorControl(this);
         }
     }
 

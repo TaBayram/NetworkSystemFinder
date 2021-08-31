@@ -33,17 +33,18 @@ namespace NetworkSystemFinder
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.buttonBack = new System.Windows.Forms.Button();
             this.progressBarExcel = new System.Windows.Forms.ProgressBar();
             this.buttonExcel = new System.Windows.Forms.Button();
             this.splitContainerHome = new System.Windows.Forms.SplitContainer();
             this.panelLeftBar = new System.Windows.Forms.Panel();
             this.panelMainButtons = new System.Windows.Forms.Panel();
+            this.buttonSettings = new System.Windows.Forms.Button();
             this.buttonPrinters = new System.Windows.Forms.Button();
             this.buttonLANDevices = new System.Windows.Forms.Button();
             this.panelHome = new System.Windows.Forms.Panel();
             this.dataViewMain = new System.Windows.Forms.DataGridView();
             this.backgroundWorkerExcel = new System.ComponentModel.BackgroundWorker();
-            this.buttonBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -81,6 +82,15 @@ namespace NetworkSystemFinder
             resources.ApplyResources(this.panelHeader, "panelHeader");
             this.panelHeader.Name = "panelHeader";
             // 
+            // buttonBack
+            // 
+            this.buttonBack.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.buttonBack, "buttonBack");
+            this.buttonBack.FlatAppearance.BorderSize = 0;
+            this.buttonBack.Name = "buttonBack";
+            this.buttonBack.UseVisualStyleBackColor = false;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
+            // 
             // progressBarExcel
             // 
             resources.ApplyResources(this.progressBarExcel, "progressBarExcel");
@@ -117,10 +127,18 @@ namespace NetworkSystemFinder
             // 
             // panelMainButtons
             // 
+            this.panelMainButtons.Controls.Add(this.buttonSettings);
             this.panelMainButtons.Controls.Add(this.buttonPrinters);
             this.panelMainButtons.Controls.Add(this.buttonLANDevices);
             resources.ApplyResources(this.panelMainButtons, "panelMainButtons");
             this.panelMainButtons.Name = "panelMainButtons";
+            // 
+            // buttonSettings
+            // 
+            resources.ApplyResources(this.buttonSettings, "buttonSettings");
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.UseVisualStyleBackColor = true;
+            this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
             // buttonPrinters
             // 
@@ -171,15 +189,6 @@ namespace NetworkSystemFinder
             this.backgroundWorkerExcel.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerExcel_ProgressChanged);
             this.backgroundWorkerExcel.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerExcel_RunWorkerCompleted);
             // 
-            // buttonBack
-            // 
-            this.buttonBack.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.buttonBack, "buttonBack");
-            this.buttonBack.FlatAppearance.BorderSize = 0;
-            this.buttonBack.Name = "buttonBack";
-            this.buttonBack.UseVisualStyleBackColor = false;
-            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
-            // 
             // Main
             // 
             resources.ApplyResources(this, "$this");
@@ -218,6 +227,7 @@ namespace NetworkSystemFinder
         private System.Windows.Forms.ProgressBar progressBarExcel;
         private System.Windows.Forms.Button buttonPrinters;
         private System.Windows.Forms.Button buttonBack;
+        private System.Windows.Forms.Button buttonSettings;
     }
 }
 

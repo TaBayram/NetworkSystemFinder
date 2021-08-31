@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetworkSystemFinder.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace NetworkSystemFinder.Forms
         public Logger()
         {
             InitializeComponent();
+            Session.Instance.theme.ColorControl(this);
         }
 
         public string Log

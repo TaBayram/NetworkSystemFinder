@@ -12,7 +12,7 @@ using NetworkSystemFinder.Models;
 
 namespace NetworkSystemFinder.UserControls
 {
-    public partial class FilterCombobox : UserControl,ColorSetter
+    public partial class FilterCombobox : UserControl
     {
         int index;
         string property;
@@ -47,18 +47,8 @@ namespace NetworkSystemFinder.UserControls
         public FilterCombobox()
         {
             InitializeComponent();
-            SetColor();
             Session.Instance.ChangeControlLanguage(this);
-        }
-
-        public void SetColor()
-        {
-            Theme theme = Session.Instance.theme;
-            this.BackColor = theme.minorBackground;
-            this.ForeColor = theme.textLine;
-
-            this.comboBox.BackColor = theme.textBoxBackground;
-
+            Session.Instance.theme.ColorControl(this);
         }
     }
 }

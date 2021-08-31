@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace NetworkSystemFinder.UserControls
 {
-    public partial class FilterString : UserControl, ColorSetter
+    public partial class FilterString : UserControl
     {
         int index;
         string property;
@@ -54,20 +54,11 @@ namespace NetworkSystemFinder.UserControls
         public FilterString()
         {
             InitializeComponent();
-            SetColor();
+            Session.Instance.theme.ColorControl(this);
             Session.Instance.ChangeControlLanguage(this);
         }
 
-        public void SetColor()
-        {
-            Theme theme = Session.Instance.theme;
-            this.BackColor = theme.minorBackground;
-            this.ForeColor = theme.textLine;
-
-            this.textBox.BackColor = theme.textBoxBackground;
-            this.checkedListBox.BackColor = theme.textBoxBackground;
-
-        }
+        
 
         public void AddItem(string item)
         {

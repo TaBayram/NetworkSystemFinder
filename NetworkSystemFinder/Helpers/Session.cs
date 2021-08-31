@@ -24,17 +24,21 @@ namespace NetworkSystemFinder.Helpers
         }
 
         private Session() {
-            theme = new Theme();
-            resourceManager = new ResourceManager(nameof(NetworkSystemFinder)+".Languages"+".tr", Assembly.GetExecutingAssembly());
+            remLanguage = Properties.Settings.Default.Language;
+            remTheme = Properties.Settings.Default.Theme;
+            remIPStart = Properties.Settings.Default.IPStart;
+            remIPEnd = Properties.Settings.Default.IPEnd;
+            remUser = Properties.Settings.Default.User;
+            remPassword = Properties.Settings.Default.Password;
+
+            ApplySettings();
         }
 
         public void ChangeControlLanguage(Control control)
         {
             foreach (Control con in control.Controls)
             {
-                string translated = resourceManager.GetString(con.Text);
-                if(translated != "" && translated != null)
-                    con.Text = translated;
+                con.Text = TryTranslate(con.Text);
                 if (con.Controls.Count > 0) ChangeControlLanguage(con);
             }
         }
@@ -49,5 +53,19 @@ namespace NetworkSystemFinder.Helpers
 
         public ResourceManager resourceManager;
         public Theme theme;
+
+        public string remLanguage;
+        public string remIPStart;
+        public string remIPEnd;
+        public string remUser;
+        public string remPassword;
+        public int remTheme;
+
+
+        public void ApplySettings()
+        {
+            theme = new Theme(remTheme);
+            resourceManager = new ResourceManager(nameof(NetworkSystemFinder) + ".Languages" + "." + remLanguage, Assembly.GetExecutingAssembly());
+        }
     }
 }

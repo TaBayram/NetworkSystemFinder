@@ -29,11 +29,13 @@ namespace NetworkSystemFinder.UserControls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Button buttonSearch;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IPBar));
             System.Windows.Forms.Button buttonLog;
             System.Windows.Forms.Button buttonCancel;
             System.Windows.Forms.Button buttonFilter;
+            System.Windows.Forms.Button buttonPingDead;
             this.textBoxIPStart = new System.Windows.Forms.TextBox();
             this.textBoxIPEnd = new System.Windows.Forms.TextBox();
             this.labelIPStart = new System.Windows.Forms.Label();
@@ -50,11 +52,15 @@ namespace NetworkSystemFinder.UserControls
             this.checkedListBoxColumns = new System.Windows.Forms.CheckedListBox();
             this.tabControlLeft = new System.Windows.Forms.TabControl();
             this.tabPageSearch = new System.Windows.Forms.TabPage();
+            this.textBoxMachineName = new System.Windows.Forms.TextBox();
+            this.labelPcName = new System.Windows.Forms.Label();
             this.tabPageFilter = new System.Windows.Forms.TabPage();
+            this.timerMouseControl = new System.Windows.Forms.Timer(this.components);
             buttonSearch = new System.Windows.Forms.Button();
             buttonLog = new System.Windows.Forms.Button();
             buttonCancel = new System.Windows.Forms.Button();
             buttonFilter = new System.Windows.Forms.Button();
+            buttonPingDead = new System.Windows.Forms.Button();
             this.tabControlLeft.SuspendLayout();
             this.tabPageSearch.SuspendLayout();
             this.tabPageFilter.SuspendLayout();
@@ -87,6 +93,13 @@ namespace NetworkSystemFinder.UserControls
             buttonFilter.Name = "buttonFilter";
             buttonFilter.UseVisualStyleBackColor = true;
             buttonFilter.Click += new System.EventHandler(this.buttonFilter_Click);
+            // 
+            // buttonPingDead
+            // 
+            resources.ApplyResources(buttonPingDead, "buttonPingDead");
+            buttonPingDead.Name = "buttonPingDead";
+            buttonPingDead.UseVisualStyleBackColor = true;
+            buttonPingDead.Click += new System.EventHandler(this.buttonPingDead_Click);
             // 
             // textBoxIPStart
             // 
@@ -167,17 +180,23 @@ namespace NetworkSystemFinder.UserControls
             this.checkedListBoxColumns.FormattingEnabled = true;
             this.checkedListBoxColumns.Name = "checkedListBoxColumns";
             this.checkedListBoxColumns.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxColumns_ItemCheck);
+            this.checkedListBoxColumns.MouseEnter += new System.EventHandler(this.checkedListBoxColumns_MouseEnter);
+            this.checkedListBoxColumns.MouseLeave += new System.EventHandler(this.checkedListBoxColumns_MouseLeave);
             // 
             // tabControlLeft
             // 
             resources.ApplyResources(this.tabControlLeft, "tabControlLeft");
             this.tabControlLeft.Controls.Add(this.tabPageSearch);
             this.tabControlLeft.Controls.Add(this.tabPageFilter);
+            this.tabControlLeft.Multiline = true;
             this.tabControlLeft.Name = "tabControlLeft";
             this.tabControlLeft.SelectedIndex = 0;
             // 
             // tabPageSearch
             // 
+            this.tabPageSearch.Controls.Add(buttonPingDead);
+            this.tabPageSearch.Controls.Add(this.textBoxMachineName);
+            this.tabPageSearch.Controls.Add(this.labelPcName);
             this.tabPageSearch.Controls.Add(this.textBoxIPEnd);
             this.tabPageSearch.Controls.Add(buttonSearch);
             this.tabPageSearch.Controls.Add(this.checkBoxResolveNames);
@@ -194,6 +213,16 @@ namespace NetworkSystemFinder.UserControls
             this.tabPageSearch.Name = "tabPageSearch";
             this.tabPageSearch.UseVisualStyleBackColor = true;
             // 
+            // textBoxMachineName
+            // 
+            resources.ApplyResources(this.textBoxMachineName, "textBoxMachineName");
+            this.textBoxMachineName.Name = "textBoxMachineName";
+            // 
+            // labelPcName
+            // 
+            resources.ApplyResources(this.labelPcName, "labelPcName");
+            this.labelPcName.Name = "labelPcName";
+            // 
             // tabPageFilter
             // 
             this.tabPageFilter.Controls.Add(this.checkedListBoxColumns);
@@ -202,6 +231,10 @@ namespace NetworkSystemFinder.UserControls
             resources.ApplyResources(this.tabPageFilter, "tabPageFilter");
             this.tabPageFilter.Name = "tabPageFilter";
             this.tabPageFilter.UseVisualStyleBackColor = true;
+            // 
+            // timerMouseControl
+            // 
+            this.timerMouseControl.Tick += new System.EventHandler(this.timerMouseControl_Tick);
             // 
             // IPBar
             // 
@@ -239,5 +272,8 @@ namespace NetworkSystemFinder.UserControls
         private System.Windows.Forms.TabControl tabControlLeft;
         private System.Windows.Forms.TabPage tabPageFilter;
         private System.Windows.Forms.TabPage tabPageSearch;
+        private System.Windows.Forms.TextBox textBoxMachineName;
+        private System.Windows.Forms.Label labelPcName;
+        private System.Windows.Forms.Timer timerMouseControl;
     }
 }

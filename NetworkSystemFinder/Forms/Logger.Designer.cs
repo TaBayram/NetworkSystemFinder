@@ -29,6 +29,7 @@ namespace NetworkSystemFinder.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Logger));
             this.richTextBoxLog = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
@@ -48,6 +49,7 @@ namespace NetworkSystemFinder.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(404, 681);
             this.Controls.Add(this.richTextBoxLog);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Logger";
             this.Text = "Logger";
             this.ResumeLayout(false);

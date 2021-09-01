@@ -18,17 +18,18 @@ using System.Windows.Forms;
 
 namespace NetworkSystemFinder.UserControls
 {
-    public partial class IPBar : UserControl
+    public partial class PrinterBar: UserControl, Bar
     {
         readonly Main main;
         Stopwatch stopWatch;
         CountdownEvent countdown;
         List<Computer> computers = new List<Computer>();
+        List<Printer> printers = new List<Printer>();
         Stack<UserControl> filterStack = new Stack<UserControl>();
         int searchType = 0;
         int pingTotal = 0;
         int pingCurrent = 0;
-        public IPBar(Main main)
+        public PrinterBar(Main main)
         {
             InitializeComponent();
             this.main = main;
@@ -36,7 +37,6 @@ namespace NetworkSystemFinder.UserControls
             session.ChangeControlLanguage(this);
             session.theme.ColorControl(this);
             FillBoxes();
-            
         }
 
         public string IPStart
@@ -61,9 +61,25 @@ namespace NetworkSystemFinder.UserControls
         }
         public int RowCount
         {
-            set { labelCount.Text = value + " "+Session.Instance.resourceManager.GetString("keyRows"); }
+            set { labelCount.Text = value + " " + Session.Instance.resourceManager.GetString("keyRows"); }
         }
 
+        public void AddPrinter(Printer printer)
+        {
+            bool alreadyExists = false;
+            foreach(Printer print in printers)
+            {
+                if(printer.IP == print.IP)
+                {
+                    alreadyExists = true;
+                    break;
+                }
+            }
+            if (!alreadyExists)
+            {
+                printers.Add(printer);
+            }
+        }
         public void FillBoxes()
         {
             Session session = Session.Instance;
@@ -77,13 +93,14 @@ namespace NetworkSystemFinder.UserControls
             if (backgroundWorkerPinger.IsBusy) return;
             searchType = 0;
             WriteLog("Starting...");
-            main.SortableComputers.Clear();
+            main.SortablePrinters.Clear();
             main.SetDataGrid();
             computers.Clear();
+            printers.Clear();
             this.tabControlLeft.SelectedIndex = 1;
-           // progressBarSearch.Style = ProgressBarStyle.Marquee;
+            // progressBarSearch.Style = ProgressBarStyle.Marquee;
             backgroundWorkerPinger.RunWorkerAsync();
-           
+
         }
         private void buttonPingDead_Click(object sender, EventArgs e)
         {
@@ -92,14 +109,14 @@ namespace NetworkSystemFinder.UserControls
             WriteLog("Starting Revival...");
             backgroundWorkerPinger.RunWorkerAsync();
         }
-        private void backgroundWorkerPinger_DoWork(object sender, DoWorkEventArgs e)    
+        private void backgroundWorkerPinger_DoWork(object sender, DoWorkEventArgs e)
         {
             countdown = new CountdownEvent(1);
             stopWatch = new Stopwatch();
             stopWatch.Start();
             pingTotal = 0;
             pingCurrent = 0;
-            if(searchType == 0)
+            if (searchType == 0)
             {
                 if (textBoxMachineName.Text.Trim() == "")
                 {
@@ -138,7 +155,7 @@ namespace NetworkSystemFinder.UserControls
                 }
                 backgroundWorkerPinger.ReportProgress(1);
             }
-            else if(searchType == 1)
+            else if (searchType == 1)
             {
                 try
                 {
@@ -159,7 +176,7 @@ namespace NetworkSystemFinder.UserControls
                                 backgroundWorkerPinger.ReportProgress(2, (computer.IP + " " + exception.Message));
                             }
                         }
-                        
+
                     }
                 }
                 catch (Exception exception)
@@ -167,8 +184,8 @@ namespace NetworkSystemFinder.UserControls
                     backgroundWorkerPinger.ReportProgress(2, ("Search 1 " + exception.Message));
                 }
             }
-            
-            
+
+
             if (!countdown.IsSet)
                 countdown.Signal();
             countdown.Wait();
@@ -188,53 +205,29 @@ namespace NetworkSystemFinder.UserControls
         {
             try
             {
-                Computer machine = (Computer)eventArgs.UserState;
-                string ip = (string)machine.IP.Trim();
+                Computer computer = (Computer)eventArgs.UserState;
                 if (eventArgs.Reply != null && eventArgs.Reply.Status == IPStatus.Success)
                 {
-                    IPHostEntry hostEntry = Dns.GetHostEntry(ip);
-                    machine.Status = Computer.StatusType.Alive;
-                    if (ResolveNames)
-                    {
-                        try
-                        {
-                            machine.Name = hostEntry.HostName;
-                        }
-                        catch (SocketException socketException) { }
-
-                        backgroundWorkerPinger.ReportProgress(2, String.Format(ip + " (" + machine.Name + ") is up: (" + eventArgs.Reply.RoundtripTime + " ms)"));
-                    }
-                    else
-                    {
-                        backgroundWorkerPinger.ReportProgress(2, String.Format(ip + " is up: (" + eventArgs.Reply.RoundtripTime + " ms)"));
-                    }
-                    machine.SetIP();
-                    MacPairer macPairer = new MacPairer();
-                    machine.MAC = macPairer.getMacByIp(machine.IP);
-                    GetInformation(machine);
+                    GetInformation(computer);
                 }
-                else if (eventArgs.Reply == null)
-                {
-
-                }
-                else if (eventArgs.Reply.Status == IPStatus.TimedOut)
+                else if (eventArgs.Reply == null || eventArgs.Reply.Status == IPStatus.TimedOut)
                 {
 
                 }
             }
             catch (Exception exception)
             {
-                backgroundWorkerPinger.ReportProgress(2,String.Format("ERROR-PCE:" + exception.Message));
+                backgroundWorkerPinger.ReportProgress(2, String.Format("ERROR-PCE:" + exception.Message));
             }
             finally
             {
-                if(!countdown.IsSet)
+                if (!countdown.IsSet)
                     countdown.Signal();
                 backgroundWorkerPinger.ReportProgress(4);
 
             }
         }
-        private void GetInformation(Computer machine)
+        private void GetInformation(Computer computer)
         {
             string errorQuery = "";
             try
@@ -244,209 +237,78 @@ namespace NetworkSystemFinder.UserControls
                 connectionOptions.Username = UserName;
                 connectionOptions.Password = UserPassword;
 
-                ManagementScope scope = new ManagementScope("\\\\" + machine.IP + "\\root\\cimv2", connectionOptions);
-                ManagementScope scope2 = new ManagementScope("\\\\" + machine.IP + "\\root\\Microsoft\\Windows\\Storage", connectionOptions);
-
+                ManagementScope scope = new ManagementScope("\\\\" + computer.IP + "\\root\\cimv2", connectionOptions);
                 scope.Connect();
 
-                ObjectQuery queryUser = new ObjectQuery("SELECT * FROM Win32_Account");
-                ObjectQuery queryCPU = new ObjectQuery("SELECT * FROM Win32_Processor");
-                ObjectQuery queryGPU = new ObjectQuery("SELECT * FROM Win32_VideoController");
-                ObjectQuery queryOS = new ObjectQuery("SELECT * FROM Win32_OperatingSystem");
-                ObjectQuery queryBIOS = new ObjectQuery("SELECT * FROM Win32_BIOS");
-                ObjectQuery queryStorage = new ObjectQuery("SELECT * FROM Win32_DiskDrive");
-                ObjectQuery queryStorageNew = new ObjectQuery("SELECT * FROM MSFT_PhysicalDisk");
-                ObjectQuery queryMAC = new ObjectQuery("SELECT * FROM Win32_NetworkAdapterConfiguration");
-                ObjectQuery queryMotherboard = new ObjectQuery("SELECT * FROM Win32_BaseBoard");
+                ObjectQuery queryTCPIP = new ObjectQuery("SELECT * FROM Win32_TCPIPPrinterPort");
+                ObjectQuery queryPrinter = new ObjectQuery("SELECT * FROM Win32_Printer");
 
-                ManagementObjectSearcher searchUser = new ManagementObjectSearcher(scope, queryUser);
-                ManagementObjectSearcher searchGPU = new ManagementObjectSearcher(scope, queryGPU);
-                ManagementObjectSearcher searchCPU = new ManagementObjectSearcher(scope, queryCPU);
-                ManagementObjectSearcher searchOS = new ManagementObjectSearcher(scope, queryOS);
-                ManagementObjectSearcher searchBIOS = new ManagementObjectSearcher(scope, queryBIOS);
-                ManagementObjectSearcher searchMAC = new ManagementObjectSearcher(scope, queryMAC);
-                ManagementObjectSearcher searchMotherboard = new ManagementObjectSearcher(scope, queryMotherboard);
+                ManagementObjectSearcher searchIP = new ManagementObjectSearcher(scope, queryTCPIP);
+                ManagementObjectSearcher searchPrinter = new ManagementObjectSearcher(scope, queryPrinter);
 
                 ManagementObjectCollection querys = null;
+                List<Printer> printers = new List<Printer>();
 
-                if (machine.Name == "?")
-                {
-                    errorQuery = "User";
-                    try
-                    {
-                        querys = searchUser.Get();
-                        foreach (ManagementObject m in querys)
-                        {
-                            if(m["Domain"] != null)
-                                machine.Name = Convert.ToString(m["Domain"]);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
-                    }
-                }
 
-                errorQuery = "CPU";
+                errorQuery = "TCPIP";
                 try
                 {
-                    querys = searchCPU.Get();
+                    querys = searchIP.Get();
                     foreach (ManagementObject m in querys)
                     {
-                        if (m["Name"] != null)
-                            machine.CPU = Convert.ToString(m["Name"]).Trim();
-                    }
-                }
-                catch(Exception e)
-                {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
-                }
-
-                errorQuery = "OS";
-                try
-                {
-                    querys = searchOS.Get();
-                    foreach (ManagementObject m in querys)
-                    {
+                        if (m["HostAddress"] == null) continue;
+                        Printer printer = new Printer(m["HostAddress"].ToString());
                         if (m["Caption"] != null)
-                            machine.OS = Convert.ToString(m["Caption"]).Trim();
-                        if (m["TotalVisibleMemorySize"] != null)
-                            machine.RAM = Convert.ToString(int.Parse(m["TotalVisibleMemorySize"].ToString())/1024).Trim();
-                    }
-                }
-                catch (Exception e)
-                {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
-                }
-
-                errorQuery = "GPU";
-                try
-                {
-                    querys = searchGPU.Get();
-                    foreach (ManagementObject m in querys)
-                    {
+                            printer.SetCaption(m["Caption"].ToString());
                         if (m["Name"] != null)
-                            machine.GPU = Convert.ToString(m["Name"]).Trim();
+                            printer.Name = m["Name"].ToString();
+                        if (m["PortNumber"] != null)
+                            printer.MAC = m["PortNumber"].ToString();
+                        printers.Add(printer);
                     }
                 }
                 catch (Exception e)
                 {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
-                }
-                errorQuery = "BIOS";
-                try
-                {
-                    querys = searchBIOS.Get();
-                    foreach (ManagementObject m in querys)
-                    {
-                        if (m["SerialNumber"] != null && Convert.ToString(m["SerialNumber"]).Trim() != "")
-                            machine.SerialNumber = Convert.ToString(m["SerialNumber"]).Trim();
-                    }
-                }
-                catch (Exception e)
-                {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
-                }
-                
-                errorQuery = "MAC";
-                try
-                {
-                    querys = searchMAC.Get();
-                    foreach (ManagementObject m in querys)
-                    {
-                        if(m["MACAddress"] != null)
-                            machine.MAC = m["MACAddress"].ToString();
-                    }
-                }
-                catch (Exception e)
-                {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
-                }
-                
-                errorQuery = "Storage";
-                bool isNew = true;
-                ManagementObjectSearcher searchStorage;
-                try
-                {
-                    scope2.Connect();
-                    searchStorage = new ManagementObjectSearcher(scope2, queryStorageNew);
-                    querys = searchStorage.Get();
-                }
-                catch(Exception e)
-                {
-                    isNew = false;
+                    backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " I" + errorQuery + " " + e.Message));
                 }
 
-                if(!isNew)
+                errorQuery = "Printer";
+                try
                 {
-                    try
+                    querys = searchPrinter.Get();
+                    foreach (ManagementObject m in querys)
                     {
-                        searchStorage = new ManagementObjectSearcher(scope, queryStorage);
-                        querys = searchStorage.Get();
-                        foreach (ManagementObject m in querys)
+                        foreach (Printer print in printers)
                         {
-                            if (m["Size"] != null)
-                                machine.HDD = (Convert.ToUInt64(machine.HDD) + (Convert.ToUInt64(m["Size"]) / (1024 * 1024 * 1024))).ToString();
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " IO" + errorQuery + " " + e.Message));
-                    }
-            
-                }
-                else
-                {
-                    try
-                    {
-                        foreach (ManagementObject m in querys)
-                        {
-                            if (m["MediaType"] == null || m["BusType"] == null || Convert.ToUInt16(m["BusType"]) == 7) continue;
-                            switch (Convert.ToInt16(m["MediaType"]))
+                            if (print.GetCaption() == m["Caption"].ToString() || print.Name == m["Name"].ToString())
                             {
-                                case 4:
-                                    if (m["Size"] != null)
-                                        machine.SSD = (Convert.ToUInt64(machine.SSD) + (Convert.ToUInt64(m["Size"]) / (1024 * 1024 * 1024))).ToString();
-                                    break;
-                                default:
-                                    if (m["Size"] != null)
-                                        machine.HDD = (Convert.ToUInt64(machine.HDD) + (Convert.ToUInt64(m["Size"]) / (1024 * 1024 * 1024))).ToString();
-                                    break;
+                                if (m["DeviceID"] != null)
+                                    print.SerialNumber = m["DeviceID"].ToString();
+                                if (m["InstallDate"] != null)
+                                    print.InstallDate = (DateTime)m["InstallDate"];
+                                if (m["ServerName"] != null)
+                                    print.ServerName = m["ServerName"].ToString();
                             }
                         }
                     }
-                    catch (Exception e)
-                    {
-                        backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " IN" + errorQuery + " " + e.Message));
-                    }
-                }
-
-                errorQuery = "Motherboard";
-                try
-                {
-                    querys = searchMotherboard.Get();
-                    foreach (ManagementObject m in querys)
-                    {
-                        if (m["Manufacturer"] != null)
-                            machine.Motherboard = m["Manufacturer"].ToString().Substring(0,Math.Min(m["Manufacturer"].ToString().Length,12)) +" : " +m["Product"].ToString();
-                        if (m["SerialNumber"] != null && m["SerialNumber"].ToString().Trim() != "" && (machine.SerialNumber == "?" || machine.SerialNumber == "NONE" || machine.SerialNumber.ToLower().StartsWith("default") || machine.SerialNumber.ToLower().StartsWith("to be filled") || machine.SerialNumber.ToLower().StartsWith("system serial") || machine.SerialNumber.ToLower().StartsWith("not")))
-                            machine.SerialNumber = "MB>"+m["SerialNumber"].ToString();
-                    }
                 }
                 catch (Exception e)
                 {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
+                    backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " I" + errorQuery + " " + e.Message));
                 }
 
+                foreach(Printer printer1 in printers)
+                {
+                    AddPrinter(printer1);
+                }
+                backgroundWorkerPinger.ReportProgress(1);
 
-
-                backgroundWorkerPinger.ReportProgress(3,machine);
-
+                //backgroundWorkerPinger.ReportProgress(3, computer);
 
             }
             catch (Exception e)
             {
-                backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " "+errorQuery +" "+ e.Message));
+                backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " " + errorQuery + " " + e.Message));
             }
 
         }
@@ -454,7 +316,7 @@ namespace NetworkSystemFinder.UserControls
         {
             if (e.ProgressPercentage == 1)
             {
-                main.SortableComputers = new SortableBindingList<Computer>(computers);
+                main.SortablePrinters = new SortableBindingList<Printer>(printers);
                 main.SetDataGrid();
                 SetFilters();
             }
@@ -466,14 +328,14 @@ namespace NetworkSystemFinder.UserControls
             {
                 foreach (FilterString filterString in filterStack.OfType<FilterString>())
                 {
-                    if(filterString.Property == "CPU")
+                    if (filterString.Property == "CPU")
                     {
                         filterString.AddItem(((Computer)e.UserState).SplitName()[0]);
                     }
                 }
                 // main.Filter(textBoxFilter.Text.Trim(), comboBoxFilterColumn.SelectedIndex);
             }
-            else if(e.ProgressPercentage == 4)
+            else if (e.ProgressPercentage == 4)
             {
                 pingCurrent++;
                 progressBarSearch.Value = (int)(pingCurrent * 100 / pingTotal);
@@ -486,11 +348,11 @@ namespace NetworkSystemFinder.UserControls
             progressBarSearch.Value = 100;
             main.DataGridMain.Refresh();
             stopWatch.Stop();
-            WriteLog("Ended " + stopWatch.ElapsedMilliseconds + "ms");            
+            WriteLog("Ended " + stopWatch.ElapsedMilliseconds + "ms");
         }
         private void WriteLog(string text)
         {
-            if(main.Logger != null)
+            if (main.Logger != null)
             {
                 main.Logger.Log = text;
             }
@@ -503,14 +365,14 @@ namespace NetworkSystemFinder.UserControls
         {
             backgroundWorkerPinger.CancelAsync();
 
-            while (countdown != null && !countdown.IsSet &&!countdown.Signal());
+            while (countdown != null && !countdown.IsSet && !countdown.Signal()) ;
         }
         private void SetFilters()
         {
             if (filterStack.Count != 0) return;
-            foreach(DataGridViewTextBoxColumn column in main.DataGridMain.Columns)
+            foreach (DataGridViewTextBoxColumn column in main.DataGridMain.Columns)
             {
-                if(column.Name == "Status")
+                if (column.Name == "Status")
                 {
                     FilterCombobox filterCombobox = new FilterCombobox();
                     filterCombobox.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
@@ -520,7 +382,7 @@ namespace NetworkSystemFinder.UserControls
                     flowLayoutPanelFilter.Controls.Add(filterCombobox);
                     filterStack.Push(filterCombobox);
                 }
-                else if(column.Name != "RAM" && column.Name != "HDD" && column.Name != "SSD")
+                else if (column.Name != "RAM" && column.Name != "HDD" && column.Name != "SSD")
                 {
                     FilterString filterString = new FilterString();
                     filterString.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
@@ -540,7 +402,7 @@ namespace NetworkSystemFinder.UserControls
                     flowLayoutPanelFilter.Controls.Add(filterNumber);
                     filterStack.Push(filterNumber);
                 }
-            
+
             }
 
             foreach (DataGridViewTextBoxColumn column in main.DataGridMain.Columns)
@@ -565,7 +427,7 @@ namespace NetworkSystemFinder.UserControls
                         hasDeleted = true;
                         break;
                     }
-                    
+
                 }
                 if (hasDeleted) continue;
                 foreach (FilterString filterString in filterStack.OfType<FilterString>())
@@ -613,7 +475,7 @@ namespace NetworkSystemFinder.UserControls
                     bool hasParsed = int.TryParse(machine.GetType().GetProperty(filterNumber.Property).GetValue(machine, null).ToString().Trim(), out value);
                     if (!hasParsed) continue;
 
-                    if(value < filterNumber.InputMin || value > filterNumber.InputMax)
+                    if (value < filterNumber.InputMin || value > filterNumber.InputMax)
                     {
                         filteredMachines.Remove(machine);
                         hasDeleted = true;
@@ -632,26 +494,26 @@ namespace NetworkSystemFinder.UserControls
             DataGridViewTextBoxColumn column = null;
             foreach (DataGridViewTextBoxColumn col in main.DataGridMain.Columns)
             {
-                if(col.Name == property)
+                if (col.Name == property)
                 {
                     exists = true;
                     column = col;
                 }
             }
-            
+
             if (e.NewValue == CheckState.Unchecked && exists)
             {
                 main.DataGridMain.Columns.Remove(column);
             }
-            else if(e.NewValue == CheckState.Checked && !exists)
+            else if (e.NewValue == CheckState.Checked && !exists)
             {
                 column = new DataGridViewTextBoxColumn();
                 column.DataPropertyName = property;
                 column.Name = property;
                 main.DataGridMain.Columns.Add(column);
-                main.DataGridMain.Columns[property].DisplayIndex = Math.Min(e.Index, main.DataGridMain.Columns.Count-1);
+                main.DataGridMain.Columns[property].DisplayIndex = Math.Min(e.Index, main.DataGridMain.Columns.Count - 1);
             }
-                
+
         }
 
         private void checkedListBoxColumns_MouseEnter(object sender, EventArgs e)

@@ -1,7 +1,7 @@
 ﻿
 namespace NetworkSystemFinder.UserControls
 {
-    partial class IPBar
+    partial class ComputerBar
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,12 +30,12 @@ namespace NetworkSystemFinder.UserControls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Button buttonSearch;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IPBar));
             System.Windows.Forms.Button buttonLog;
-            System.Windows.Forms.Button buttonCancel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComputerBar));
             System.Windows.Forms.Button buttonFilter;
             System.Windows.Forms.Button buttonPingDead;
+            System.Windows.Forms.Button buttonSearch;
+            System.Windows.Forms.Button buttonCancel;
             this.textBoxIPStart = new System.Windows.Forms.TextBox();
             this.textBoxIPEnd = new System.Windows.Forms.TextBox();
             this.labelIPStart = new System.Windows.Forms.Label();
@@ -56,22 +56,15 @@ namespace NetworkSystemFinder.UserControls
             this.labelPcName = new System.Windows.Forms.Label();
             this.tabPageFilter = new System.Windows.Forms.TabPage();
             this.timerMouseControl = new System.Windows.Forms.Timer(this.components);
-            buttonSearch = new System.Windows.Forms.Button();
             buttonLog = new System.Windows.Forms.Button();
-            buttonCancel = new System.Windows.Forms.Button();
             buttonFilter = new System.Windows.Forms.Button();
             buttonPingDead = new System.Windows.Forms.Button();
+            buttonSearch = new System.Windows.Forms.Button();
+            buttonCancel = new System.Windows.Forms.Button();
             this.tabControlLeft.SuspendLayout();
             this.tabPageSearch.SuspendLayout();
             this.tabPageFilter.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // buttonSearch
-            // 
-            resources.ApplyResources(buttonSearch, "buttonSearch");
-            buttonSearch.Name = "buttonSearch";
-            buttonSearch.UseVisualStyleBackColor = true;
-            buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // buttonLog
             // 
@@ -80,26 +73,12 @@ namespace NetworkSystemFinder.UserControls
             buttonLog.UseVisualStyleBackColor = true;
             buttonLog.Click += new System.EventHandler(this.buttonLog_Click);
             // 
-            // buttonCancel
-            // 
-            resources.ApplyResources(buttonCancel, "buttonCancel");
-            buttonCancel.Name = "buttonCancel";
-            buttonCancel.UseVisualStyleBackColor = true;
-            buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
             // buttonFilter
             // 
             resources.ApplyResources(buttonFilter, "buttonFilter");
             buttonFilter.Name = "buttonFilter";
             buttonFilter.UseVisualStyleBackColor = true;
             buttonFilter.Click += new System.EventHandler(this.buttonFilter_Click);
-            // 
-            // buttonPingDead
-            // 
-            resources.ApplyResources(buttonPingDead, "buttonPingDead");
-            buttonPingDead.Name = "buttonPingDead";
-            buttonPingDead.UseVisualStyleBackColor = true;
-            buttonPingDead.Click += new System.EventHandler(this.buttonPingDead_Click);
             // 
             // textBoxIPStart
             // 
@@ -235,6 +214,27 @@ namespace NetworkSystemFinder.UserControls
             // timerMouseControl
             // 
             this.timerMouseControl.Tick += new System.EventHandler(this.timerMouseControl_Tick);
+            // 
+            // buttonPingDead
+            // 
+            resources.ApplyResources(buttonPingDead, "buttonPingDead");
+            buttonPingDead.Name = "buttonPingDead";
+            buttonPingDead.UseVisualStyleBackColor = true;
+            buttonPingDead.Click += new System.EventHandler(this.buttonPingDead_Click);
+            // 
+            // buttonSearch
+            // 
+            resources.ApplyResources(buttonSearch, "buttonSearch");
+            buttonSearch.Name = "buttonSearch";
+            buttonSearch.UseVisualStyleBackColor = true;
+            buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
+            // buttonCancel
+            // 
+            resources.ApplyResources(buttonCancel, "buttonCancel");
+            buttonCancel.Name = "buttonCancel";
+            buttonCancel.UseVisualStyleBackColor = true;
+            buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // IPBar
             // 

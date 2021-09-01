@@ -117,103 +117,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="keyCancel" xml:space="preserve">
-    <value>Cancel</value>
+  <metadata name="buttonPingDead.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="buttonPingDead.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAVBJREFUOE+V
+        078rRWEcx/HrZ/k1iM1GkZLFKGKwuFIWg0EpPxb/gcEmyiJSMgibgcmPpJQig2RisN1CCpmEDN7vc086
+        J/c6+dSr5zzPPefpPt/vOalImrCOezzhLhwfsIlm5E0LznCLWaTRjl7MwPVztOJXKrGLG/SjFmUoDUfn
+        fbjGAaoQyyBeMYIKF3KkHMPwviEXotnCFWqCWf5U4wI7wSySDFayl4lZgkWO5Q3T2cvETOEDBcEszCMW
+        speJmYetjcXKnsJu/BULfIKjYBbJBJ4xgBIXcqQYttguTLoQTR3c+RjdsNo+UBiOzrvg75/ogb/F4u62
+        aB/j6EQbOjCKPXj2LyzD1z62SRE8ghtc4hDb4ejcOq3BTd6xikb43E9sTT3GsAg/LPvuP2qAL5rdeoFH
+        2YD354zF9PX1e4jG78BWWkyP4yb/jhvPgaOkMt86NkTpPxXQbwAAAABJRU5ErkJggg==
+</value>
   </data>
-  <data name="keyCompleted" xml:space="preserve">
-    <value>Done</value>
+  <metadata name="buttonSearch.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="buttonSearch.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAVBJREFUOE+V
+        078rRWEcx/HrZ/k1iM1GkZLFKGKwuFIWg0EpPxb/gcEmyiJSMgibgcmPpJQig2RisN1CCpmEDN7vc086
+        J/c6+dSr5zzPPefpPt/vOalImrCOezzhLhwfsIlm5E0LznCLWaTRjl7MwPVztOJXKrGLG/SjFmUoDUfn
+        fbjGAaoQyyBeMYIKF3KkHMPwviEXotnCFWqCWf5U4wI7wSySDFayl4lZgkWO5Q3T2cvETOEDBcEszCMW
+        speJmYetjcXKnsJu/BULfIKjYBbJBJ4xgBIXcqQYttguTLoQTR3c+RjdsNo+UBiOzrvg75/ogb/F4u62
+        aB/j6EQbOjCKPXj2LyzD1z62SRE8ghtc4hDb4ejcOq3BTd6xikb43E9sTT3GsAg/LPvuP2qAL5rdeoFH
+        2YD354zF9PX1e4jG78BWWkyP4yb/jhvPgaOkMt86NkTpPxXQbwAAAABJRU5ErkJggg==
+</value>
   </data>
-  <data name="keyDark" xml:space="preserve">
-    <value>Dark</value>
+  <metadata name="buttonCancel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="buttonCancel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAYRJREFUOE91
+        080rBVEcxvHx/tr1EvK28L7hLiyEJFGKjZ2dyEbZUSKKIuQiFKIkC7IkGyLlT7BgY2VrhZ2dfJ+ZOacz
+        6j716c7Mbc7vnN854/1LHEd4xDWu8IRzdCBpsjCBU/SjDLFQMbpwglnkIpJ0jGIFdchGCtyoQAUWMIMM
+        2LRiD41I1QOSFv4q7rUGOUS3fxcmgWFk+nfBjNpQgkJ0wq3YBw1iZ/mAJpgH+TjGFCZxgSKY6P875Ph3
+        RF3W1ExUbRHPeMUm1AM3NygNLoMByoNLP1rCHPTyG9ZglmcSGeAe7hLysI8lzOMMBTDR1t7CLsE00UxT
+        SxhEDaowBG2toiI6Jypgm9iOVTRD01fMC4r7ci0uMa4HJqo8Ah2QFmiK5jwoelHLasAGPrEDbbONtmkM
+        yxiADlU1tARV7YX+e8EvPqBtdnvjV9ZyprGFdWgHtqFm9kDb+w0N8g59ApGoBxpI21oPTbsSOpFqriru
+        4gdf0CeQNFq77bQTnUQ18sDzvNgfjxc4NI1yjDAAAAAASUVORK5CYII=
+</value>
   </data>
-  <data name="keyDone" xml:space="preserve">
-    <value>Done</value>
-  </data>
-  <data name="keyError" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="keyExcelPositive" xml:space="preserve">
-    <value>Excel file has been created! Do you want to open?</value>
-  </data>
-  <data name="keyFailed" xml:space="preserve">
-    <value>Failed</value>
-  </data>
-  <data name="keyFilter" xml:space="preserve">
-    <value>Filter</value>
-  </data>
-  <data name="keyIPEnd" xml:space="preserve">
-    <value>IP End</value>
-  </data>
-  <data name="keyIPStart" xml:space="preserve">
-    <value>IP Start</value>
-  </data>
-  <data name="keyLANComputers" xml:space="preserve">
-    <value>Local Computers</value>
-  </data>
-  <data name="keyLanguage" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="keyLANPrinters" xml:space="preserve">
-    <value>Local Printers</value>
-  </data>
-  <data name="keyLight" xml:space="preserve">
-    <value>Light</value>
-  </data>
-  <data name="keyLog" xml:space="preserve">
-    <value>Log</value>
-  </data>
-  <data name="keyMax" xml:space="preserve">
-    <value>Maximum</value>
-  </data>
-  <data name="keyMin" xml:space="preserve">
-    <value>Minimum</value>
-  </data>
-  <data name="keyNeedRestart" xml:space="preserve">
-    <value>Needs Restart!</value>
-  </data>
-  <data name="keyNo" xml:space="preserve">
-    <value>No</value>
-  </data>
-  <data name="keyPassword" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="keyPC" xml:space="preserve">
-    <value>Computer</value>
-  </data>
-  <data name="keyPingDead" xml:space="preserve">
-    <value>Ping Dead IPs</value>
-  </data>
-  <data name="keyRemIPEnd" xml:space="preserve">
-    <value>Remembered IP End</value>
-  </data>
-  <data name="keyRemIPStart" xml:space="preserve">
-    <value>Remembered IP Start</value>
-  </data>
-  <data name="keyRemPassword" xml:space="preserve">
-    <value>Remembered Password</value>
-  </data>
-  <data name="keyRemUser" xml:space="preserve">
-    <value>Remembered User</value>
-  </data>
-  <data name="keyResolveName" xml:space="preserve">
-    <value>Resolve Names</value>
-  </data>
-  <data name="keyRows" xml:space="preserve">
-    <value>Rows</value>
-  </data>
-  <data name="keySearch" xml:space="preserve">
-    <value>Search</value>
-  </data>
-  <data name="keySettings" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="keyTheme" xml:space="preserve">
-    <value>Theme</value>
-  </data>
-  <data name="keyUser" xml:space="preserve">
-    <value>User</value>
-  </data>
-  <data name="keyYes" xml:space="preserve">
-    <value>Yes</value>
-  </data>
+  <metadata name="buttonLog.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="buttonFilter.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="timerMouseControl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>209, 17</value>
+  </metadata>
+  <metadata name="backgroundWorkerPinger.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>367, 17</value>
+  </metadata>
 </root>

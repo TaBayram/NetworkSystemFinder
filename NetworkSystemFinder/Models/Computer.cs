@@ -34,7 +34,7 @@ namespace NetworkSystemFinder.Models
         }
 
         public new string IP { get => iP; set => iP = value; }
-        public string Name { get => name; set => name = value; }
+        public new string Name { get => name; set => name = value; }
         public new Machine.StatusType Status { get => status; set => status = value; }
         public string OS { get => oS; set => oS = value; }
         public string CPU { get => cPU; set => cPU = value; }

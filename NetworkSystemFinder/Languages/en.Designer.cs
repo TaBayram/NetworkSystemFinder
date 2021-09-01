@@ -250,6 +250,15 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ping Dead IPs.
+        /// </summary>
+        internal static string keyPingDead {
+            get {
+                return ResourceManager.GetString("keyPingDead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remembered IP End.
         /// </summary>
         internal static string keyRemIPEnd {

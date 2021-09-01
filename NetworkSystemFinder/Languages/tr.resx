@@ -180,6 +180,9 @@
   <data name="keyPC" xml:space="preserve">
     <value>Bilgisayar</value>
   </data>
+  <data name="keyPingDead" xml:space="preserve">
+    <value>Ölü IP'leri Pingle</value>
+  </data>
   <data name="keyRemIPEnd" xml:space="preserve">
     <value>Hatırlanan IP Sonu</value>
   </data>

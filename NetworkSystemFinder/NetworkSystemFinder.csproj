@@ -75,6 +75,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Models\Bar.cs" />
     <Compile Include="Models\Computer.cs" />
     <Compile Include="Models\Machine.cs" />
     <Compile Include="Models\Printer.cs" />
@@ -84,6 +85,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>tr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\FilterComboBox.cs">
       <SubType>UserControl</SubType>
@@ -103,11 +109,17 @@
     <Compile Include="UserControls\FilterString.Designer.cs">
       <DependentUpon>FilterString.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\IPBar.cs">
+    <Compile Include="UserControls\ComputerBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\IPBar.Designer.cs">
-      <DependentUpon>IPBar.cs</DependentUpon>
+    <Compile Include="UserControls\ComputerBar.Designer.cs">
+      <DependentUpon>ComputerBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PrinterBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\PrinterBar.Designer.cs">
+      <DependentUpon>PrinterBar.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Forms\Logger.resx">
       <DependentUpon>Logger.cs</DependentUpon>
@@ -128,14 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="UserControls\FilterComboBox.resx">
       <DependentUpon>FilterComboBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -145,8 +152,11 @@
     <EmbeddedResource Include="UserControls\FilterString.resx">
       <DependentUpon>FilterString.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\IPBar.resx">
-      <DependentUpon>IPBar.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\ComputerBar.resx">
+      <DependentUpon>ComputerBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\PrinterBar.resx">
+      <DependentUpon>PrinterBar.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -161,9 +171,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\en_local.resx.txt" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -196,6 +203,27 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\32x32PC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\32x32Printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\32x32Settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\64x64BackArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\32x32SettingsInverted.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\32x32PCInverted.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\32x32PrinterInverted.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

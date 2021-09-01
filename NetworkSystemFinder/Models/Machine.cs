@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NetworkSystemFinder.Models
 {
-    abstract class Machine
+    public abstract class Machine
     {
         protected string iP;
         protected string name;

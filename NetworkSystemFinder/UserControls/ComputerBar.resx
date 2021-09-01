@@ -117,68 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="buttonSearch.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="buttonSearch.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="buttonSearch.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAVBJREFUOE+V
-        078rRWEcx/HrZ/k1iM1GkZLFKGKwuFIWg0EpPxb/gcEmyiJSMgibgcmPpJQig2RisN1CCpmEDN7vc086
-        J/c6+dSr5zzPPefpPt/vOalImrCOezzhLhwfsIlm5E0LznCLWaTRjl7MwPVztOJXKrGLG/SjFmUoDUfn
-        fbjGAaoQyyBeMYIKF3KkHMPwviEXotnCFWqCWf5U4wI7wSySDFayl4lZgkWO5Q3T2cvETOEDBcEszCMW
-        speJmYetjcXKnsJu/BULfIKjYBbJBJ4xgBIXcqQYttguTLoQTR3c+RjdsNo+UBiOzrvg75/ogb/F4u62
-        aB/j6EQbOjCKPXj2LyzD1z62SRE8ghtc4hDb4ejcOq3BTd6xikb43E9sTT3GsAg/LPvuP2qAL5rdeoFH
-        2YD354zF9PX1e4jG78BWWkyP4yb/jhvPgaOkMt86NkTpPxXQbwAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="buttonSearch.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="buttonSearch.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonSearch.Location" type="System.Drawing.Point, System.Drawing">
-    <value>31, 212</value>
-  </data>
-  <data name="buttonSearch.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="buttonSearch.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 32</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="buttonSearch.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="buttonSearch.Text" xml:space="preserve">
-    <value>keySearch</value>
-  </data>
-  <data name="&gt;&gt;buttonSearch.Name" xml:space="preserve">
-    <value>buttonSearch</value>
-  </data>
-  <data name="&gt;&gt;buttonSearch.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonSearch.Parent" xml:space="preserve">
-    <value>tabPageSearch</value>
-  </data>
-  <data name="&gt;&gt;buttonSearch.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <metadata name="buttonLog.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="buttonLog.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="buttonLog.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="buttonLog.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 181</value>
   </data>
@@ -188,6 +137,7 @@
   <data name="buttonLog.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 24</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="buttonLog.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
@@ -205,57 +155,6 @@
   </data>
   <data name="&gt;&gt;buttonLog.ZOrder" xml:space="preserve">
     <value>11</value>
-  </data>
-  <metadata name="buttonCancel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="buttonCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="buttonCancel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAYRJREFUOE91
-        080rBVEcxvHx/tr1EvK28L7hLiyEJFGKjZ2dyEbZUSKKIuQiFKIkC7IkGyLlT7BgY2VrhZ2dfJ+ZOacz
-        6j716c7Mbc7vnN854/1LHEd4xDWu8IRzdCBpsjCBU/SjDLFQMbpwglnkIpJ0jGIFdchGCtyoQAUWMIMM
-        2LRiD41I1QOSFv4q7rUGOUS3fxcmgWFk+nfBjNpQgkJ0wq3YBw1iZ/mAJpgH+TjGFCZxgSKY6P875Ph3
-        RF3W1ExUbRHPeMUm1AM3NygNLoMByoNLP1rCHPTyG9ZglmcSGeAe7hLysI8lzOMMBTDR1t7CLsE00UxT
-        SxhEDaowBG2toiI6Jypgm9iOVTRD01fMC4r7ci0uMa4HJqo8Ah2QFmiK5jwoelHLasAGPrEDbbONtmkM
-        yxiADlU1tARV7YX+e8EvPqBtdnvjV9ZyprGFdWgHtqFm9kDb+w0N8g59ApGoBxpI21oPTbsSOpFqriru
-        4gdf0CeQNFq77bQTnUQ18sDzvNgfjxc4NI1yjDAAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="buttonCancel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="buttonCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>123, 181</value>
-  </data>
-  <data name="buttonCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 24</value>
-  </data>
-  <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="buttonCancel.Text" xml:space="preserve">
-    <value>keyCancel</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
-    <value>buttonCancel</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
-    <value>tabPageSearch</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
-    <value>9</value>
   </data>
   <metadata name="buttonFilter.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -296,56 +195,6 @@
   <data name="&gt;&gt;buttonFilter.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <metadata name="buttonPingDead.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="buttonPingDead.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="buttonPingDead.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAVBJREFUOE+V
-        078rRWEcx/HrZ/k1iM1GkZLFKGKwuFIWg0EpPxb/gcEmyiJSMgibgcmPpJQig2RisN1CCpmEDN7vc086
-        J/c6+dSr5zzPPefpPt/vOalImrCOezzhLhwfsIlm5E0LznCLWaTRjl7MwPVztOJXKrGLG/SjFmUoDUfn
-        fbjGAaoQyyBeMYIKF3KkHMPwviEXotnCFWqCWf5U4wI7wSySDFayl4lZgkWO5Q3T2cvETOEDBcEszCMW
-        speJmYetjcXKnsJu/BULfIKjYBbJBJ4xgBIXcqQYttguTLoQTR3c+RjdsNo+UBiOzrvg75/ogb/F4u62
-        aB/j6EQbOjCKPXj2LyzD1z62SRE8ghtc4hDb4ejcOq3BTd6xikb43E9sTT3GsAg/LPvuP2qAL5rdeoFH
-        2YD354zF9PX1e4jG78BWWkyP4yb/jhvPgaOkMt86NkTpPxXQbwAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="buttonPingDead.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="buttonPingDead.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonPingDead.Location" type="System.Drawing.Point, System.Drawing">
-    <value>31, 254</value>
-  </data>
-  <data name="buttonPingDead.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="buttonPingDead.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 32</value>
-  </data>
-  <data name="buttonPingDead.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="buttonPingDead.Text" xml:space="preserve">
-    <value>keyPingDead</value>
-  </data>
-  <data name="&gt;&gt;buttonPingDead.Name" xml:space="preserve">
-    <value>buttonPingDead</value>
-  </data>
-  <data name="&gt;&gt;buttonPingDead.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonPingDead.Parent" xml:space="preserve">
-    <value>tabPageSearch</value>
-  </data>
-  <data name="&gt;&gt;buttonPingDead.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="textBoxIPStart.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 30</value>
   </data>
@@ -360,9 +209,6 @@
   </data>
   <data name="textBoxIPStart.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
-  </data>
-  <data name="textBoxIPStart.Text" xml:space="preserve">
-    <value>10.61.4</value>
   </data>
   <data name="&gt;&gt;textBoxIPStart.Name" xml:space="preserve">
     <value>textBoxIPStart</value>
@@ -391,9 +237,6 @@
   <data name="textBoxIPEnd.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="textBoxIPEnd.Text" xml:space="preserve">
-    <value>10.61.6</value>
-  </data>
   <data name="&gt;&gt;textBoxIPEnd.Name" xml:space="preserve">
     <value>textBoxIPEnd</value>
   </data>
@@ -408,6 +251,9 @@
   </data>
   <data name="labelIPStart.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="labelIPStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="labelIPStart.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 11</value>
@@ -595,6 +441,9 @@
   <data name="checkBoxResolveNames.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="checkBoxResolveNames.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="checkBoxResolveNames.Location" type="System.Drawing.Point, System.Drawing">
     <value>100, 96</value>
   </data>
@@ -628,6 +477,9 @@
   <data name="progressBarSearch.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
+  <data name="progressBarSearch.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="progressBarSearch.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 702</value>
   </data>
@@ -657,6 +509,9 @@
   </data>
   <data name="labelCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="labelCount.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="labelCount.Location" type="System.Drawing.Point, System.Drawing">
     <value>164, 724</value>
@@ -748,109 +603,54 @@
   <data name="tabControlLeft.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="&gt;&gt;tabPageSearch.Name" xml:space="preserve">
+  <metadata name="buttonPingDead.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="buttonPingDead.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="buttonPingDead.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAVBJREFUOE+V
+        078rRWEcx/HrZ/k1iM1GkZLFKGKwuFIWg0EpPxb/gcEmyiJSMgibgcmPpJQig2RisN1CCpmEDN7vc086
+        J/c6+dSr5zzPPefpPt/vOalImrCOezzhLhwfsIlm5E0LznCLWaTRjl7MwPVztOJXKrGLG/SjFmUoDUfn
+        fbjGAaoQyyBeMYIKF3KkHMPwviEXotnCFWqCWf5U4wI7wSySDFayl4lZgkWO5Q3T2cvETOEDBcEszCMW
+        speJmYetjcXKnsJu/BULfIKjYBbJBJ4xgBIXcqQYttguTLoQTR3c+RjdsNo+UBiOzrvg75/ogb/F4u62
+        aB/j6EQbOjCKPXj2LyzD1z62SRE8ghtc4hDb4ejcOq3BTd6xikb43E9sTT3GsAg/LPvuP2qAL5rdeoFH
+        2YD354zF9PX1e4jG78BWWkyP4yb/jhvPgaOkMt86NkTpPxXQbwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="buttonPingDead.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="buttonPingDead.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonPingDead.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 254</value>
+  </data>
+  <data name="buttonPingDead.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="buttonPingDead.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 32</value>
+  </data>
+  <data name="buttonPingDead.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="buttonPingDead.Text" xml:space="preserve">
+    <value>keyPingDead</value>
+  </data>
+  <data name="&gt;&gt;buttonPingDead.Name" xml:space="preserve">
+    <value>buttonPingDead</value>
+  </data>
+  <data name="&gt;&gt;buttonPingDead.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonPingDead.Parent" xml:space="preserve">
     <value>tabPageSearch</value>
   </data>
-  <data name="&gt;&gt;tabPageSearch.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPageSearch.Parent" xml:space="preserve">
-    <value>tabControlLeft</value>
-  </data>
-  <data name="&gt;&gt;tabPageSearch.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tabPageFilter.Name" xml:space="preserve">
-    <value>tabPageFilter</value>
-  </data>
-  <data name="&gt;&gt;tabPageFilter.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPageFilter.Parent" xml:space="preserve">
-    <value>tabControlLeft</value>
-  </data>
-  <data name="&gt;&gt;tabPageFilter.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tabControlLeft.ItemSize" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
-  </data>
-  <data name="tabControlLeft.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="tabControlLeft.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="tabControlLeft.Padding" type="System.Drawing.Point, System.Drawing">
-    <value>16, 2</value>
-  </data>
-  <data name="tabControlLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 700</value>
-  </data>
-  <data name="tabControlLeft.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;tabControlLeft.Name" xml:space="preserve">
-    <value>tabControlLeft</value>
-  </data>
-  <data name="&gt;&gt;tabControlLeft.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabControlLeft.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tabControlLeft.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;textBoxMachineName.Name" xml:space="preserve">
-    <value>textBoxMachineName</value>
-  </data>
-  <data name="&gt;&gt;textBoxMachineName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxMachineName.Parent" xml:space="preserve">
-    <value>tabPageSearch</value>
-  </data>
-  <data name="&gt;&gt;textBoxMachineName.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;labelPcName.Name" xml:space="preserve">
-    <value>labelPcName</value>
-  </data>
-  <data name="&gt;&gt;labelPcName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelPcName.Parent" xml:space="preserve">
-    <value>tabPageSearch</value>
-  </data>
-  <data name="&gt;&gt;labelPcName.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="tabPageSearch.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 20</value>
-  </data>
-  <data name="tabPageSearch.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="tabPageSearch.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 676</value>
-  </data>
-  <data name="tabPageSearch.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tabPageSearch.Text" xml:space="preserve">
-    <value>keySearch</value>
-  </data>
-  <data name="&gt;&gt;tabPageSearch.Name" xml:space="preserve">
-    <value>tabPageSearch</value>
-  </data>
-  <data name="&gt;&gt;tabPageSearch.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPageSearch.Parent" xml:space="preserve">
-    <value>tabControlLeft</value>
-  </data>
-  <data name="&gt;&gt;tabPageSearch.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;buttonPingDead.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="textBoxMachineName.Location" type="System.Drawing.Point, System.Drawing">
@@ -913,6 +713,134 @@
   <data name="&gt;&gt;labelPcName.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <metadata name="buttonSearch.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="buttonSearch.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="buttonSearch.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAVBJREFUOE+V
+        078rRWEcx/HrZ/k1iM1GkZLFKGKwuFIWg0EpPxb/gcEmyiJSMgibgcmPpJQig2RisN1CCpmEDN7vc086
+        J/c6+dSr5zzPPefpPt/vOalImrCOezzhLhwfsIlm5E0LznCLWaTRjl7MwPVztOJXKrGLG/SjFmUoDUfn
+        fbjGAaoQyyBeMYIKF3KkHMPwviEXotnCFWqCWf5U4wI7wSySDFayl4lZgkWO5Q3T2cvETOEDBcEszCMW
+        speJmYetjcXKnsJu/BULfIKjYBbJBJ4xgBIXcqQYttguTLoQTR3c+RjdsNo+UBiOzrvg75/ogb/F4u62
+        aB/j6EQbOjCKPXj2LyzD1z62SRE8ghtc4hDb4ejcOq3BTd6xikb43E9sTT3GsAg/LPvuP2qAL5rdeoFH
+        2YD354zF9PX1e4jG78BWWkyP4yb/jhvPgaOkMt86NkTpPxXQbwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="buttonSearch.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="buttonSearch.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonSearch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 212</value>
+  </data>
+  <data name="buttonSearch.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="buttonSearch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 32</value>
+  </data>
+  <data name="buttonSearch.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="buttonSearch.Text" xml:space="preserve">
+    <value>keySearch</value>
+  </data>
+  <data name="&gt;&gt;buttonSearch.Name" xml:space="preserve">
+    <value>buttonSearch</value>
+  </data>
+  <data name="&gt;&gt;buttonSearch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonSearch.Parent" xml:space="preserve">
+    <value>tabPageSearch</value>
+  </data>
+  <data name="&gt;&gt;buttonSearch.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <metadata name="buttonCancel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="buttonCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="buttonCancel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAYRJREFUOE91
+        080rBVEcxvHx/tr1EvK28L7hLiyEJFGKjZ2dyEbZUSKKIuQiFKIkC7IkGyLlT7BgY2VrhZ2dfJ+ZOacz
+        6j716c7Mbc7vnN854/1LHEd4xDWu8IRzdCBpsjCBU/SjDLFQMbpwglnkIpJ0jGIFdchGCtyoQAUWMIMM
+        2LRiD41I1QOSFv4q7rUGOUS3fxcmgWFk+nfBjNpQgkJ0wq3YBw1iZ/mAJpgH+TjGFCZxgSKY6P875Ph3
+        RF3W1ExUbRHPeMUm1AM3NygNLoMByoNLP1rCHPTyG9ZglmcSGeAe7hLysI8lzOMMBTDR1t7CLsE00UxT
+        SxhEDaowBG2toiI6Jypgm9iOVTRD01fMC4r7ci0uMa4HJqo8Ah2QFmiK5jwoelHLasAGPrEDbbONtmkM
+        yxiADlU1tARV7YX+e8EvPqBtdnvjV9ZyprGFdWgHtqFm9kDb+w0N8g59ApGoBxpI21oPTbsSOpFqriru
+        4gdf0CeQNFq77bQTnUQ18sDzvNgfjxc4NI1yjDAAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="buttonCancel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="buttonCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>123, 181</value>
+  </data>
+  <data name="buttonCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 24</value>
+  </data>
+  <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>keyCancel</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
+    <value>buttonCancel</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
+    <value>tabPageSearch</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="tabPageSearch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 20</value>
+  </data>
+  <data name="tabPageSearch.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="tabPageSearch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 676</value>
+  </data>
+  <data name="tabPageSearch.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabPageSearch.Text" xml:space="preserve">
+    <value>keySearch</value>
+  </data>
+  <data name="&gt;&gt;tabPageSearch.Name" xml:space="preserve">
+    <value>tabPageSearch</value>
+  </data>
+  <data name="&gt;&gt;tabPageSearch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageSearch.Parent" xml:space="preserve">
+    <value>tabControlLeft</value>
+  </data>
+  <data name="&gt;&gt;tabPageSearch.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="tabPageFilter.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 20</value>
   </data>
@@ -939,6 +867,36 @@
   </data>
   <data name="&gt;&gt;tabPageFilter.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="tabControlLeft.ItemSize" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="tabControlLeft.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="tabControlLeft.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="tabControlLeft.Padding" type="System.Drawing.Point, System.Drawing">
+    <value>16, 2</value>
+  </data>
+  <data name="tabControlLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>220, 700</value>
+  </data>
+  <data name="tabControlLeft.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;tabControlLeft.Name" xml:space="preserve">
+    <value>tabControlLeft</value>
+  </data>
+  <data name="&gt;&gt;tabControlLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControlLeft.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tabControlLeft.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="timerMouseControl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>209, 3</value>

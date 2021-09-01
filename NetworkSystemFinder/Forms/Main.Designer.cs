@@ -85,6 +85,7 @@ namespace NetworkSystemFinder
             // buttonBack
             // 
             this.buttonBack.BackColor = System.Drawing.Color.Transparent;
+            this.buttonBack.BackgroundImage = global::NetworkSystemFinder.Properties.Resources._64x64BackArrow;
             resources.ApplyResources(this.buttonBack, "buttonBack");
             this.buttonBack.FlatAppearance.BorderSize = 0;
             this.buttonBack.Name = "buttonBack";
@@ -136,6 +137,7 @@ namespace NetworkSystemFinder
             // buttonSettings
             // 
             resources.ApplyResources(this.buttonSettings, "buttonSettings");
+            this.buttonSettings.Image = global::NetworkSystemFinder.Properties.Resources._32x32SettingsInverted;
             this.buttonSettings.Name = "buttonSettings";
             this.buttonSettings.UseVisualStyleBackColor = true;
             this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
@@ -143,12 +145,15 @@ namespace NetworkSystemFinder
             // buttonPrinters
             // 
             resources.ApplyResources(this.buttonPrinters, "buttonPrinters");
+            this.buttonPrinters.Image = global::NetworkSystemFinder.Properties.Resources._32x32PrinterInverted;
             this.buttonPrinters.Name = "buttonPrinters";
             this.buttonPrinters.UseVisualStyleBackColor = true;
+            this.buttonPrinters.Click += new System.EventHandler(this.buttonPrinters_Click);
             // 
             // buttonLANDevices
             // 
             resources.ApplyResources(this.buttonLANDevices, "buttonLANDevices");
+            this.buttonLANDevices.Image = global::NetworkSystemFinder.Properties.Resources._32x32PCInverted;
             this.buttonLANDevices.Name = "buttonLANDevices";
             this.buttonLANDevices.UseVisualStyleBackColor = true;
             this.buttonLANDevices.Click += new System.EventHandler(this.buttonLANDevices_Click);

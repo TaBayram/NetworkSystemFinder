@@ -250,6 +250,15 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ölü IP&apos;leri Pingle.
+        /// </summary>
+        internal static string keyPingDead {
+            get {
+                return ResourceManager.GetString("keyPingDead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hatırlanan IP Sonu.
         /// </summary>
         internal static string keyRemIPEnd {

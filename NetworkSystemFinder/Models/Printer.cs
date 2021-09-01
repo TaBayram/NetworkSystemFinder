@@ -6,36 +6,39 @@ using System.Threading.Tasks;
 
 namespace NetworkSystemFinder.Models
 {
-    class Printer
+    public class Printer: Machine
     {
-        string iP;
-        string name;
-        Printer.StatusType status = Printer.StatusType.Dead;
-        string serialNumber;
-        string mAC;
-
+        DateTime installDate = DateTime.MinValue;
+        string serverName;
         public Printer(string IP)
         {
             this.iP = IP;
             this.name = "?";
             this.serialNumber = "?";
             this.MAC = "?";
-
+            this.ServerName = "?";
         }
 
-        public string IP { get => iP; set => iP = value; }
-        public string Name { get => name; set => name = value; }
-        public StatusType Status { get => status; set => status = value; }
-        public string SerialNumber { get => serialNumber; set => serialNumber = value; }
-        public string MAC { get => mAC; set => mAC = value; }
+        public new string IP { get => iP; set => iP = value; }
+        public new string Name { get => name; set => name = value; }
+        public new StatusType Status { get => status; set => status = value; }
+        public new string SerialNumber { get => serialNumber; set => serialNumber = value; }
+        public new string MAC { get => mAC; set => mAC = value; }
+        public DateTime InstallDate { get => installDate; set => installDate = value; }
+        public string ServerName { get => serverName; set => serverName = value; }
 
-        public enum StatusType
+        string caption;
+
+        public void SetCaption(string caption)
         {
-            Alive = 0,
-            Dead = 1,
+            this.caption = caption;
+        }
+        public string GetCaption()
+        {
+            return this.caption;
         }
 
-        public string ColumnProperty(int index)
+        public override string ColumnProperty(int index)
         {
             switch (index)
             {
@@ -58,5 +61,6 @@ namespace NetworkSystemFinder.Models
 
 
         }
+
     }
 }

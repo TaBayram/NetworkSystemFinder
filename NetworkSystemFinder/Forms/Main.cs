@@ -16,6 +16,8 @@ namespace NetworkSystemFinder
     {
         SortableBindingList<Computer> sortableComputers = new SortableBindingList<Computer>();
         SortableBindingList<Computer> filteredComputers = new SortableBindingList<Computer>();
+        SortableBindingList<Printer> sortablePrinters = new SortableBindingList<Printer>();
+        SortableBindingList<Printer> filteredPrinters = new SortableBindingList<Printer>();
 
         //Forms
         Logger logger;
@@ -23,7 +25,13 @@ namespace NetworkSystemFinder
         // User Controls
         Stack<Control> leftBarStack = new Stack<Control>();
         Control currentBarControl;
-        IPBar ipBar;
+        ComputerBar computerBar;
+        PrinterBar printerBar;
+        //Excel
+        string fileName;
+        Microsoft.Office.Interop.Excel._Application excelApp;
+        Microsoft.Office.Interop.Excel._Workbook workbook;
+
 
         public Main()
         {
@@ -34,16 +42,19 @@ namespace NetworkSystemFinder
         }
 
         internal SortableBindingList<Computer> SortableComputers { get => sortableComputers; set => sortableComputers = value; }
+        internal SortableBindingList<Printer> SortablePrinters { get => sortablePrinters; set => sortablePrinters = value; }
         public Logger Logger { get => logger; }
         public DataGridView DataGridMain { get => dataViewMain; }
-
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            PopLeftBar();
+        }
         private void PushLeftBar(Control control)
         {
             leftBarStack.Push(control);
             HideCurrentShowThis(control);
             buttonBack.Visible = leftBarStack.Count > 1;
         }
-
         private Control PopLeftBar()
         {
             Control control = leftBarStack.Pop();
@@ -51,79 +62,95 @@ namespace NetworkSystemFinder
             HideCurrentShowThis(leftBarStack.Peek());
             return control;
         }
-
-        private void buttonLANDevices_Click(object sender, EventArgs e)
-        {
-            if(ipBar == null)
-            {
-                ipBar = new IPBar(this);
-                ipBar.Parent = panelLeftBar;
-                ipBar.Dock = DockStyle.Fill;
-            }
-            PushLeftBar(ipBar);
-        }
-
         private void HideCurrentShowThis(Control control)
         {
-            if(currentBarControl != null)
+            if (currentBarControl != null)
             {
                 currentBarControl.Visible = false;
             }
             currentBarControl = control;
             currentBarControl.Visible = true;
         }
+        private void buttonLANDevices_Click(object sender, EventArgs e)
+        {
+            if(computerBar == null)
+            {
+                computerBar = new ComputerBar(this);
+                computerBar.Parent = panelLeftBar;
+                computerBar.Dock = DockStyle.Fill;
+            }
+            PushLeftBar(computerBar);
+        }
+        private void buttonPrinters_Click(object sender, EventArgs e)
+        {
+            if (printerBar == null)
+            {
+                printerBar = new PrinterBar(this);
+                printerBar.Parent = panelLeftBar;
+                printerBar.Dock = DockStyle.Fill;
+            }
+            PushLeftBar(printerBar);
+        }
         public void SetDataGrid()
         {
-            var source = new BindingSource(SortableComputers, null);
-            dataViewMain.DataSource = source;
-            ipBar.RowCount = dataViewMain.RowCount;
+            if(currentBarControl is PrinterBar)
+            {
+                var source = new BindingSource(SortablePrinters, null);
+                dataViewMain.DataSource = source;
+                printerBar.RowCount = dataViewMain.RowCount;
+            }
+            else if(currentBarControl is ComputerBar)
+            {
+                var source = new BindingSource(SortableComputers, null);
+                dataViewMain.DataSource = source;
+                computerBar.RowCount = dataViewMain.RowCount;
+            }
+            
             foreach (DataGridViewRow row in dataViewMain.Rows)
             {
                 row.HeaderCell.Value = String.Format("{0}", row.Index + 1);
             }
-            /*
-            dataViewMain.Columns["IP"].DisplayIndex = 0;
-            dataViewMain.Columns["PcName"].DisplayIndex = 1;
-            dataViewMain.Columns["Status"].DisplayIndex = 2;
-            dataViewMain.Columns["IP"].SortMode = DataGridViewColumnSortMode.Automatic;
-            dataViewMain.Columns["PcName"].SortMode = DataGridViewColumnSortMode.Automatic;
-            dataViewMain.Columns["Status"].SortMode = DataGridViewColumnSortMode.Automatic;
-            */
         }
         public void Filter(object filter)
         {
-            filteredComputers = (SortableBindingList<Computer>)filter;
-            var source = new BindingSource(filteredComputers, null);
-            dataViewMain.DataSource = source;
-            ipBar.RowCount = dataViewMain.RowCount;
+            if (currentBarControl is PrinterBar)
+            {
+                filteredPrinters = (SortableBindingList<Printer>)filter;
+                var source = new BindingSource(filteredPrinters, null);
+                dataViewMain.DataSource = source;
+                printerBar.RowCount = dataViewMain.RowCount;
+            }
+            else if(currentBarControl is ComputerBar)
+            {
+                filteredComputers = (SortableBindingList<Computer>)filter;
+                var source = new BindingSource(filteredComputers, null);
+                dataViewMain.DataSource = source;
+                computerBar.RowCount = dataViewMain.RowCount;
+            }
         }
-
         public void ToggleLog()
         {
             if(Logger == null)
             {
                 logger = new Logger();
-                Logger.Show();
-                Logger.TopMost = true;
-                Logger.Activate();
+                logger.TopMost = true;
+                logger.Activate();
+                logger.Show();
             }
             else
             {
-                Logger.Close();
+                logger.Close();
                 logger = null;
             }
         }
-
         private void dataViewMain_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            ipBar.RowCount = e.RowCount;
+            computerBar.RowCount = e.RowCount;
         }
-
         private void dataViewMain_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
-            ipBar.RowCount = e.RowCount;
+            computerBar.RowCount = e.RowCount;
         }
-
         private void buttonExcel_Click(object sender, EventArgs e)
         {
             
@@ -138,11 +165,6 @@ namespace NetworkSystemFinder
 
             backgroundWorkerExcel.RunWorkerAsync(fileName);
         }
-
-        string fileName;
-        Microsoft.Office.Interop.Excel._Application excelApp;
-        Microsoft.Office.Interop.Excel._Workbook workbook;
-
         private void backgroundWorkerExcel_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             double split = 0.1;
@@ -204,12 +226,10 @@ namespace NetworkSystemFinder
             worksheet = null;
 
         }
-
         private void backgroundWorkerExcel_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
             progressBarExcel.Value = e.ProgressPercentage;
         }
-
         private void backgroundWorkerExcel_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             Session session = Session.Instance;
@@ -233,12 +253,6 @@ namespace NetworkSystemFinder
 
             progressBarExcel.Value = 0;
         }
-
-        private void buttonBack_Click(object sender, EventArgs e)
-        {
-            PopLeftBar();
-        }
-
         private void buttonSettings_Click(object sender, EventArgs e)
         {
             if (settings == null || settings.IsDisposed)
@@ -250,7 +264,6 @@ namespace NetworkSystemFinder
  
             }
         }
-
         private void Settings_FormClosed(object sender, FormClosedEventArgs e)
         {
             settings = null;

@@ -195,6 +195,157 @@
   <data name="&gt;&gt;buttonFilter.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <metadata name="buttonPingDead.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="buttonPingDead.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="buttonPingDead.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAVBJREFUOE+V
+        078rRWEcx/HrZ/k1iM1GkZLFKGKwuFIWg0EpPxb/gcEmyiJSMgibgcmPpJQig2RisN1CCpmEDN7vc086
+        J/c6+dSr5zzPPefpPt/vOalImrCOezzhLhwfsIlm5E0LznCLWaTRjl7MwPVztOJXKrGLG/SjFmUoDUfn
+        fbjGAaoQyyBeMYIKF3KkHMPwviEXotnCFWqCWf5U4wI7wSySDFayl4lZgkWO5Q3T2cvETOEDBcEszCMW
+        speJmYetjcXKnsJu/BULfIKjYBbJBJ4xgBIXcqQYttguTLoQTR3c+RjdsNo+UBiOzrvg75/ogb/F4u62
+        aB/j6EQbOjCKPXj2LyzD1z62SRE8ghtc4hDb4ejcOq3BTd6xikb43E9sTT3GsAg/LPvuP2qAL5rdeoFH
+        2YD354zF9PX1e4jG78BWWkyP4yb/jhvPgaOkMt86NkTpPxXQbwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="buttonPingDead.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="buttonPingDead.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonPingDead.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 254</value>
+  </data>
+  <data name="buttonPingDead.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="buttonPingDead.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 32</value>
+  </data>
+  <data name="buttonPingDead.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="buttonPingDead.Text" xml:space="preserve">
+    <value>keyPingDead</value>
+  </data>
+  <data name="&gt;&gt;buttonPingDead.Name" xml:space="preserve">
+    <value>buttonPingDead</value>
+  </data>
+  <data name="&gt;&gt;buttonPingDead.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonPingDead.Parent" xml:space="preserve">
+    <value>tabPageSearch</value>
+  </data>
+  <data name="&gt;&gt;buttonPingDead.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="buttonSearch.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="buttonSearch.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="buttonSearch.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAVBJREFUOE+V
+        078rRWEcx/HrZ/k1iM1GkZLFKGKwuFIWg0EpPxb/gcEmyiJSMgibgcmPpJQig2RisN1CCpmEDN7vc086
+        J/c6+dSr5zzPPefpPt/vOalImrCOezzhLhwfsIlm5E0LznCLWaTRjl7MwPVztOJXKrGLG/SjFmUoDUfn
+        fbjGAaoQyyBeMYIKF3KkHMPwviEXotnCFWqCWf5U4wI7wSySDFayl4lZgkWO5Q3T2cvETOEDBcEszCMW
+        speJmYetjcXKnsJu/BULfIKjYBbJBJ4xgBIXcqQYttguTLoQTR3c+RjdsNo+UBiOzrvg75/ogb/F4u62
+        aB/j6EQbOjCKPXj2LyzD1z62SRE8ghtc4hDb4ejcOq3BTd6xikb43E9sTT3GsAg/LPvuP2qAL5rdeoFH
+        2YD354zF9PX1e4jG78BWWkyP4yb/jhvPgaOkMt86NkTpPxXQbwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="buttonSearch.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="buttonSearch.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonSearch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 212</value>
+  </data>
+  <data name="buttonSearch.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="buttonSearch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 32</value>
+  </data>
+  <data name="buttonSearch.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="buttonSearch.Text" xml:space="preserve">
+    <value>keySearch</value>
+  </data>
+  <data name="&gt;&gt;buttonSearch.Name" xml:space="preserve">
+    <value>buttonSearch</value>
+  </data>
+  <data name="&gt;&gt;buttonSearch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonSearch.Parent" xml:space="preserve">
+    <value>tabPageSearch</value>
+  </data>
+  <data name="&gt;&gt;buttonSearch.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <metadata name="buttonCancel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="buttonCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="buttonCancel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAYRJREFUOE91
+        080rBVEcxvHx/tr1EvK28L7hLiyEJFGKjZ2dyEbZUSKKIuQiFKIkC7IkGyLlT7BgY2VrhZ2dfJ+ZOacz
+        6j716c7Mbc7vnN854/1LHEd4xDWu8IRzdCBpsjCBU/SjDLFQMbpwglnkIpJ0jGIFdchGCtyoQAUWMIMM
+        2LRiD41I1QOSFv4q7rUGOUS3fxcmgWFk+nfBjNpQgkJ0wq3YBw1iZ/mAJpgH+TjGFCZxgSKY6P875Ph3
+        RF3W1ExUbRHPeMUm1AM3NygNLoMByoNLP1rCHPTyG9ZglmcSGeAe7hLysI8lzOMMBTDR1t7CLsE00UxT
+        SxhEDaowBG2toiI6Jypgm9iOVTRD01fMC4r7ci0uMa4HJqo8Ah2QFmiK5jwoelHLasAGPrEDbbONtmkM
+        yxiADlU1tARV7YX+e8EvPqBtdnvjV9ZyprGFdWgHtqFm9kDb+w0N8g59ApGoBxpI21oPTbsSOpFqriru
+        4gdf0CeQNFq77bQTnUQ18sDzvNgfjxc4NI1yjDAAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="buttonCancel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="buttonCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>123, 181</value>
+  </data>
+  <data name="buttonCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 24</value>
+  </data>
+  <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>keyCancel</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
+    <value>buttonCancel</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
+    <value>tabPageSearch</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
   <data name="textBoxIPStart.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 30</value>
   </data>
@@ -603,56 +754,6 @@
   <data name="tabControlLeft.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <metadata name="buttonPingDead.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="buttonPingDead.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="buttonPingDead.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAVBJREFUOE+V
-        078rRWEcx/HrZ/k1iM1GkZLFKGKwuFIWg0EpPxb/gcEmyiJSMgibgcmPpJQig2RisN1CCpmEDN7vc086
-        J/c6+dSr5zzPPefpPt/vOalImrCOezzhLhwfsIlm5E0LznCLWaTRjl7MwPVztOJXKrGLG/SjFmUoDUfn
-        fbjGAaoQyyBeMYIKF3KkHMPwviEXotnCFWqCWf5U4wI7wSySDFayl4lZgkWO5Q3T2cvETOEDBcEszCMW
-        speJmYetjcXKnsJu/BULfIKjYBbJBJ4xgBIXcqQYttguTLoQTR3c+RjdsNo+UBiOzrvg75/ogb/F4u62
-        aB/j6EQbOjCKPXj2LyzD1z62SRE8ghtc4hDb4ejcOq3BTd6xikb43E9sTT3GsAg/LPvuP2qAL5rdeoFH
-        2YD354zF9PX1e4jG78BWWkyP4yb/jhvPgaOkMt86NkTpPxXQbwAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="buttonPingDead.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="buttonPingDead.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonPingDead.Location" type="System.Drawing.Point, System.Drawing">
-    <value>31, 254</value>
-  </data>
-  <data name="buttonPingDead.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="buttonPingDead.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 32</value>
-  </data>
-  <data name="buttonPingDead.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="buttonPingDead.Text" xml:space="preserve">
-    <value>keyPingDead</value>
-  </data>
-  <data name="&gt;&gt;buttonPingDead.Name" xml:space="preserve">
-    <value>buttonPingDead</value>
-  </data>
-  <data name="&gt;&gt;buttonPingDead.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonPingDead.Parent" xml:space="preserve">
-    <value>tabPageSearch</value>
-  </data>
-  <data name="&gt;&gt;buttonPingDead.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="textBoxMachineName.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 70</value>
   </data>
@@ -712,107 +813,6 @@
   </data>
   <data name="&gt;&gt;labelPcName.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <metadata name="buttonSearch.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="buttonSearch.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="buttonSearch.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAVBJREFUOE+V
-        078rRWEcx/HrZ/k1iM1GkZLFKGKwuFIWg0EpPxb/gcEmyiJSMgibgcmPpJQig2RisN1CCpmEDN7vc086
-        J/c6+dSr5zzPPefpPt/vOalImrCOezzhLhwfsIlm5E0LznCLWaTRjl7MwPVztOJXKrGLG/SjFmUoDUfn
-        fbjGAaoQyyBeMYIKF3KkHMPwviEXotnCFWqCWf5U4wI7wSySDFayl4lZgkWO5Q3T2cvETOEDBcEszCMW
-        speJmYetjcXKnsJu/BULfIKjYBbJBJ4xgBIXcqQYttguTLoQTR3c+RjdsNo+UBiOzrvg75/ogb/F4u62
-        aB/j6EQbOjCKPXj2LyzD1z62SRE8ghtc4hDb4ejcOq3BTd6xikb43E9sTT3GsAg/LPvuP2qAL5rdeoFH
-        2YD354zF9PX1e4jG78BWWkyP4yb/jhvPgaOkMt86NkTpPxXQbwAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="buttonSearch.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="buttonSearch.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonSearch.Location" type="System.Drawing.Point, System.Drawing">
-    <value>31, 212</value>
-  </data>
-  <data name="buttonSearch.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="buttonSearch.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 32</value>
-  </data>
-  <data name="buttonSearch.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="buttonSearch.Text" xml:space="preserve">
-    <value>keySearch</value>
-  </data>
-  <data name="&gt;&gt;buttonSearch.Name" xml:space="preserve">
-    <value>buttonSearch</value>
-  </data>
-  <data name="&gt;&gt;buttonSearch.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonSearch.Parent" xml:space="preserve">
-    <value>tabPageSearch</value>
-  </data>
-  <data name="&gt;&gt;buttonSearch.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <metadata name="buttonCancel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="buttonCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="buttonCancel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAYRJREFUOE91
-        080rBVEcxvHx/tr1EvK28L7hLiyEJFGKjZ2dyEbZUSKKIuQiFKIkC7IkGyLlT7BgY2VrhZ2dfJ+ZOacz
-        6j716c7Mbc7vnN854/1LHEd4xDWu8IRzdCBpsjCBU/SjDLFQMbpwglnkIpJ0jGIFdchGCtyoQAUWMIMM
-        2LRiD41I1QOSFv4q7rUGOUS3fxcmgWFk+nfBjNpQgkJ0wq3YBw1iZ/mAJpgH+TjGFCZxgSKY6P875Ph3
-        RF3W1ExUbRHPeMUm1AM3NygNLoMByoNLP1rCHPTyG9ZglmcSGeAe7hLysI8lzOMMBTDR1t7CLsE00UxT
-        SxhEDaowBG2toiI6Jypgm9iOVTRD01fMC4r7ci0uMa4HJqo8Ah2QFmiK5jwoelHLasAGPrEDbbONtmkM
-        yxiADlU1tARV7YX+e8EvPqBtdnvjV9ZyprGFdWgHtqFm9kDb+w0N8g59ApGoBxpI21oPTbsSOpFqriru
-        4gdf0CeQNFq77bQTnUQ18sDzvNgfjxc4NI1yjDAAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="buttonCancel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="buttonCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>123, 181</value>
-  </data>
-  <data name="buttonCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 24</value>
-  </data>
-  <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="buttonCancel.Text" xml:space="preserve">
-    <value>keyCancel</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
-    <value>buttonCancel</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
-    <value>tabPageSearch</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
-    <value>9</value>
   </data>
   <data name="tabPageSearch.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 20</value>
@@ -929,7 +929,7 @@
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>IPBar</value>
+    <value>ComputerBar</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

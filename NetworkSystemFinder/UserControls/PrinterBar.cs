@@ -18,25 +18,30 @@ using System.Windows.Forms;
 
 namespace NetworkSystemFinder.UserControls
 {
-    public partial class PrinterBar: UserControl, Bar
+    public partial class PrinterBar
+    #if DEBUG
+            : AbstractHelper
+    #else
+            : Bar
+    #endif
     {
-        readonly Main main;
-        Stopwatch stopWatch;
-        CountdownEvent countdown;
+        SortableBindingList<Printer> sortablePrinters = new SortableBindingList<Printer>();
+        SortableBindingList<Printer> filteredPrinters = new SortableBindingList<Printer>();
+
         List<Computer> computers = new List<Computer>();
         List<Printer> printers = new List<Printer>();
-        Stack<UserControl> filterStack = new Stack<UserControl>();
+
         int searchType = 0;
-        int pingTotal = 0;
-        int pingCurrent = 0;
+
         public PrinterBar(Main main)
         {
             InitializeComponent();
-            this.main = main;
             Session session = Session.Instance;
             session.ChangeControlLanguage(this);
             session.theme.ColorControl(this);
             FillBoxes();
+
+            base.Initialize(main,rowCount);
         }
 
         public string IPStart
@@ -58,10 +63,6 @@ namespace NetworkSystemFinder.UserControls
         public bool ResolveNames
         {
             get { return checkBoxResolveNames.Checked; }
-        }
-        public int RowCount
-        {
-            set { labelCount.Text = value + " " + Session.Instance.resourceManager.GetString("keyRows"); }
         }
 
         public void AddPrinter(Printer printer)
@@ -93,8 +94,8 @@ namespace NetworkSystemFinder.UserControls
             if (backgroundWorkerPinger.IsBusy) return;
             searchType = 0;
             WriteLog("Starting...");
-            main.SortablePrinters.Clear();
-            main.SetDataGrid();
+            sortablePrinters.Clear();
+            LoadDataToGrid(sortablePrinters);
             computers.Clear();
             printers.Clear();
             this.tabControlLeft.SelectedIndex = 1;
@@ -120,12 +121,8 @@ namespace NetworkSystemFinder.UserControls
             {
                 if (textBoxMachineName.Text.Trim() == "")
                 {
-                    string[] ipStart = IPStart.Split('.');
-                    string[] ipEnd = IPEnd.Split('.');
-                    int[] ipStartInt = new int[4];
-                    int[] ipEndInt = new int[4];
-                    for (int i = 0; i < ipStart.Length; i++) int.TryParse(ipStart[i], out ipStartInt[i]);
-                    for (int i = 0; i < ipEnd.Length; i++) int.TryParse(ipEnd[i], out ipEndInt[i]);
+                    base.SplitIP(IPStart, out string[] ipStart, out int[] ipStartInt);
+                    base.SplitIP(IPEnd, out string[] ipEnd, out int[] ipEndInt);
 
                     int fourthIPEnd = ipEndInt[3] == 0 ? 255 : ipEndInt[3];
                     int fourthIPStart = ipStartInt[3] == 0 ? 1 : ipStartInt[3];
@@ -258,12 +255,18 @@ namespace NetworkSystemFinder.UserControls
                     {
                         if (m["HostAddress"] == null) continue;
                         Printer printer = new Printer(m["HostAddress"].ToString());
-                        if (m["Caption"] != null)
-                            printer.SetCaption(m["Caption"].ToString());
                         if (m["Name"] != null)
                             printer.Name = m["Name"].ToString();
                         if (m["PortNumber"] != null)
                             printer.MAC = m["PortNumber"].ToString();
+
+                        if (m["Caption"] != null)
+                            printer.Caption = "C " + (m["Caption"].ToString());
+                        if (m["Description"] != null)
+                            printer.Caption += "|D|" + m["Description"].ToString();
+                        if (m["SystemName"] != null)
+                            printer.Caption += "|S|" + m["SystemName"].ToString();
+
                         printers.Add(printer);
                     }
                 }
@@ -277,10 +280,36 @@ namespace NetworkSystemFinder.UserControls
                 {
                     querys = searchPrinter.Get();
                     foreach (ManagementObject m in querys)
-                    {
-                        foreach (Printer print in printers)
+                    { 
+                        if (m["DeviceID"] == null) continue;
+                        Printer printer = new Printer(m["DeviceID"].ToString());
+                        if (m["PNPDeviceID"] != null)
+                            printer.SerialNumber = m["PNPDeviceID"].ToString();
+                       //if (m["InstallDate"] != null && (DateTime)m["InstallDate"] != null)
+                            //printer.InstallDate = (DateTime)m["InstallDate"];
+                        if (m["ServerName"] != null)
+                            printer.ServerName = m["ServerName"].ToString();
+
+                        if(m["Caption"] != null)
+                            printer.Caption2 = "C "+(m["Caption"].ToString());
+                        if (m["Comment"] != null)
+                            printer.Caption2 += "|C|" + m["Comment"].ToString();
+                        if (m["Location"] != null)
+                            printer.Caption2 += "|L|" + m["Location"].ToString();
+                        if (m["DriverName"] != null)
+                            printer.Caption2 += "|R|" + m["DriverName"].ToString();
+                        if (m["Name"] != null)
+                            printer.Caption2 += "|N|" + m["Name"].ToString();
+                        if (m["SystemName"] != null)
+                            printer.Caption2 += "|S|" + m["SystemName"].ToString();
+                        if (m["ShareName"] != null)
+                            printer.Caption2 += "|Sh|" + m["ShareName"].ToString();
+
+                        printers.Add(printer);
+
+                        /*foreach (Printer print in printers)
                         {
-                            if (print.GetCaption() == m["Caption"].ToString() || print.Name == m["Name"].ToString())
+                            if (print.Caption == m["Caption"].ToString() || print.Name == m["Name"].ToString())
                             {
                                 if (m["DeviceID"] != null)
                                     print.SerialNumber = m["DeviceID"].ToString();
@@ -288,9 +317,12 @@ namespace NetworkSystemFinder.UserControls
                                     print.InstallDate = (DateTime)m["InstallDate"];
                                 if (m["ServerName"] != null)
                                     print.ServerName = m["ServerName"].ToString();
+                                //print.Caption2 = (m["Caption"].ToString()) + "|||" + m["Comment"].ToString() + "|||" + m["DeviceID"].ToString() + "|||" + m["DriverName"].ToString() + "|||" + m["Name"].ToString() + "|||" + m["SystemName"].ToString();
                             }
-                        }
+                        }*/
                     }
+
+
                 }
                 catch (Exception e)
                 {
@@ -316,9 +348,9 @@ namespace NetworkSystemFinder.UserControls
         {
             if (e.ProgressPercentage == 1)
             {
-                main.SortablePrinters = new SortableBindingList<Printer>(printers);
-                main.SetDataGrid();
-                SetFilters();
+                sortablePrinters = new SortableBindingList<Printer>(printers);
+                LoadDataToGrid(sortablePrinters);
+                SetFilters(flowLayoutPanelFilter,checkedListBoxColumns);
             }
             else if (e.ProgressPercentage == 2 && e.UserState != null)
             {
@@ -333,12 +365,14 @@ namespace NetworkSystemFinder.UserControls
                         filterString.AddItem(((Computer)e.UserState).SplitName()[0]);
                     }
                 }
-                // main.Filter(textBoxFilter.Text.Trim(), comboBoxFilterColumn.SelectedIndex);
+                // Filter(textBoxFilter.Text.Trim(), comboBoxFilterColumn.SelectedIndex);
             }
             else if (e.ProgressPercentage == 4)
             {
                 pingCurrent++;
                 progressBarSearch.Value = (int)(pingCurrent * 100 / pingTotal);
+                sortablePrinters = new SortableBindingList<Printer>(printers);
+                LoadDataToGrid(sortablePrinters);
             }
 
         }
@@ -346,16 +380,9 @@ namespace NetworkSystemFinder.UserControls
         {
             progressBarSearch.Style = ProgressBarStyle.Blocks;
             progressBarSearch.Value = 100;
-            main.DataGridMain.Refresh();
+            dataGrid.Refresh();
             stopWatch.Stop();
             WriteLog("Ended " + stopWatch.ElapsedMilliseconds + "ms");
-        }
-        private void WriteLog(string text)
-        {
-            if (main.Logger != null)
-            {
-                main.Logger.Log = text;
-            }
         }
         private void buttonLog_Click(object sender, EventArgs e)
         {
@@ -367,153 +394,23 @@ namespace NetworkSystemFinder.UserControls
 
             while (countdown != null && !countdown.IsSet && !countdown.Signal()) ;
         }
-        private void SetFilters()
-        {
-            if (filterStack.Count != 0) return;
-            foreach (DataGridViewTextBoxColumn column in main.DataGridMain.Columns)
-            {
-                if (column.Name == "Status")
-                {
-                    FilterCombobox filterCombobox = new FilterCombobox();
-                    filterCombobox.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-                    filterCombobox.Property = column.Name;
-                    filterCombobox.Index = column.Index;
-                    filterCombobox.GroupBox.Text = column.Name;
-                    flowLayoutPanelFilter.Controls.Add(filterCombobox);
-                    filterStack.Push(filterCombobox);
-                }
-                else if (column.Name != "RAM" && column.Name != "HDD" && column.Name != "SSD")
-                {
-                    FilterString filterString = new FilterString();
-                    filterString.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-                    filterString.Property = column.Name;
-                    filterString.Index = column.Index;
-                    filterString.GroupBox.Text = column.Name;
-                    flowLayoutPanelFilter.Controls.Add(filterString);
-                    filterStack.Push(filterString);
-                }
-                else
-                {
-                    FilterNumber filterNumber = new FilterNumber();
-                    filterNumber.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-                    filterNumber.Property = column.Name;
-                    filterNumber.Index = column.Index;
-                    filterNumber.GroupBox.Text = column.Name;
-                    flowLayoutPanelFilter.Controls.Add(filterNumber);
-                    filterStack.Push(filterNumber);
-                }
-
-            }
-
-            foreach (DataGridViewTextBoxColumn column in main.DataGridMain.Columns)
-            {
-                checkedListBoxColumns.Items.Add(column.Name);
-                checkedListBoxColumns.SetItemChecked(checkedListBoxColumns.Items.Count - 1, true);
-            }
-        }
         private void buttonFilter_Click(object sender, EventArgs e)
         {
-            var filteredMachines = new SortableBindingList<Computer>(main.SortableComputers);
-            foreach (Computer machine in main.SortableComputers)
+            filteredPrinters = new SortableBindingList<Printer>(sortablePrinters);
+            foreach (Printer printer in sortablePrinters)
             {
-                bool hasDeleted = false;
-                foreach (FilterCombobox filterCombobox in filterStack.OfType<FilterCombobox>())
+                if (base.CheckComboboxFilter(printer) || base.CheckStringFilter(printer) || base.CheckNumberFilter(printer))
                 {
-                    if (hasDeleted) break;
-                    if (filterCombobox.SelectedItem == "" || filterCombobox.SelectedItem == "ALL") continue;
-                    if (machine.GetType().GetProperty(filterCombobox.Property).GetValue(machine, null).ToString() != filterCombobox.SelectedItem)
-                    {
-                        filteredMachines.Remove(machine);
-                        hasDeleted = true;
-                        break;
-                    }
-
-                }
-                if (hasDeleted) continue;
-                foreach (FilterString filterString in filterStack.OfType<FilterString>())
-                {
-                    if (hasDeleted) break;
-                    List<string> checkedList = filterString.CheckedList;
-                    if (filterString.Input == "" && checkedList.Count == filterString.ListCount) continue;
-                    string value = machine.GetType().GetProperty(filterString.Property).GetValue(machine, null).ToString().ToLower();
-
-                    string[] names = filterString.Input.ToLower().Split(' ');
-                    bool inputDelete = false;
-                    foreach (string str in names)
-                    {
-                        if (!value.Contains(str))
-                        {
-                            inputDelete = true;
-                            break;
-                        }
-                    }
-
-                    bool itemDelete = true;
-                    if (checkedList.Count != filterString.ListCount)
-                    {
-                        foreach (string item in checkedList)
-                        {
-                            if (value.StartsWith(item.ToLower()))
-                            {
-                                itemDelete = false;
-                                break;
-                            }
-                        }
-                    }
-                    if ((filterString.Input != "" && inputDelete) || (checkedList.Count != filterString.ListCount && itemDelete))
-                    {
-                        filteredMachines.Remove(machine);
-                        hasDeleted = true;
-                    }
-                }
-                if (hasDeleted) continue;
-                foreach (FilterNumber filterNumber in filterStack.OfType<FilterNumber>())
-                {
-                    if (hasDeleted) break;
-                    if (filterNumber.InputMax == int.MaxValue && filterNumber.InputMin == 0) continue;
-                    int value = 0;
-                    bool hasParsed = int.TryParse(machine.GetType().GetProperty(filterNumber.Property).GetValue(machine, null).ToString().Trim(), out value);
-                    if (!hasParsed) continue;
-
-                    if (value < filterNumber.InputMin || value > filterNumber.InputMax)
-                    {
-                        filteredMachines.Remove(machine);
-                        hasDeleted = true;
-                        break;
-                    }
+                    filteredPrinters.Remove(printer);
+                    continue;
                 }
             }
 
-            main.Filter(filteredMachines);
-
+            LoadDataToGrid(filteredPrinters);
         }
         private void checkedListBoxColumns_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            bool exists = false;
-            string property = checkedListBoxColumns.Items[e.Index].ToString();
-            DataGridViewTextBoxColumn column = null;
-            foreach (DataGridViewTextBoxColumn col in main.DataGridMain.Columns)
-            {
-                if (col.Name == property)
-                {
-                    exists = true;
-                    column = col;
-                }
-            }
-
-            if (e.NewValue == CheckState.Unchecked && exists)
-            {
-                main.DataGridMain.Columns.Remove(column);
-            }
-            else if (e.NewValue == CheckState.Checked && !exists)
-            {
-                column = new DataGridViewTextBoxColumn();
-                column.DataPropertyName = property;
-                column.Name = property;
-                main.DataGridMain.Columns.Add(column);
-                main.DataGridMain.Columns[property].DisplayIndex = Math.Min(e.Index, main.DataGridMain.Columns.Count - 1);
-            }
-
+            base.ToggleColumn(checkedListBoxColumns, e);
         }
 
         private void checkedListBoxColumns_MouseEnter(object sender, EventArgs e)

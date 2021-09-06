@@ -80,6 +80,27 @@ namespace NetworkSystemFinder.UserControls
             buttonFilter.UseVisualStyleBackColor = true;
             buttonFilter.Click += new System.EventHandler(this.buttonFilter_Click);
             // 
+            // buttonPingDead
+            // 
+            resources.ApplyResources(buttonPingDead, "buttonPingDead");
+            buttonPingDead.Name = "buttonPingDead";
+            buttonPingDead.UseVisualStyleBackColor = true;
+            buttonPingDead.Click += new System.EventHandler(this.buttonPingDead_Click);
+            // 
+            // buttonSearch
+            // 
+            resources.ApplyResources(buttonSearch, "buttonSearch");
+            buttonSearch.Name = "buttonSearch";
+            buttonSearch.UseVisualStyleBackColor = true;
+            buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
+            // buttonCancel
+            // 
+            resources.ApplyResources(buttonCancel, "buttonCancel");
+            buttonCancel.Name = "buttonCancel";
+            buttonCancel.UseVisualStyleBackColor = true;
+            buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
             // textBoxIPStart
             // 
             resources.ApplyResources(this.textBoxIPStart, "textBoxIPStart");
@@ -215,35 +236,15 @@ namespace NetworkSystemFinder.UserControls
             // 
             this.timerMouseControl.Tick += new System.EventHandler(this.timerMouseControl_Tick);
             // 
-            // buttonPingDead
-            // 
-            resources.ApplyResources(buttonPingDead, "buttonPingDead");
-            buttonPingDead.Name = "buttonPingDead";
-            buttonPingDead.UseVisualStyleBackColor = true;
-            buttonPingDead.Click += new System.EventHandler(this.buttonPingDead_Click);
-            // 
-            // buttonSearch
-            // 
-            resources.ApplyResources(buttonSearch, "buttonSearch");
-            buttonSearch.Name = "buttonSearch";
-            buttonSearch.UseVisualStyleBackColor = true;
-            buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
-            // 
-            // buttonCancel
-            // 
-            resources.ApplyResources(buttonCancel, "buttonCancel");
-            buttonCancel.Name = "buttonCancel";
-            buttonCancel.UseVisualStyleBackColor = true;
-            buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
-            // IPBar
+            // ComputerBar
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControlLeft);
             this.Controls.Add(this.labelCount);
             this.Controls.Add(this.progressBarSearch);
-            this.Name = "IPBar";
+            this.Name = "ComputerBar";
+            this.VisibleChanged += new System.EventHandler(this.ComputerBar_VisibleChanged);
             this.tabControlLeft.ResumeLayout(false);
             this.tabPageSearch.ResumeLayout(false);
             this.tabPageSearch.PerformLayout();

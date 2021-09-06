@@ -80,12 +80,16 @@ namespace NetworkSystemFinder.UserControls
             {
                 this.checkedListBox.MinimumSize = new Size(180, 15);
                 this.checkedListBox.Size = this.checkedListBox.MinimumSize;
+                buttonNone.Visible = true;
+                buttonAll.Visible = true;
             }
         }
 
         private void checkedListBox_MouseEnter(object sender, EventArgs e)
         {
             checkedListBox.Size = new Size(180,90);
+            buttonAll.Location =  new Point(buttonAll.Location.X, 47 + 90);
+            buttonNone.Location = new Point(buttonNone.Location.X, 47 + 90);
         }
 
         private void checkedListBox_MouseLeave(object sender, EventArgs e)
@@ -100,6 +104,24 @@ namespace NetworkSystemFinder.UserControls
             {
                 timerMouseControl.Enabled = false;
                 checkedListBox.Size = new Size(180, 15);
+                buttonAll.Location = new Point(buttonAll.Location.X, 47);
+                buttonNone.Location = new Point(buttonNone.Location.X, 47);
+            }
+        }
+
+        private void buttonNone_Click(object sender, EventArgs e)
+        {
+            for(int i = 0; i < checkedListBox.Items.Count; i++)
+            {
+                checkedListBox.SetItemChecked(i, false);
+            }
+        }
+
+        private void buttonAll_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < checkedListBox.Items.Count; i++)
+            {
+                checkedListBox.SetItemChecked(i, true);
             }
         }
     }

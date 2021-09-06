@@ -184,8 +184,6 @@ namespace NetworkSystemFinder
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataViewMain.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataViewMain.RowHeadersVisible = false;
-            this.dataViewMain.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataViewMain_RowsAdded);
-            this.dataViewMain.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataViewMain_RowsRemoved);
             // 
             // backgroundWorkerExcel
             // 

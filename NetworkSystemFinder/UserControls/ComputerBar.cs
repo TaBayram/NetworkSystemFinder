@@ -18,24 +18,28 @@ using System.Windows.Forms;
 
 namespace NetworkSystemFinder.UserControls
 {
-    public partial class ComputerBar: UserControl, Bar
+    public partial class ComputerBar
+    #if DEBUG
+        : AbstractHelper
+    #else 
+        : Bar
+    #endif
     {
-        readonly Main main;
-        Stopwatch stopWatch;
-        CountdownEvent countdown;
         List<Computer> computers = new List<Computer>();
-        Stack<UserControl> filterStack = new Stack<UserControl>();
         int searchType = 0;
-        int pingTotal = 0;
-        int pingCurrent = 0;
+
+        SortableBindingList<Computer> sortableComputers = new SortableBindingList<Computer>();
+        SortableBindingList<Computer> filteredComputers = new SortableBindingList<Computer>();
+
         public ComputerBar(Main main)
         {
             InitializeComponent();
-            this.main = main;
             Session session = Session.Instance;
             session.ChangeControlLanguage(this);
             session.theme.ColorControl(this);
             FillBoxes();
+
+            base.Initialize(main,labelCount);
         }
 
         public string IPStart
@@ -58,10 +62,6 @@ namespace NetworkSystemFinder.UserControls
         {
             get { return checkBoxResolveNames.Checked; }
         }
-        public int RowCount
-        {
-            set { labelCount.Text = value + " "+Session.Instance.resourceManager.GetString("keyRows"); }
-        }
 
         public void FillBoxes()
         {
@@ -76,11 +76,10 @@ namespace NetworkSystemFinder.UserControls
             if (backgroundWorkerPinger.IsBusy) return;
             searchType = 0;
             WriteLog("Starting...");
-            main.SortableComputers.Clear();
-            main.SetDataGrid();
+            sortableComputers.Clear();
             computers.Clear();
+            LoadDataToGrid(sortableComputers);            
             this.tabControlLeft.SelectedIndex = 1;
-           // progressBarSearch.Style = ProgressBarStyle.Marquee;
             backgroundWorkerPinger.RunWorkerAsync();
            
         }
@@ -102,12 +101,8 @@ namespace NetworkSystemFinder.UserControls
             {
                 if (textBoxMachineName.Text.Trim() == "")
                 {
-                    string[] ipStart = IPStart.Split('.');
-                    string[] ipEnd = IPEnd.Split('.');
-                    int[] ipStartInt = new int[4];
-                    int[] ipEndInt = new int[4];
-                    for (int i = 0; i < ipStart.Length; i++) int.TryParse(ipStart[i], out ipStartInt[i]);
-                    for (int i = 0; i < ipEnd.Length; i++) int.TryParse(ipEnd[i], out ipEndInt[i]);
+                    base.SplitIP(IPStart, out string[] ipStart, out int[] ipStartInt);
+                    base.SplitIP(IPEnd, out string[] ipEnd, out int[] ipEndInt);
 
                     int fourthIPEnd = ipEndInt[3] == 0 ? 255 : ipEndInt[3];
                     int fourthIPStart = ipStartInt[3] == 0 ? 1 : ipStartInt[3];
@@ -133,6 +128,7 @@ namespace NetworkSystemFinder.UserControls
                 }
                 else
                 {
+                    pingTotal++;
                     PingMachine(textBoxMachineName.Text.Trim());
                 }
                 backgroundWorkerPinger.ReportProgress(1);
@@ -234,7 +230,7 @@ namespace NetworkSystemFinder.UserControls
 
             }
         }
-        private void GetInformation(Computer machine)
+        private void GetInformation(Computer computer)
         {
             string errorQuery = "";
             try
@@ -244,8 +240,8 @@ namespace NetworkSystemFinder.UserControls
                 connectionOptions.Username = UserName;
                 connectionOptions.Password = UserPassword;
 
-                ManagementScope scope = new ManagementScope("\\\\" + machine.IP + "\\root\\cimv2", connectionOptions);
-                ManagementScope scope2 = new ManagementScope("\\\\" + machine.IP + "\\root\\Microsoft\\Windows\\Storage", connectionOptions);
+                ManagementScope scope = new ManagementScope("\\\\" + computer.IP + "\\root\\cimv2", connectionOptions);
+                ManagementScope scope2 = new ManagementScope("\\\\" + computer.IP + "\\root\\Microsoft\\Windows\\Storage", connectionOptions);
 
                 scope.Connect();
 
@@ -253,6 +249,7 @@ namespace NetworkSystemFinder.UserControls
                 ObjectQuery queryCPU = new ObjectQuery("SELECT * FROM Win32_Processor");
                 ObjectQuery queryGPU = new ObjectQuery("SELECT * FROM Win32_VideoController");
                 ObjectQuery queryOS = new ObjectQuery("SELECT * FROM Win32_OperatingSystem");
+                ObjectQuery queryRAM = new ObjectQuery("SELECT * FROM Win32_PhysicalMemory");
                 ObjectQuery queryBIOS = new ObjectQuery("SELECT * FROM Win32_BIOS");
                 ObjectQuery queryStorage = new ObjectQuery("SELECT * FROM Win32_DiskDrive");
                 ObjectQuery queryStorageNew = new ObjectQuery("SELECT * FROM MSFT_PhysicalDisk");
@@ -262,6 +259,7 @@ namespace NetworkSystemFinder.UserControls
                 ManagementObjectSearcher searchUser = new ManagementObjectSearcher(scope, queryUser);
                 ManagementObjectSearcher searchGPU = new ManagementObjectSearcher(scope, queryGPU);
                 ManagementObjectSearcher searchCPU = new ManagementObjectSearcher(scope, queryCPU);
+                ManagementObjectSearcher searchRAM = new ManagementObjectSearcher(scope, queryRAM);
                 ManagementObjectSearcher searchOS = new ManagementObjectSearcher(scope, queryOS);
                 ManagementObjectSearcher searchBIOS = new ManagementObjectSearcher(scope, queryBIOS);
                 ManagementObjectSearcher searchMAC = new ManagementObjectSearcher(scope, queryMAC);
@@ -269,7 +267,7 @@ namespace NetworkSystemFinder.UserControls
 
                 ManagementObjectCollection querys = null;
 
-                if (machine.Name == "?")
+                if (computer.Name == "?")
                 {
                     errorQuery = "User";
                     try
@@ -278,12 +276,12 @@ namespace NetworkSystemFinder.UserControls
                         foreach (ManagementObject m in querys)
                         {
                             if(m["Domain"] != null)
-                                machine.Name = Convert.ToString(m["Domain"]);
+                                computer.Name = Convert.ToString(m["Domain"]);
                         }
                     }
                     catch (Exception e)
                     {
-                        backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
+                        backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " I" + errorQuery + " " + e.Message));
                     }
                 }
 
@@ -294,12 +292,12 @@ namespace NetworkSystemFinder.UserControls
                     foreach (ManagementObject m in querys)
                     {
                         if (m["Name"] != null)
-                            machine.CPU = Convert.ToString(m["Name"]).Trim();
+                            computer.CPU = Convert.ToString(m["Name"]).Trim();
                     }
                 }
                 catch(Exception e)
                 {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
+                    backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " I" + errorQuery + " " + e.Message));
                 }
 
                 errorQuery = "OS";
@@ -309,14 +307,29 @@ namespace NetworkSystemFinder.UserControls
                     foreach (ManagementObject m in querys)
                     {
                         if (m["Caption"] != null)
-                            machine.OS = Convert.ToString(m["Caption"]).Trim();
-                        if (m["TotalVisibleMemorySize"] != null)
-                            machine.RAM = Convert.ToString(int.Parse(m["TotalVisibleMemorySize"].ToString())/1024).Trim();
+                            computer.OS = Convert.ToString(m["Caption"]).Trim();
                     }
                 }
                 catch (Exception e)
                 {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
+                    backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " I" + errorQuery + " " + e.Message));
+                }
+
+                errorQuery = "RAM";
+                try
+                {
+                    querys = searchRAM.Get();
+                    foreach (ManagementObject m in querys)
+                    {
+                        if (m["Capacity"] != null)
+                            computer.RAM += (int)Math.Round(Int64.Parse(m["Capacity"].ToString()) / 1024d / 1024 / 1024);
+                        if (m["MemoryType"] != null && ((computer.RAMType == "Unknown" || computer.RAMType == "?" || computer.RAMType == "Undefined") && (m["MemoryType"].ToString()) != "0"))
+                            computer.RAMType = GetRamType(int.Parse(m["MemoryType"].ToString()));                            
+                    }
+                }
+                catch (Exception e)
+                {
+                    backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " I" + errorQuery + " " + e.Message));
                 }
 
                 errorQuery = "GPU";
@@ -326,12 +339,12 @@ namespace NetworkSystemFinder.UserControls
                     foreach (ManagementObject m in querys)
                     {
                         if (m["Name"] != null)
-                            machine.GPU = Convert.ToString(m["Name"]).Trim();
+                            computer.GPU = Convert.ToString(m["Name"]).Trim();
                     }
                 }
                 catch (Exception e)
                 {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
+                    backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " I" + errorQuery + " " + e.Message));
                 }
                 errorQuery = "BIOS";
                 try
@@ -340,12 +353,12 @@ namespace NetworkSystemFinder.UserControls
                     foreach (ManagementObject m in querys)
                     {
                         if (m["SerialNumber"] != null && Convert.ToString(m["SerialNumber"]).Trim() != "")
-                            machine.SerialNumber = Convert.ToString(m["SerialNumber"]).Trim();
+                            computer.SerialNumber = Convert.ToString(m["SerialNumber"]).Trim();
                     }
                 }
                 catch (Exception e)
                 {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
+                    backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " I" + errorQuery + " " + e.Message));
                 }
                 
                 errorQuery = "MAC";
@@ -355,12 +368,12 @@ namespace NetworkSystemFinder.UserControls
                     foreach (ManagementObject m in querys)
                     {
                         if(m["MACAddress"] != null)
-                            machine.MAC = m["MACAddress"].ToString();
+                            computer.MAC = m["MACAddress"].ToString();
                     }
                 }
                 catch (Exception e)
                 {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
+                    backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " I" + errorQuery + " " + e.Message));
                 }
                 
                 errorQuery = "Storage";
@@ -386,12 +399,12 @@ namespace NetworkSystemFinder.UserControls
                         foreach (ManagementObject m in querys)
                         {
                             if (m["Size"] != null)
-                                machine.HDD = (Convert.ToUInt64(machine.HDD) + (Convert.ToUInt64(m["Size"]) / (1024 * 1024 * 1024))).ToString();
+                                computer.HDD = (int)(Convert.ToUInt64(computer.HDD) + (Convert.ToUInt64(m["Size"]) / (1024 * 1024 * 1024)));
                         }
                     }
                     catch (Exception e)
                     {
-                        backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " IO" + errorQuery + " " + e.Message));
+                        backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " IO" + errorQuery + " " + e.Message));
                     }
             
                 }
@@ -406,18 +419,18 @@ namespace NetworkSystemFinder.UserControls
                             {
                                 case 4:
                                     if (m["Size"] != null)
-                                        machine.SSD = (Convert.ToUInt64(machine.SSD) + (Convert.ToUInt64(m["Size"]) / (1024 * 1024 * 1024))).ToString();
+                                        computer.SSD = (int)(Convert.ToUInt64(computer.SSD) + (Convert.ToUInt64(m["Size"]) / (1024 * 1024 * 1024)));
                                     break;
                                 default:
                                     if (m["Size"] != null)
-                                        machine.HDD = (Convert.ToUInt64(machine.HDD) + (Convert.ToUInt64(m["Size"]) / (1024 * 1024 * 1024))).ToString();
+                                        computer.HDD = (int)(Convert.ToUInt64(computer.HDD) + (Convert.ToUInt64(m["Size"]) / (1024 * 1024 * 1024)));
                                     break;
                             }
                         }
                     }
                     catch (Exception e)
                     {
-                        backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " IN" + errorQuery + " " + e.Message));
+                        backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " IN" + errorQuery + " " + e.Message));
                     }
                 }
 
@@ -428,25 +441,25 @@ namespace NetworkSystemFinder.UserControls
                     foreach (ManagementObject m in querys)
                     {
                         if (m["Manufacturer"] != null)
-                            machine.Motherboard = m["Manufacturer"].ToString().Substring(0,Math.Min(m["Manufacturer"].ToString().Length,12)) +" : " +m["Product"].ToString();
-                        if (m["SerialNumber"] != null && m["SerialNumber"].ToString().Trim() != "" && (machine.SerialNumber == "?" || machine.SerialNumber == "NONE" || machine.SerialNumber.ToLower().StartsWith("default") || machine.SerialNumber.ToLower().StartsWith("to be filled") || machine.SerialNumber.ToLower().StartsWith("system serial") || machine.SerialNumber.ToLower().StartsWith("not")))
-                            machine.SerialNumber = "MB>"+m["SerialNumber"].ToString();
+                            computer.Motherboard = m["Manufacturer"].ToString().Substring(0,Math.Min(m["Manufacturer"].ToString().Length,12)) +" : " +m["Product"].ToString();
+                        if (m["SerialNumber"] != null && m["SerialNumber"].ToString().Trim() != "" && (computer.SerialNumber == "?" || computer.SerialNumber == "NONE" || computer.SerialNumber.ToLower().StartsWith("default") || computer.SerialNumber.ToLower().StartsWith("to be filled") || computer.SerialNumber.ToLower().StartsWith("system serial") || computer.SerialNumber.ToLower().StartsWith("not")))
+                            computer.SerialNumber = "MB>"+m["SerialNumber"].ToString();
                     }
                 }
                 catch (Exception e)
                 {
-                    backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " I" + errorQuery + " " + e.Message));
+                    backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " I" + errorQuery + " " + e.Message));
                 }
 
 
 
-                backgroundWorkerPinger.ReportProgress(3,machine);
+                backgroundWorkerPinger.ReportProgress(3,computer);
 
 
             }
             catch (Exception e)
             {
-                backgroundWorkerPinger.ReportProgress(2, String.Format(machine.Name + " "+errorQuery +" "+ e.Message));
+                backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " "+errorQuery +" "+ e.Message));
             }
 
         }
@@ -454,9 +467,9 @@ namespace NetworkSystemFinder.UserControls
         {
             if (e.ProgressPercentage == 1)
             {
-                main.SortableComputers = new SortableBindingList<Computer>(computers);
-                main.SetDataGrid();
-                SetFilters();
+                sortableComputers = new SortableBindingList<Computer>(computers);
+                LoadDataToGrid(sortableComputers);
+                SetFilters(flowLayoutPanelFilter,checkedListBoxColumns);
             }
             else if (e.ProgressPercentage == 2 && e.UserState != null)
             {
@@ -484,17 +497,11 @@ namespace NetworkSystemFinder.UserControls
         {
             progressBarSearch.Style = ProgressBarStyle.Blocks;
             progressBarSearch.Value = 100;
-            main.DataGridMain.Refresh();
+            dataGrid.Refresh();
             stopWatch.Stop();
             WriteLog("Ended " + stopWatch.ElapsedMilliseconds + "ms");            
         }
-        private void WriteLog(string text)
-        {
-            if(main.Logger != null)
-            {
-                main.Logger.Log = text;
-            }
-        }
+        
         private void buttonLog_Click(object sender, EventArgs e)
         {
             main.ToggleLog();
@@ -502,156 +509,26 @@ namespace NetworkSystemFinder.UserControls
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             backgroundWorkerPinger.CancelAsync();
-
             while (countdown != null && !countdown.IsSet &&!countdown.Signal());
-        }
-        private void SetFilters()
-        {
-            if (filterStack.Count != 0) return;
-            foreach(DataGridViewTextBoxColumn column in main.DataGridMain.Columns)
-            {
-                if(column.Name == "Status")
-                {
-                    FilterCombobox filterCombobox = new FilterCombobox();
-                    filterCombobox.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-                    filterCombobox.Property = column.Name;
-                    filterCombobox.Index = column.Index;
-                    filterCombobox.GroupBox.Text = column.Name;
-                    flowLayoutPanelFilter.Controls.Add(filterCombobox);
-                    filterStack.Push(filterCombobox);
-                }
-                else if(column.Name != "RAM" && column.Name != "HDD" && column.Name != "SSD")
-                {
-                    FilterString filterString = new FilterString();
-                    filterString.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-                    filterString.Property = column.Name;
-                    filterString.Index = column.Index;
-                    filterString.GroupBox.Text = column.Name;
-                    flowLayoutPanelFilter.Controls.Add(filterString);
-                    filterStack.Push(filterString);
-                }
-                else
-                {
-                    FilterNumber filterNumber = new FilterNumber();
-                    filterNumber.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-                    filterNumber.Property = column.Name;
-                    filterNumber.Index = column.Index;
-                    filterNumber.GroupBox.Text = column.Name;
-                    flowLayoutPanelFilter.Controls.Add(filterNumber);
-                    filterStack.Push(filterNumber);
-                }
-            
-            }
-
-            foreach (DataGridViewTextBoxColumn column in main.DataGridMain.Columns)
-            {
-                checkedListBoxColumns.Items.Add(column.Name);
-                checkedListBoxColumns.SetItemChecked(checkedListBoxColumns.Items.Count - 1, true);
-            }
         }
         private void buttonFilter_Click(object sender, EventArgs e)
         {
-            var filteredMachines = new SortableBindingList<Computer>(main.SortableComputers);
-            foreach (Computer machine in main.SortableComputers)
+            filteredComputers = new SortableBindingList<Computer>(sortableComputers);
+            foreach (Computer computer in sortableComputers)
             {
-                bool hasDeleted = false;
-                foreach (FilterCombobox filterCombobox in filterStack.OfType<FilterCombobox>())
+                if (base.CheckComboboxFilter(computer) || base.CheckStringFilter(computer) || base.CheckNumberFilter(computer))
                 {
-                    if (hasDeleted) break;
-                    if (filterCombobox.SelectedItem == "" || filterCombobox.SelectedItem == "ALL") continue;
-                    if (machine.GetType().GetProperty(filterCombobox.Property).GetValue(machine, null).ToString() != filterCombobox.SelectedItem)
-                    {
-                        filteredMachines.Remove(machine);
-                        hasDeleted = true;
-                        break;
-                    }
-                    
-                }
-                if (hasDeleted) continue;
-                foreach (FilterString filterString in filterStack.OfType<FilterString>())
-                {
-                    if (hasDeleted) break;
-                    List<string> checkedList = filterString.CheckedList;
-                    if (filterString.Input == "" && checkedList.Count == filterString.ListCount) continue;
-                    string value = machine.GetType().GetProperty(filterString.Property).GetValue(machine, null).ToString().ToLower();
-
-                    string[] names = filterString.Input.ToLower().Split(' ');
-                    bool inputDelete = false;
-                    foreach (string str in names)
-                    {
-                        if (!value.Contains(str))
-                        {
-                            inputDelete = true;
-                            break;
-                        }
-                    }
-
-                    bool itemDelete = true;
-                    if (checkedList.Count != filterString.ListCount)
-                    {
-                        foreach (string item in checkedList)
-                        {
-                            if (value.StartsWith(item.ToLower()))
-                            {
-                                itemDelete = false;
-                                break;
-                            }
-                        }
-                    }
-                    if ((filterString.Input != "" && inputDelete) || (checkedList.Count != filterString.ListCount && itemDelete))
-                    {
-                        filteredMachines.Remove(machine);
-                        hasDeleted = true;
-                    }
-                }
-                if (hasDeleted) continue;
-                foreach (FilterNumber filterNumber in filterStack.OfType<FilterNumber>())
-                {
-                    if (hasDeleted) break;
-                    if (filterNumber.InputMax == int.MaxValue && filterNumber.InputMin == 0) continue;
-                    int value = 0;
-                    bool hasParsed = int.TryParse(machine.GetType().GetProperty(filterNumber.Property).GetValue(machine, null).ToString().Trim(), out value);
-                    if (!hasParsed) continue;
-
-                    if(value < filterNumber.InputMin || value > filterNumber.InputMax)
-                    {
-                        filteredMachines.Remove(machine);
-                        hasDeleted = true;
-                        break;
-                    }
+                    filteredComputers.Remove(computer);
+                    continue;
                 }
             }
 
-            main.Filter(filteredMachines);
+            LoadDataToGrid(filteredComputers);
 
         }
         private void checkedListBoxColumns_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            bool exists = false;
-            string property = checkedListBoxColumns.Items[e.Index].ToString();
-            DataGridViewTextBoxColumn column = null;
-            foreach (DataGridViewTextBoxColumn col in main.DataGridMain.Columns)
-            {
-                if(col.Name == property)
-                {
-                    exists = true;
-                    column = col;
-                }
-            }
-            
-            if (e.NewValue == CheckState.Unchecked && exists)
-            {
-                main.DataGridMain.Columns.Remove(column);
-            }
-            else if(e.NewValue == CheckState.Checked && !exists)
-            {
-                column = new DataGridViewTextBoxColumn();
-                column.DataPropertyName = property;
-                column.Name = property;
-                main.DataGridMain.Columns.Add(column);
-                main.DataGridMain.Columns[property].DisplayIndex = Math.Min(e.Index, main.DataGridMain.Columns.Count-1);
-            }
-                
+            base.ToggleColumn(checkedListBoxColumns, e);
         }
 
         private void checkedListBoxColumns_MouseEnter(object sender, EventArgs e)
@@ -672,6 +549,11 @@ namespace NetworkSystemFinder.UserControls
                 timerMouseControl.Enabled = false;
                 checkedListBoxColumns.Size = new Size(0, -90) + checkedListBoxColumns.Size;
             }
+        }
+
+        private void ComputerBar_VisibleChanged(object sender, EventArgs e)
+        {
+            dataGrid.Visible = Visible;
         }
     }
 }

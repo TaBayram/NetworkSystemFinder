@@ -11,10 +11,11 @@ namespace NetworkSystemFinder.Models
     {
         string oS;
         string cPU;
-        string rAM;
+        int rAM;
+        string rAMType;
         string gPU;
-        string hDD;
-        string ssD;
+        int hDD;
+        int ssD;
         string motherboard;
 
         public Computer(string IP)
@@ -23,10 +24,11 @@ namespace NetworkSystemFinder.Models
             this.name = "?";
             this.cPU = "?";
             this.oS = "?";
-            this.rAM = "0";
+            this.rAM = 0;
+            this.rAMType = "?";
             this.gPU = "?";
-            this.hDD = "0";
-            this.ssD = "0";
+            this.hDD = 0;
+            this.ssD = 0;
             this.serialNumber = "?";
             this.mAC = "?";
             this.motherboard = "?";
@@ -38,10 +40,11 @@ namespace NetworkSystemFinder.Models
         public new Machine.StatusType Status { get => status; set => status = value; }
         public string OS { get => oS; set => oS = value; }
         public string CPU { get => cPU; set => cPU = value; }
-        public string RAM { get => rAM; set => rAM = value; }
+        public int RAM { get => rAM; set => rAM = value; }
+        public string RAMType { get => rAMType; set => rAMType = value; }
         public string GPU { get => gPU; set => gPU = value; }
-        public string HDD { get => hDD; set => hDD = value; }
-        public string SSD { get => ssD; set => ssD = value; }
+        public int HDD { get => hDD; set => hDD = value; }
+        public int SSD { get => ssD; set => ssD = value; }
         public new string SerialNumber { get => serialNumber; set => serialNumber = value; }
         public new string MAC { get => mAC; set => mAC = value; }
         public string Motherboard { get => motherboard; set => motherboard = value; }
@@ -63,13 +66,13 @@ namespace NetworkSystemFinder.Models
                 case 4:
                     return this.cPU;
                 case 5:
-                    return this.rAM;
+                    return this.rAM.ToString();
                 case 6:
                     return this.gPU;
                 case 7:
-                    return this.hDD;
+                    return this.hDD.ToString();
                 case 8:
-                    return this.ssD;
+                    return this.ssD.ToString();
                 case 9:
                     return this.serialNumber;
                 case 10:

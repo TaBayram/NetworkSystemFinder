@@ -14,11 +14,6 @@ namespace NetworkSystemFinder
 {
     public partial class Main : Form
     {
-        SortableBindingList<Computer> sortableComputers = new SortableBindingList<Computer>();
-        SortableBindingList<Computer> filteredComputers = new SortableBindingList<Computer>();
-        SortableBindingList<Printer> sortablePrinters = new SortableBindingList<Printer>();
-        SortableBindingList<Printer> filteredPrinters = new SortableBindingList<Printer>();
-
         //Forms
         Logger logger;
         Settings settings;
@@ -40,11 +35,9 @@ namespace NetworkSystemFinder
             Session.Instance.ChangeControlLanguage(this);
             Session.Instance.theme.ColorControl(this);
         }
-
-        internal SortableBindingList<Computer> SortableComputers { get => sortableComputers; set => sortableComputers = value; }
-        internal SortableBindingList<Printer> SortablePrinters { get => sortablePrinters; set => sortablePrinters = value; }
         public Logger Logger { get => logger; }
         public DataGridView DataGridMain { get => dataViewMain; }
+        public Panel RightPanel { get => panelHome; }
         private void buttonBack_Click(object sender, EventArgs e)
         {
             PopLeftBar();
@@ -91,43 +84,6 @@ namespace NetworkSystemFinder
             }
             PushLeftBar(printerBar);
         }
-        public void SetDataGrid()
-        {
-            if(currentBarControl is PrinterBar)
-            {
-                var source = new BindingSource(SortablePrinters, null);
-                dataViewMain.DataSource = source;
-                printerBar.RowCount = dataViewMain.RowCount;
-            }
-            else if(currentBarControl is ComputerBar)
-            {
-                var source = new BindingSource(SortableComputers, null);
-                dataViewMain.DataSource = source;
-                computerBar.RowCount = dataViewMain.RowCount;
-            }
-            
-            foreach (DataGridViewRow row in dataViewMain.Rows)
-            {
-                row.HeaderCell.Value = String.Format("{0}", row.Index + 1);
-            }
-        }
-        public void Filter(object filter)
-        {
-            if (currentBarControl is PrinterBar)
-            {
-                filteredPrinters = (SortableBindingList<Printer>)filter;
-                var source = new BindingSource(filteredPrinters, null);
-                dataViewMain.DataSource = source;
-                printerBar.RowCount = dataViewMain.RowCount;
-            }
-            else if(currentBarControl is ComputerBar)
-            {
-                filteredComputers = (SortableBindingList<Computer>)filter;
-                var source = new BindingSource(filteredComputers, null);
-                dataViewMain.DataSource = source;
-                computerBar.RowCount = dataViewMain.RowCount;
-            }
-        }
         public void ToggleLog()
         {
             if(Logger == null)
@@ -142,14 +98,6 @@ namespace NetworkSystemFinder
                 logger.Close();
                 logger = null;
             }
-        }
-        private void dataViewMain_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            computerBar.RowCount = e.RowCount;
-        }
-        private void dataViewMain_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
-        {
-            computerBar.RowCount = e.RowCount;
         }
         private void buttonExcel_Click(object sender, EventArgs e)
         {

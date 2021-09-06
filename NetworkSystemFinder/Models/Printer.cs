@@ -13,30 +13,29 @@ namespace NetworkSystemFinder.Models
         public Printer(string IP)
         {
             this.iP = IP;
+            this.status = StatusType.Alive;
             this.name = "?";
             this.serialNumber = "?";
             this.MAC = "?";
             this.ServerName = "?";
+            this.caption = "?";
+            this.caption2 = "?";
+            installDate = DateTime.Now;
+            
         }
 
-        public new string IP { get => iP; set => iP = value; }
-        public new string Name { get => name; set => name = value; }
+        public new string IP { get => iP == null ? "Null": iP; set => iP = value; }
+        public new string Name { get => name == null ? "Null" : name; set => name = value; }
         public new StatusType Status { get => status; set => status = value; }
-        public new string SerialNumber { get => serialNumber; set => serialNumber = value; }
-        public new string MAC { get => mAC; set => mAC = value; }
-        public DateTime InstallDate { get => installDate; set => installDate = value; }
-        public string ServerName { get => serverName; set => serverName = value; }
+        public new string SerialNumber { get => serialNumber == null ? "Null" : serialNumber; set => serialNumber = value; }
+        public new string MAC { get => mAC == null ? "Null" : mAC; set => mAC = value; }
+        public DateTime InstallDate { get => DateTime.Now; set => installDate = value; }
+        public string ServerName { get => serverName == null ? "Null" : serverName; set => serverName = value; }
+        public string Caption { get => caption == null ? "Null" : caption; set => caption = value; }
+        public string Caption2 { get => caption2 == null ? "Null" : caption2; set => caption2 = value; }
 
         string caption;
-
-        public void SetCaption(string caption)
-        {
-            this.caption = caption;
-        }
-        public string GetCaption()
-        {
-            return this.caption;
-        }
+        string caption2;
 
         public override string ColumnProperty(int index)
         {

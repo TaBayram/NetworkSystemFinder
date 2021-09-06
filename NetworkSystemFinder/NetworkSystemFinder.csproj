@@ -65,6 +65,9 @@
     <Compile Include="Forms\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AbstractHelper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Helpers\MacPairer.cs" />
     <Compile Include="Helpers\ModelNamer.cs" />
     <Compile Include="Helpers\Session.cs" />
@@ -75,7 +78,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Models\Bar.cs" />
+    <Compile Include="Models\Bar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Models\Computer.cs" />
     <Compile Include="Models\Machine.cs" />
     <Compile Include="Models\Printer.cs" />
@@ -224,6 +229,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\32x32PrinterInverted.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16x16selectnone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16x16selectall.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,5 +1,6 @@
 ﻿using NetworkSystemFinder.Helpers;
 using NetworkSystemFinder.Models;
+using NetworkSystemFinder.Models.Parts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -240,30 +241,21 @@ namespace NetworkSystemFinder.UserControls
                 connectionOptions.Username = UserName;
                 connectionOptions.Password = UserPassword;
 
-                ManagementScope scope = new ManagementScope("\\\\" + computer.IP + "\\root\\cimv2", connectionOptions);
-                ManagementScope scope2 = new ManagementScope("\\\\" + computer.IP + "\\root\\Microsoft\\Windows\\Storage", connectionOptions);
+                Session.Instance.connectionOptions = connectionOptions;
+
+                ManagementScope scope = new ManagementScope("\\\\" + computer.IP + WMICHelper.PathCMIV2, connectionOptions);
+                ManagementScope scope2 = new ManagementScope("\\\\" + computer.IP + WMICHelper.PathSTORAGE, connectionOptions);
 
                 scope.Connect();
 
-                ObjectQuery queryUser = new ObjectQuery("SELECT * FROM Win32_Account");
-                ObjectQuery queryCPU = new ObjectQuery("SELECT * FROM Win32_Processor");
-                ObjectQuery queryGPU = new ObjectQuery("SELECT * FROM Win32_VideoController");
-                ObjectQuery queryOS = new ObjectQuery("SELECT * FROM Win32_OperatingSystem");
-                ObjectQuery queryRAM = new ObjectQuery("SELECT * FROM Win32_PhysicalMemory");
-                ObjectQuery queryBIOS = new ObjectQuery("SELECT * FROM Win32_BIOS");
-                ObjectQuery queryStorage = new ObjectQuery("SELECT * FROM Win32_DiskDrive");
-                ObjectQuery queryStorageNew = new ObjectQuery("SELECT * FROM MSFT_PhysicalDisk");
-                ObjectQuery queryMAC = new ObjectQuery("SELECT * FROM Win32_NetworkAdapterConfiguration");
-                ObjectQuery queryMotherboard = new ObjectQuery("SELECT * FROM Win32_BaseBoard");
-
-                ManagementObjectSearcher searchUser = new ManagementObjectSearcher(scope, queryUser);
-                ManagementObjectSearcher searchGPU = new ManagementObjectSearcher(scope, queryGPU);
-                ManagementObjectSearcher searchCPU = new ManagementObjectSearcher(scope, queryCPU);
-                ManagementObjectSearcher searchRAM = new ManagementObjectSearcher(scope, queryRAM);
-                ManagementObjectSearcher searchOS = new ManagementObjectSearcher(scope, queryOS);
-                ManagementObjectSearcher searchBIOS = new ManagementObjectSearcher(scope, queryBIOS);
-                ManagementObjectSearcher searchMAC = new ManagementObjectSearcher(scope, queryMAC);
-                ManagementObjectSearcher searchMotherboard = new ManagementObjectSearcher(scope, queryMotherboard);
+                ManagementObjectSearcher searchUser = new ManagementObjectSearcher(scope, WMICHelper.QueryAccount);
+                ManagementObjectSearcher searchGPU = new ManagementObjectSearcher(scope, WMICHelper.QueryGPU);
+                ManagementObjectSearcher searchCPU = new ManagementObjectSearcher(scope, WMICHelper.QueryCPU);
+                ManagementObjectSearcher searchRAM = new ManagementObjectSearcher(scope, WMICHelper.QueryRAM);
+                ManagementObjectSearcher searchOS = new ManagementObjectSearcher(scope, WMICHelper.QueryOS);
+                ManagementObjectSearcher searchBIOS = new ManagementObjectSearcher(scope, WMICHelper.QueryBIOS);
+                ManagementObjectSearcher searchMAC = new ManagementObjectSearcher(scope, WMICHelper.QueryNetwork);
+                ManagementObjectSearcher searchMotherboard = new ManagementObjectSearcher(scope, WMICHelper.QueryMotherboard);
 
                 ManagementObjectCollection querys = null;
 
@@ -321,10 +313,21 @@ namespace NetworkSystemFinder.UserControls
                     querys = searchRAM.Get();
                     foreach (ManagementObject m in querys)
                     {
+                        RAM ram = new RAM();
+                        backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " Ram "));
+                        if (m["Capacity"] != null)
+                            ram.Capacity = (int)Math.Round(Int64.Parse(m["Capacity"].ToString()) / 1024d / 1024 / 1024);
                         if (m["Capacity"] != null)
                             computer.RAM += (int)Math.Round(Int64.Parse(m["Capacity"].ToString()) / 1024d / 1024 / 1024);
-                        if (m["MemoryType"] != null && ((computer.RAMType == "Unknown" || computer.RAMType == "?" || computer.RAMType == "Undefined") && (m["MemoryType"].ToString()) != "0"))
-                            computer.RAMType = GetRamType(int.Parse(m["MemoryType"].ToString()));                            
+                        if (m["MemoryType"] != null)
+                            ram.Type = computer.RAMType = GetRamType(int.Parse(m["MemoryType"].ToString()));
+                        if(m["Speed"] != null)
+                            ram.Speed = int.Parse(m["Speed"].ToString());
+                        if (m["MemoryType"] != null && (((computer.RAMType == "Unknown" || computer.RAMType == "?") && (m["MemoryType"].ToString()) != "0") || computer.RAMType == "?"))
+                            computer.RAMType = GetRamType(int.Parse(m["MemoryType"].ToString()));
+                        if (m["MemoryType"] != null) backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " " + GetRamType(int.Parse(m["MemoryType"].ToString()))));
+
+                        computer.AddRam(ram);
                     }
                 }
                 catch (Exception e)
@@ -382,7 +385,7 @@ namespace NetworkSystemFinder.UserControls
                 try
                 {
                     scope2.Connect();
-                    searchStorage = new ManagementObjectSearcher(scope2, queryStorageNew);
+                    searchStorage = new ManagementObjectSearcher(scope2, WMICHelper.QueryStorageNew);
                     querys = searchStorage.Get();
                 }
                 catch(Exception e)
@@ -394,7 +397,7 @@ namespace NetworkSystemFinder.UserControls
                 {
                     try
                     {
-                        searchStorage = new ManagementObjectSearcher(scope, queryStorage);
+                        searchStorage = new ManagementObjectSearcher(scope, WMICHelper.QueryStorage);
                         querys = searchStorage.Get();
                         foreach (ManagementObject m in querys)
                         {
@@ -482,6 +485,14 @@ namespace NetworkSystemFinder.UserControls
                     if(filterString.Property == "CPU")
                     {
                         filterString.AddItem(((Computer)e.UserState).SplitName()[0]);
+                    }
+                    else if(filterString.Property == "OS")
+                    {
+                        filterString.AddItem(((Computer)e.UserState).OS);
+                    }
+                    else if (filterString.Property == "RAMType")
+                    {
+                        filterString.AddItem(((Computer)e.UserState).RAMType);
                     }
                 }
                 // main.Filter(textBoxFilter.Text.Trim(), comboBoxFilterColumn.SelectedIndex);

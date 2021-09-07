@@ -1,4 +1,5 @@
-﻿using NetworkSystemFinder.Helpers;
+﻿using NetworkSystemFinder.Forms;
+using NetworkSystemFinder.Helpers;
 using NetworkSystemFinder.UserControls;
 using System;
 using System.Collections.Generic;
@@ -61,6 +62,7 @@ namespace NetworkSystemFinder.Models
             dataGrid.RowHeadersVisible = false;
             dataGrid.RowsAdded += new DataGridViewRowsAddedEventHandler(dataGrid_RowsAdded);
             dataGrid.RowsRemoved += new DataGridViewRowsRemovedEventHandler(dataGrid_RowsRemoved);
+            dataGrid.CellDoubleClick += new DataGridViewCellEventHandler(this.dataGrid_CellDoubleClick);
 
             dataGrid.Parent = main.RightPanel;
             dataGrid.Dock = DockStyle.Fill;
@@ -74,6 +76,12 @@ namespace NetworkSystemFinder.Models
         private void dataGrid_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             RowCount = e.RowCount;
+        }
+        private void dataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ComputerBox computerBox = new ComputerBox((Computer)dataGrid.Rows[e.RowIndex].DataBoundItem);
+            computerBox.TopMost = true;
+            computerBox.Show();
         }
         protected void LoadDataToGrid(object data)
         {

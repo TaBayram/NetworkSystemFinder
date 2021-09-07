@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Management;
 using System.Reflection;
 using System.Resources;
 using System.Text;
@@ -22,6 +23,18 @@ namespace NetworkSystemFinder.Helpers
                 return instance;
             }
         }
+
+        public ResourceManager resourceManager;
+        public Theme theme;
+
+        public string remLanguage;
+        public string remIPStart;
+        public string remIPEnd;
+        public string remUser;
+        public string remPassword;
+        public int remTheme;
+
+        public ConnectionOptions connectionOptions;
 
         private Session() {
             remLanguage = Properties.Settings.Default.Language;
@@ -50,17 +63,6 @@ namespace NetworkSystemFinder.Helpers
                 text = translated;
             return text;
         }
-
-        public ResourceManager resourceManager;
-        public Theme theme;
-
-        public string remLanguage;
-        public string remIPStart;
-        public string remIPEnd;
-        public string remUser;
-        public string remPassword;
-        public int remTheme;
-
 
         public void ApplySettings()
         {

@@ -1,4 +1,5 @@
 ﻿using NetworkSystemFinder.Helpers;
+using NetworkSystemFinder.Models.Parts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NetworkSystemFinder.Models
 {
-    class Computer:Machine
+    public class Computer:Machine
     {
         string oS;
         string cPU;
@@ -17,6 +18,8 @@ namespace NetworkSystemFinder.Models
         int hDD;
         int ssD;
         string motherboard;
+
+        List<RAM> rams = new List<RAM>();
 
         public Computer(string IP)
         {
@@ -48,6 +51,7 @@ namespace NetworkSystemFinder.Models
         public new string SerialNumber { get => serialNumber; set => serialNumber = value; }
         public new string MAC { get => mAC; set => mAC = value; }
         public string Motherboard { get => motherboard; set => motherboard = value; }
+
 
 
         public override string ColumnProperty(int index)
@@ -96,8 +100,7 @@ namespace NetworkSystemFinder.Models
             for(int i = 0; i < wholeName.Length; i++)
             {
                 char c = wholeName[i];
-                int outInt = 0;
-                bool isInt = int.TryParse(""+c,out outInt);
+                bool isInt = int.TryParse(""+c,out int _);
                 if (isInt) 
                 {
                     if(numberCounter == 0)
@@ -118,12 +121,31 @@ namespace NetworkSystemFinder.Models
             if (hasFound)
             {
                 while (wholeName[index] != ' ' && wholeName[index] != '-') index--;
-                name[0] = wholeName.Substring(0, index);
+                name[0] = wholeName.Substring(0, index).Replace("CPU", "");
                 name[1] = wholeName.Substring(index+1);
+
+                numberCounter = 0;
+                index = 0;
+                for(int i = name[0].Length-1; i >= 0; i--)
+                {
+                    if (name[0][i] == ' ')
+                    {
+                        numberCounter++;
+                        if(numberCounter > 2)
+                        {
+                            name[0] = name[0].Substring(0, i).Trim();
+                            break;
+                        }
+                    }
+                }
             }
 
             return name;
         }
 
+        public void AddRam(RAM ram)
+        {
+            rams.Add(ram);
+        }
     }
 }

@@ -218,6 +218,8 @@ namespace NetworkSystemFinder
             //Session.Instance.ChangeControlLanguage(this);
             Session.Instance.theme.ColorControl(this);
         }
+
+
     }
 
 

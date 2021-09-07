@@ -234,14 +234,11 @@ namespace NetworkSystemFinder.UserControls
                 connectionOptions.Username = UserName;
                 connectionOptions.Password = UserPassword;
 
-                ManagementScope scope = new ManagementScope("\\\\" + computer.IP + "\\root\\cimv2", connectionOptions);
+                ManagementScope scope = new ManagementScope("\\\\" + computer.IP + WMICHelper.PathCMIV2, connectionOptions);
                 scope.Connect();
 
-                ObjectQuery queryTCPIP = new ObjectQuery("SELECT * FROM Win32_TCPIPPrinterPort");
-                ObjectQuery queryPrinter = new ObjectQuery("SELECT * FROM Win32_Printer");
-
-                ManagementObjectSearcher searchIP = new ManagementObjectSearcher(scope, queryTCPIP);
-                ManagementObjectSearcher searchPrinter = new ManagementObjectSearcher(scope, queryPrinter);
+                ManagementObjectSearcher searchIP = new ManagementObjectSearcher(scope, WMICHelper.QueryTCPIPPrinter);
+                ManagementObjectSearcher searchPrinter = new ManagementObjectSearcher(scope, WMICHelper.QueryPrinter);
 
                 ManagementObjectCollection querys = null;
                 List<Printer> printers = new List<Printer>();

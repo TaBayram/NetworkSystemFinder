@@ -118,6 +118,11 @@ namespace NetworkSystemFinder
             double split = 0.1;
             string fileName = e.Argument.ToString();
             DataTable dataTable = new DataTable();
+            DataGridView dataGrid;
+            if (computerBar != null && computerBar.Visible) dataGrid = computerBar.dataGrid;
+            else if (printerBar != null && printerBar.Visible) dataGrid = printerBar.dataGrid;
+            else throw new Exception("No data!");
+
             foreach (DataGridViewColumn col in dataViewMain.Columns)
             {
                 dataTable.Columns.Add(col.Name);

@@ -120,6 +120,9 @@
   <data name="keyCancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="keyCloseAll" xml:space="preserve">
+    <value>Close All</value>
+  </data>
   <data name="keyCompleted" xml:space="preserve">
     <value>Done</value>
   </data>
@@ -174,6 +177,9 @@
   <data name="keyNo" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="keyOpenAll" xml:space="preserve">
+    <value>Open All</value>
+  </data>
   <data name="keyPassword" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -182,6 +188,9 @@
   </data>
   <data name="keyPingDead" xml:space="preserve">
     <value>Ping Dead IPs</value>
+  </data>
+  <data name="keyQuerySearch" xml:space="preserve">
+    <value>Search Using Query Command</value>
   </data>
   <data name="keyRemIPEnd" xml:space="preserve">
     <value>Remembered IP End</value>

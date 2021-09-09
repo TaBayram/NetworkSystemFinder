@@ -120,6 +120,9 @@
   <data name="keyCancel" xml:space="preserve">
     <value>İptal</value>
   </data>
+  <data name="keyCloseAll" xml:space="preserve">
+    <value>Hepsini Kapat</value>
+  </data>
   <data name="keyCompleted" xml:space="preserve">
     <value>Bitti</value>
   </data>
@@ -174,6 +177,9 @@
   <data name="keyNo" xml:space="preserve">
     <value>Hayır</value>
   </data>
+  <data name="keyOpenAll" xml:space="preserve">
+    <value>Hepsini Aç</value>
+  </data>
   <data name="keyPassword" xml:space="preserve">
     <value>Şifre</value>
   </data>
@@ -182,6 +188,9 @@
   </data>
   <data name="keyPingDead" xml:space="preserve">
     <value>Ölü IP'leri Pingle</value>
+  </data>
+  <data name="keyQuerySearch" xml:space="preserve">
+    <value>Query Komutu Kullanarak Ara</value>
   </data>
   <data name="keyRemIPEnd" xml:space="preserve">
     <value>Hatırlanan IP Sonu</value>

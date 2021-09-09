@@ -45,6 +45,7 @@ namespace NetworkSystemFinder
             this.panelHome = new System.Windows.Forms.Panel();
             this.dataViewMain = new System.Windows.Forms.DataGridView();
             this.backgroundWorkerExcel = new System.ComponentModel.BackgroundWorker();
+            this.labelCreator = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -76,6 +77,7 @@ namespace NetworkSystemFinder
             // 
             // panelHeader
             // 
+            this.panelHeader.Controls.Add(this.labelCreator);
             this.panelHeader.Controls.Add(this.buttonBack);
             this.panelHeader.Controls.Add(this.progressBarExcel);
             this.panelHeader.Controls.Add(this.buttonExcel);
@@ -192,6 +194,12 @@ namespace NetworkSystemFinder
             this.backgroundWorkerExcel.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerExcel_ProgressChanged);
             this.backgroundWorkerExcel.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerExcel_RunWorkerCompleted);
             // 
+            // labelCreator
+            // 
+            resources.ApplyResources(this.labelCreator, "labelCreator");
+            this.labelCreator.ForeColor = System.Drawing.Color.Wheat;
+            this.labelCreator.Name = "labelCreator";
+            // 
             // Main
             // 
             resources.ApplyResources(this, "$this");
@@ -203,6 +211,7 @@ namespace NetworkSystemFinder
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
             this.splitContainerMain.ResumeLayout(false);
             this.panelHeader.ResumeLayout(false);
+            this.panelHeader.PerformLayout();
             this.splitContainerHome.Panel1.ResumeLayout(false);
             this.splitContainerHome.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerHome)).EndInit();
@@ -231,6 +240,7 @@ namespace NetworkSystemFinder
         private System.Windows.Forms.Button buttonPrinters;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button buttonSettings;
+        private System.Windows.Forms.Label labelCreator;
     }
 }
 

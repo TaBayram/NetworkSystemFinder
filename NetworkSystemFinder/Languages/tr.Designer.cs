@@ -70,6 +70,15 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hepsini Kapat.
+        /// </summary>
+        internal static string keyCloseAll {
+            get {
+                return ResourceManager.GetString("keyCloseAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bitti.
         /// </summary>
         internal static string keyCompleted {
@@ -232,6 +241,15 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hepsini Aç.
+        /// </summary>
+        internal static string keyOpenAll {
+            get {
+                return ResourceManager.GetString("keyOpenAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Şifre.
         /// </summary>
         internal static string keyPassword {
@@ -255,6 +273,15 @@ namespace NetworkSystemFinder.Languages {
         internal static string keyPingDead {
             get {
                 return ResourceManager.GetString("keyPingDead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Query Komutu Kullanarak Ara.
+        /// </summary>
+        internal static string keyQuerySearch {
+            get {
+                return ResourceManager.GetString("keyQuerySearch", resourceCulture);
             }
         }
         

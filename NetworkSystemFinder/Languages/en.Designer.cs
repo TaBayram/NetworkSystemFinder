@@ -70,6 +70,15 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close All.
+        /// </summary>
+        internal static string keyCloseAll {
+            get {
+                return ResourceManager.GetString("keyCloseAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Done.
         /// </summary>
         internal static string keyCompleted {
@@ -232,6 +241,15 @@ namespace NetworkSystemFinder.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open All.
+        /// </summary>
+        internal static string keyOpenAll {
+            get {
+                return ResourceManager.GetString("keyOpenAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         internal static string keyPassword {
@@ -255,6 +273,15 @@ namespace NetworkSystemFinder.Languages {
         internal static string keyPingDead {
             get {
                 return ResourceManager.GetString("keyPingDead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Using Query Command.
+        /// </summary>
+        internal static string keyQuerySearch {
+            get {
+                return ResourceManager.GetString("keyQuerySearch", resourceCulture);
             }
         }
         

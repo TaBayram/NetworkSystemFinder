@@ -37,29 +37,6 @@ namespace NetworkSystemFinder.Models
         string caption;
         string caption2;
 
-        public override string ColumnProperty(int index)
-        {
-            switch (index)
-            {
-                case 0:
-                    return this.iP;
-                case 1:
-                    return this.name;
-                case 2:
-                    if (status == StatusType.Alive) return "alive";
-                    return "dead";
-                case 3:
-                    return this.serialNumber;
-                case 4:
-                    return this.MAC;
-
-                default:
-                    return "";
-
-            }
-
-
-        }
 
     }
 }

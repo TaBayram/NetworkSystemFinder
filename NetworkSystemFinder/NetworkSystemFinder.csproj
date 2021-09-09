@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo3.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\InfoBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InfoBox.Designer.cs">
+      <DependentUpon>InfoBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Logger.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,8 +99,13 @@
     </Compile>
     <Compile Include="Models\Computer.cs" />
     <Compile Include="Models\Machine.cs" />
+    <Compile Include="Models\Parts\Account.cs" />
+    <Compile Include="Models\Parts\BIOS.cs" />
     <Compile Include="Models\Parts\CPU.cs" />
-    <Compile Include="Models\Parts\MOBO.cs" />
+    <Compile Include="Models\Parts\GPU.cs" />
+    <Compile Include="Models\Parts\Motherboard.cs" />
+    <Compile Include="Models\Parts\Network.cs" />
+    <Compile Include="Models\Parts\OS.cs" />
     <Compile Include="Models\Parts\RAM.cs" />
     <Compile Include="Models\Parts\Storage.cs" />
     <Compile Include="Models\Printer.cs" />
@@ -139,6 +153,9 @@
     </Compile>
     <EmbeddedResource Include="Forms\ComputerBox.resx">
       <DependentUpon>ComputerBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InfoBox.resx">
+      <DependentUpon>InfoBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Logger.resx">
       <DependentUpon>Logger.cs</DependentUpon>
@@ -249,6 +266,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\16x16selectall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo3.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

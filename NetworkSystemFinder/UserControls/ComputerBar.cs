@@ -184,31 +184,31 @@ namespace NetworkSystemFinder.UserControls
         {
             try
             {
-                Computer machine = (Computer)eventArgs.UserState;
-                string ip = (string)machine.IP.Trim();
+                Computer computer = (Computer)eventArgs.UserState;
+                string ip = (string)computer.IP.Trim();
                 if (eventArgs.Reply != null && eventArgs.Reply.Status == IPStatus.Success)
                 {
                     IPHostEntry hostEntry;
-                    machine.Status = Computer.StatusType.Alive;
+                    computer.Status = Computer.StatusType.Alive;
                     if (ResolveNames)
                     {
                         try
                         {
                             hostEntry = Dns.GetHostEntry(ip);
-                            machine.Name = hostEntry.HostName;
+                            computer.Name = hostEntry.HostName;
                         }
                         catch (SocketException socketException) { }
 
-                        backgroundWorkerPinger.ReportProgress(2, String.Format(ip + " (" + machine.Name + ") is up: (" + eventArgs.Reply.RoundtripTime + " ms)"));
+                        backgroundWorkerPinger.ReportProgress(2, String.Format(ip + " (" + computer.Name + ") is up: (" + eventArgs.Reply.RoundtripTime + " ms)"));
                     }
                     else
                     {
                         backgroundWorkerPinger.ReportProgress(2, String.Format(ip + " is up: (" + eventArgs.Reply.RoundtripTime + " ms)"));
                     }
-                    machine.SetIP();
+                    computer.SetIP();
                     MacPairer macPairer = new MacPairer();
-                    machine.MAC = macPairer.getMacByIp(machine.IP);
-                    GetInformation(machine);
+                    computer.MAC = macPairer.getMacByIp(computer.IP);
+                    GetInformation(computer);
                 }
                 else if (eventArgs.Reply == null)
                 {
@@ -237,15 +237,12 @@ namespace NetworkSystemFinder.UserControls
             try
             {
                 ConnectionOptions connectionOptions = new ConnectionOptions();
-
                 connectionOptions.Username = UserName;
                 connectionOptions.Password = UserPassword;
-
                 Session.Instance.connectionOptions = connectionOptions;
 
                 ManagementScope scope = new ManagementScope("\\\\" + computer.IP + WMICHelper.PathCMIV2, connectionOptions);
                 ManagementScope scope2 = new ManagementScope("\\\\" + computer.IP + WMICHelper.PathSTORAGE, connectionOptions);
-
                 scope.Connect();
 
                 ManagementObjectSearcher searchUser = new ManagementObjectSearcher(scope, WMICHelper.QueryAccount);
@@ -256,38 +253,49 @@ namespace NetworkSystemFinder.UserControls
                 ManagementObjectSearcher searchBIOS = new ManagementObjectSearcher(scope, WMICHelper.QueryBIOS);
                 ManagementObjectSearcher searchMAC = new ManagementObjectSearcher(scope, WMICHelper.QueryNetwork);
                 ManagementObjectSearcher searchMotherboard = new ManagementObjectSearcher(scope, WMICHelper.QueryMotherboard);
+                ManagementObjectSearcher searchComputerSystem = new ManagementObjectSearcher(scope, WMICHelper.QueryComputerSystem);
 
                 ManagementObjectCollection querys = null;
 
-                if (computer.Name == "?")
+                errorQuery = "User";
+                try
                 {
-                    errorQuery = "User";
-                    try
+                    Account mainAccount = new Account();
+                    querys = searchUser.Get();
+                    foreach (ManagementObject m in querys)
                     {
-                        querys = searchUser.Get();
-                        foreach (ManagementObject m in querys)
+                        Account account = new Account();
+                        account.GetInformation(m);
+                        if(!account.Disabled && account.Status == "OK" && account.PasswordRequired)
                         {
-                            if(m["Domain"] != null)
-                                computer.Name = Convert.ToString(m["Domain"]);
+                            mainAccount = account;
+                            break;
                         }
                     }
-                    catch (Exception e)
-                    {
-                        backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " I" + errorQuery + " " + e.Message));
-                    }
+
+                    computer.OAccount = mainAccount;
                 }
+                catch (Exception e)
+                {
+                    backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " I" + errorQuery + " " + e.Message));
+                }
+                
 
                 errorQuery = "CPU";
                 try
                 {
+                    CPU mainCPU = new CPU();
                     querys = searchCPU.Get();
                     foreach (ManagementObject m in querys)
                     {
-                        if (m["Name"] != null)
-                            computer.CPU = Convert.ToString(m["Name"]).Trim();
+                        CPU cPU = new CPU();
+                        cPU.GetInformation(m);
+                        mainCPU = cPU;
+                        break;
                     }
+                    computer.OCPU = mainCPU;
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " I" + errorQuery + " " + e.Message));
                 }
@@ -295,12 +303,16 @@ namespace NetworkSystemFinder.UserControls
                 errorQuery = "OS";
                 try
                 {
+                    OS mainOS = new OS();
                     querys = searchOS.Get();
                     foreach (ManagementObject m in querys)
                     {
-                        if (m["Caption"] != null)
-                            computer.OS = Convert.ToString(m["Caption"]).Trim();
+                        OS oS = new OS();
+                        oS.GetInformation(m);
+                        mainOS = oS;
+                        break;
                     }
+                    computer.OOS = mainOS;
                 }
                 catch (Exception e)
                 {
@@ -310,25 +322,15 @@ namespace NetworkSystemFinder.UserControls
                 errorQuery = "RAM";
                 try
                 {
+                    List<RAM> rams = new List<RAM>();
                     querys = searchRAM.Get();
                     foreach (ManagementObject m in querys)
                     {
                         RAM ram = new RAM();
-                        backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " Ram "));
-                        if (m["Capacity"] != null)
-                            ram.Capacity = (int)Math.Round(Int64.Parse(m["Capacity"].ToString()) / 1024d / 1024 / 1024);
-                        if (m["Capacity"] != null)
-                            computer.RAM += (int)Math.Round(Int64.Parse(m["Capacity"].ToString()) / 1024d / 1024 / 1024);
-                        if (m["MemoryType"] != null)
-                            ram.Type = computer.RAMType = GetRamType(int.Parse(m["MemoryType"].ToString()));
-                        if(m["Speed"] != null)
-                            ram.Speed = int.Parse(m["Speed"].ToString());
-                        if (m["MemoryType"] != null && (((computer.RAMType == "Unknown" || computer.RAMType == "?") && (m["MemoryType"].ToString()) != "0") || computer.RAMType == "?"))
-                            computer.RAMType = GetRamType(int.Parse(m["MemoryType"].ToString()));
-                        if (m["MemoryType"] != null) backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " " + GetRamType(int.Parse(m["MemoryType"].ToString()))));
-
-                        computer.AddRam(ram);
+                        ram.GetInformation(m);
+                        rams.Add(ram);
                     }
+                    computer.RAMs = rams;
                 }
                 catch (Exception e)
                 {
@@ -338,12 +340,15 @@ namespace NetworkSystemFinder.UserControls
                 errorQuery = "GPU";
                 try
                 {
+                    List<GPU> gPUs = new List<GPU>();
                     querys = searchGPU.Get();
                     foreach (ManagementObject m in querys)
                     {
-                        if (m["Name"] != null)
-                            computer.GPU = Convert.ToString(m["Name"]).Trim();
+                        GPU gpu = new GPU();
+                        gpu.GetInformation(m);
+                        gPUs.Add(gpu);
                     }
+                    computer.GPUs = gPUs;
                 }
                 catch (Exception e)
                 {
@@ -352,33 +357,58 @@ namespace NetworkSystemFinder.UserControls
                 errorQuery = "BIOS";
                 try
                 {
+                    BIOS mainBIOS = new BIOS();
                     querys = searchBIOS.Get();
                     foreach (ManagementObject m in querys)
                     {
-                        if (m["SerialNumber"] != null && Convert.ToString(m["SerialNumber"]).Trim() != "")
-                            computer.SerialNumber = Convert.ToString(m["SerialNumber"]).Trim();
+                        BIOS bIOS = new BIOS();
+                        bIOS.GetInformation(m);
+                        mainBIOS = bIOS;
+                        break;
+                    }
+                    computer.OBIOS = mainBIOS;
+                }
+                catch (Exception e)
+                {
+                    backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " I" + errorQuery + " " + e.Message));
+                }
+                errorQuery = "Computer System";
+                try
+                {
+                    querys = searchComputerSystem.Get();
+                    foreach (ManagementObject m in querys)
+                    {
+                        computer.OBIOS.GetSystemInformation(m);
+                        break;
                     }
                 }
                 catch (Exception e)
                 {
                     backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " I" + errorQuery + " " + e.Message));
                 }
-                
+
                 errorQuery = "MAC";
                 try
                 {
+                    Network mainNetwork = new Network();
                     querys = searchMAC.Get();
                     foreach (ManagementObject m in querys)
                     {
-                        if(m["MACAddress"] != null)
-                            computer.MAC = m["MACAddress"].ToString();
+                        Network network = new Network();
+                        network.GetInformation(m);
+                        if(network.NetEnabled && network.PhysicalAdapter)
+                        {
+                            mainNetwork = network;
+                            break;
+                        }
                     }
+                    computer.ONetwork = mainNetwork;
                 }
                 catch (Exception e)
                 {
                     backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " I" + errorQuery + " " + e.Message));
                 }
-                
+
                 errorQuery = "Storage";
                 bool isNew = true;
                 ManagementObjectSearcher searchStorage;
@@ -388,12 +418,12 @@ namespace NetworkSystemFinder.UserControls
                     searchStorage = new ManagementObjectSearcher(scope2, WMICHelper.QueryStorageNew);
                     querys = searchStorage.Get();
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     isNew = false;
                 }
 
-                if(!isNew)
+                if (!isNew)
                 {
                     try
                     {
@@ -401,15 +431,16 @@ namespace NetworkSystemFinder.UserControls
                         querys = searchStorage.Get();
                         foreach (ManagementObject m in querys)
                         {
-                            if (m["Size"] != null)
-                                computer.HDD = (int)(Convert.ToUInt64(computer.HDD) + (Convert.ToUInt64(m["Size"]) / (1024 * 1024 * 1024)));
+                            Storage storage = new Storage();
+                            storage.GetInformation(m, false);
+                            computer.Storages.Add(storage);
                         }
                     }
                     catch (Exception e)
                     {
                         backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " IO" + errorQuery + " " + e.Message));
                     }
-            
+
                 }
                 else
                 {
@@ -418,17 +449,9 @@ namespace NetworkSystemFinder.UserControls
                         foreach (ManagementObject m in querys)
                         {
                             if (m["MediaType"] == null || m["BusType"] == null || Convert.ToUInt16(m["BusType"]) == 7) continue;
-                            switch (Convert.ToInt16(m["MediaType"]))
-                            {
-                                case 4:
-                                    if (m["Size"] != null)
-                                        computer.SSD = (int)(Convert.ToUInt64(computer.SSD) + (Convert.ToUInt64(m["Size"]) / (1024 * 1024 * 1024)));
-                                    break;
-                                default:
-                                    if (m["Size"] != null)
-                                        computer.HDD = (int)(Convert.ToUInt64(computer.HDD) + (Convert.ToUInt64(m["Size"]) / (1024 * 1024 * 1024)));
-                                    break;
-                            }
+                            Storage storage = new Storage();
+                            storage.GetInformation(m, true);
+                            computer.Storages.Add(storage);
                         }
                     }
                     catch (Exception e)
@@ -440,14 +463,16 @@ namespace NetworkSystemFinder.UserControls
                 errorQuery = "Motherboard";
                 try
                 {
+                    Motherboard mainMotherboard = new Motherboard();
                     querys = searchMotherboard.Get();
                     foreach (ManagementObject m in querys)
                     {
-                        if (m["Manufacturer"] != null)
-                            computer.Motherboard = m["Manufacturer"].ToString().Substring(0,Math.Min(m["Manufacturer"].ToString().Length,12)) +" : " +m["Product"].ToString();
-                        if (m["SerialNumber"] != null && m["SerialNumber"].ToString().Trim() != "" && (computer.SerialNumber == "?" || computer.SerialNumber == "NONE" || computer.SerialNumber.ToLower().StartsWith("default") || computer.SerialNumber.ToLower().StartsWith("to be filled") || computer.SerialNumber.ToLower().StartsWith("system serial") || computer.SerialNumber.ToLower().StartsWith("not")))
-                            computer.SerialNumber = "MB>"+m["SerialNumber"].ToString();
+                        Motherboard motherboard = new Motherboard();
+                        motherboard.GetInformation(m);
+                        mainMotherboard = motherboard;
+                        break;
                     }
+                    computer.OMotherboard = mainMotherboard;
                 }
                 catch (Exception e)
                 {
@@ -456,16 +481,17 @@ namespace NetworkSystemFinder.UserControls
 
 
 
-                backgroundWorkerPinger.ReportProgress(3,computer);
+                backgroundWorkerPinger.ReportProgress(3, computer);
 
 
             }
             catch (Exception e)
             {
-                backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " "+errorQuery +" "+ e.Message));
+                backgroundWorkerPinger.ReportProgress(2, String.Format(computer.Name + " " + errorQuery + " " + e.Message));
             }
 
         }
+
         private void backgroundWorkerPinger_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             if (e.ProgressPercentage == 1)

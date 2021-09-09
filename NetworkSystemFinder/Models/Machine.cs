@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -15,13 +16,12 @@ namespace NetworkSystemFinder.Models
         protected string mAC;
         protected string serialNumber;
 
-        public string IP { get => iP; set => iP = value; }
-        public string Name { get => name; set => name = value; }
-        public StatusType Status { get => status; set => status = value; }
-        public string MAC { get => mAC; set => mAC = value; }
-        public string SerialNumber { get => serialNumber; set => serialNumber = value; }
+        [Browsable(false)]  public string IP { get => iP; set => iP = value; }
+        [Browsable(false)]  public string Name { get => name; set => name = value; }
+        [Browsable(false)]  public StatusType Status { get => status; set => status = value; }
+        [Browsable(false)]  public string MAC { get => mAC; set => mAC = value; }
+        [Browsable(false)]  public string SerialNumber { get => serialNumber; set => serialNumber = value; }
 
-        public abstract string ColumnProperty(int index);
 
         public void SetIP()
         {

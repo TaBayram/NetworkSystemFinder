@@ -16,7 +16,7 @@ namespace NetworkSystemFinder.Models
     public abstract class Bar: UserControl
     {
         protected Main main;
-        protected DataGridView dataGrid;
+        public DataGridView dataGrid;
         protected Stopwatch stopWatch;
         protected CountdownEvent countdown;
         protected int pingTotal = 0;
@@ -79,6 +79,7 @@ namespace NetworkSystemFinder.Models
         }
         private void dataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0 || e.RowIndex >= dataGrid.Rows.Count) return;
             ComputerBox computerBox = new ComputerBox((Computer)dataGrid.Rows[e.RowIndex].DataBoundItem);
             computerBox.TopMost = true;
             computerBox.Show();
@@ -230,45 +231,6 @@ namespace NetworkSystemFinder.Models
             }
 
             return hasDeleted;
-        }
-
-        protected string GetRamType(int type)
-        {
-            string outValue = string.Empty;
-
-            switch (type)
-            {
-                case 0: outValue = "Unknown"; break;
-                case 1: outValue = "Other"; break;
-                case 2: outValue = "DRAM"; break;
-                case 3: outValue = "Synchronous DRAM"; break;
-                case 4: outValue = "Cache DRAM"; break;
-                case 5: outValue = "EDO"; break;
-                case 6: outValue = "EDRAM"; break;
-                case 7: outValue = "VRAM"; break;
-                case 8: outValue = "SRAM"; break;
-                case 9: outValue = "RAM"; break;
-                case 10: outValue = "ROM"; break;
-                case 11: outValue = "Flash"; break;
-                case 12: outValue = "EEPROM"; break;
-                case 13: outValue = "FEPROM"; break;
-                case 14: outValue = "EPROM"; break;
-                case 15: outValue = "CDRAM"; break;
-                case 16: outValue = "3DRAM"; break;
-                case 17: outValue = "SDRAM"; break;
-                case 18: outValue = "SGRAM"; break;
-                case 19: outValue = "RDRAM"; break;
-                case 20: outValue = "DDR"; break;
-                case 21: outValue = "DDR2"; break;
-                case 22: outValue = "DDR2 FB-DIMM"; break;
-                case 23: outValue = "Undefined 23"; break;
-                case 24: outValue = "DDR3"; break;
-                case 25: outValue = "FBD2"; break;
-                case 26: outValue = "DDR4"; break;
-                default: outValue = "Undefined"; break;
-            }
-
-            return outValue;
         }
 
         protected void ToggleColumn(CheckedListBox checkedListBox, ItemCheckEventArgs e)

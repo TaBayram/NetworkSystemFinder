@@ -135,6 +135,36 @@
   <data name="splitContainerMain.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
     <value>Horizontal</value>
   </data>
+  <data name="labelCreator.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelCreator.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei, 8.25pt, style=Italic</value>
+  </data>
+  <data name="labelCreator.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 9</value>
+  </data>
+  <data name="labelCreator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 16</value>
+  </data>
+  <data name="labelCreator.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="labelCreator.Text" xml:space="preserve">
+    <value>Made by Tayyib Bayram</value>
+  </data>
+  <data name="&gt;&gt;labelCreator.Name" xml:space="preserve">
+    <value>labelCreator</value>
+  </data>
+  <data name="&gt;&gt;labelCreator.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelCreator.Parent" xml:space="preserve">
+    <value>panelHeader</value>
+  </data>
+  <data name="&gt;&gt;labelCreator.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="buttonBack.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
   </data>
@@ -166,7 +196,7 @@
     <value>panelHeader</value>
   </data>
   <data name="&gt;&gt;buttonBack.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="progressBarExcel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -193,7 +223,7 @@
     <value>panelHeader</value>
   </data>
   <data name="&gt;&gt;progressBarExcel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="buttonExcel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -515,7 +545,7 @@
     <value>panelHeader</value>
   </data>
   <data name="&gt;&gt;buttonExcel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="panelHeader.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -630,6 +660,9 @@
   </data>
   <data name="buttonPrinters.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
+  </data>
+  <data name="buttonPrinters.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;buttonPrinters.Name" xml:space="preserve">
     <value>buttonPrinters</value>

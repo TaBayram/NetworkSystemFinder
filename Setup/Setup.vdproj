@@ -15,12 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_0FF76FBC38144D61B8EE6AD9528B25E8"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_54A9DE84B19B7C9D9A4AA7C7B6CC07AC"
         "OwnerKey" = "8:_7DE141DE27C14389A058ADC8DFCFF73C"
         "MsmSig" = "8:_UNDEFINED"
@@ -33,20 +27,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BF5200C94FE94297AC6AECAE94CD618D"
+        "MsmKey" = "8:_F76F963254684C2897856940C489EB69"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_54A9DE84B19B7C9D9A4AA7C7B6CC07AC"
+        "OwnerKey" = "8:_7DE141DE27C14389A058ADC8DFCFF73C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7DE141DE27C14389A058ADC8DFCFF73C"
+        "OwnerKey" = "8:_54A9DE84B19B7C9D9A4AA7C7B6CC07AC"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -67,6 +61,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -83,6 +93,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -112,26 +138,6 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0FF76FBC38144D61B8EE6AD9528B25E8"
-            {
-            "SourcePath" = "8:..\\Assets\\setup.ico"
-            "TargetName" = "8:setup.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_19A069346D814847B5CA40FA5A5D2AE1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_54A9DE84B19B7C9D9A4AA7C7B6CC07AC"
             {
             "AssemblyRegister" = "3:1"
@@ -163,9 +169,9 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BF5200C94FE94297AC6AECAE94CD618D"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F76F963254684C2897856940C489EB69"
             {
-            "SourcePath" = "8:..\\Assets\\logo3.ico"
+            "SourcePath" = "8:..\\RawAssets\\logo3.ico"
             "TargetName" = "8:app.ico"
             "Tag" = "8:"
             "Folder" = "8:_19A069346D814847B5CA40FA5A5D2AE1"
@@ -238,9 +244,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Setup"
+        "ProductName" = "8:Network System Finder"
         "ProductCode" = "8:{064767B5-1944-482C-A7AD-AE95D4D1D74F}"
-        "PackageCode" = "8:{7063ADE4-014E-405D-967F-BDFF5037DBFE}"
+        "PackageCode" = "8:{FD17D415-C3A1-4D0E-9D08-BA79E61597F4}"
         "UpgradeCode" = "8:{D793C963-D562-480E-9172-DDCE9BBEAB23}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
@@ -257,7 +263,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:_BF5200C94FE94297AC6AECAE94CD618D"
+        "ARPPRODUCTICON" = "8:_F76F963254684C2897856940C489EB69"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -371,7 +377,7 @@
             "Target" = "8:_7DE141DE27C14389A058ADC8DFCFF73C"
             "Folder" = "8:_4F80B2E615C9494C9C2A05A60E328F6F"
             "WorkingFolder" = "8:_19A069346D814847B5CA40FA5A5D2AE1"
-            "Icon" = "8:_BF5200C94FE94297AC6AECAE94CD618D"
+            "Icon" = "8:_F76F963254684C2897856940C489EB69"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B9C123F1B7BF46D5A46BB12053995118"
@@ -385,7 +391,7 @@
             "Target" = "8:_7DE141DE27C14389A058ADC8DFCFF73C"
             "Folder" = "8:_93C69A273D314667B720A70F7036883D"
             "WorkingFolder" = "8:_19A069346D814847B5CA40FA5A5D2AE1"
-            "Icon" = "8:_BF5200C94FE94297AC6AECAE94CD618D"
+            "Icon" = "8:_F76F963254684C2897856940C489EB69"
             "Feature" = "8:"
             }
         }
